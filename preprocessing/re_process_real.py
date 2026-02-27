@@ -69,6 +69,6 @@ class ReprocessorReal:
 
         
 if __name__ == "__main__":
-    rp = ReprocessorReal("/Users/michaelmurray/Documents/GitHub/chem_llm/datasets/processed_real/joined_2026-02-20__08_01_44__301077.jsonl")
+    rp = ReprocessorReal("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/processed_real/joined_2026-02-20__08_01_44__301077.jsonl")
     rp.clean_jsons()
     rp.split_data()

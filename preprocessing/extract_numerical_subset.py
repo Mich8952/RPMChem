@@ -78,5 +78,5 @@ class NumberExtractor:
 
 
 if __name__ == "__main__":
-    NumberExtractor("/Users/michaelmurray/Documents/GitHub/chem_llm/datasets/current_to_run/valid.jsonl").run_all()
+    NumberExtractor("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/current_to_run/valid.jsonl").run_all()
                 

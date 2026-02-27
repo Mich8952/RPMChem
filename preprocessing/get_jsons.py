@@ -67,7 +67,7 @@ def process_pages(start_page, num_pages):
             break
         
         pages = convert_from_path( 
-            "/Users/michaelmurray/Documents/GitHub/chem_llm/datasets/raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0) - libgen.li.pdf", 
+            "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0) - libgen.li.pdf", 
             1000,  # 1000 DPI is a little extreme but I didn't want to miss anything major
             first_page=page_num, 
             last_page=page_num
