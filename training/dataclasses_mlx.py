@@ -1,6 +1,7 @@
 import json
 import os
 import random
+from sklearn.model_selection import train_test_split
 
 import numpy as np
 
@@ -78,18 +79,28 @@ class JSONLDataset:
         apply_chat_template=True,
         mask_prompt=True, # if True, only compute loss on the completion tokens (not the prompt)
         system_prompt=None,
+        split_prop = None,
+        set_type = None
     ):
+        if split_prop is None and set_type is not None:
+            raise ValueError("set_type should only be specified if split_prop is also specified")
+        elif split_prop is not None and set_type is None:
+            raise ValueError("set_type must be specified if split_prop is specified")
         self.path = os.path.abspath(f"{jsonl_path}")
+        self.split_again = True if split_prop is not None else False
+        self.split_prop = split_prop
+        self.set_type = set_type
         self.tokenizer = tokenizer
         self.max_length = max_length
         self.apply_chat_template = apply_chat_template
         self.mask_prompt = mask_prompt
         self.system_prompt = (system_prompt or "").strip() or None
         self.samples = self.load_items()
-
+        
 
     def load_items(self):
         samples = []
+        txt_ids = [] # if relevant
         truncated_count = 0
         use_chat_template = self.apply_chat_template and hasattr(self.tokenizer, "apply_chat_template")
         with open(self.path, "r", encoding="utf-8") as f:
@@ -116,10 +127,20 @@ class JSONLDataset:
                         )
                 token_ids = token_ids_full[:self.max_length]
                 loss_start = min(len(prompt_ids), len(token_ids))
-                if len(token_ids) >= 2: # there previously was a couple corrupted samples of empty strings or single words, so this handles those (in reality I think these are fixed now in preprocessing)
+                if len(token_ids) >= 2: # there previously was a couple corrupted samples of empty strings or single words, so this handles those (in reality I think these are fixed now in preprocessing)                    
                     samples.append((token_ids, loss_start))
+                    txt_id = record.get("textbook_id")
+                    if txt_id is not None:
+                        txt_ids.append(txt_id)
         if truncated_count > 0:
             print(f"WARNING: {truncated_count} samples were truncated to max_length={self.max_length} ") # again we want to fix this immediately if this triggers
+
+        if self.split_again:
+            train_samples, test_samples = train_test_split(samples, test_size=self.split_prop, random_state=42, stratify=txt_ids)         
+            if self.set_type == "train":
+                samples = train_samples
+            elif self.set_type == "valid":
+                samples = test_samples
         return samples
 
     def __len__(self): #pytorch like __len__

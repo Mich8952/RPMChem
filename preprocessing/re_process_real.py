@@ -12,13 +12,14 @@ class ReprocessorReal:
 
         self.blacklist = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","a)","b)","c)","d)","e)","f)","g)","h)","i)","j)","k)","l)","m)","n)","o)","p)","q)","r)","s)","t)","u)","v)","w)","x)","y)","z)","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","A)","B)","C)","D)","E)","F)","G)","H)","I)","J)","K)","L)","M)","N)","O)","P)","Q)","R)","S)","T)","U)","V)","W)","X)","Y)","Z)"]
 
-        self.pattern = re.compile(r'^[PQ]\d+(?:\.\d+)?$')
+        #self.pattern = re.compile(r'^[A-Z]\d{1,2}(?:[A-Z])?\.\d+(?:\([a-z]\))?$')
         self.disallowed_phrases = ["refer to", "figure", "table", "see question"]
 
         self.refined_data = []
 
     
     def clean_jsons(self):
+        bs=0
         refined_data = []
         for i,d in enumerate(tqdm(self.data)):    
             refined_data_singlet = {}
@@ -31,7 +32,7 @@ class ReprocessorReal:
 
             if (
                 (d['prompt'] not in self.blacklist) and ("completion" in d.keys())
-                and (self.pattern.match(d['question_num']) is not None)
+                #and (self.pattern.match(d['question_num']) is not None)
                 and (d['completion'] != "")
                 and (not has_disallowed_phrase)
             ):
@@ -39,12 +40,19 @@ class ReprocessorReal:
                     refined_data_singlet['prompt'] = d['prompt']
                     refined_data_singlet['completion'] = d['completion']
                     refined_data.append(refined_data_singlet)
+                    txt_id = d.get("textbook_id")
+
+                    if txt_id is not None:
+                        refined_data_singlet['textbook_id'] = txt_id
                 except:
                     print(f"failed when processing sample {i}, plz check")
+            else:
+                bs+=1
+                print(f"Skipping bad sample {bs}")
 
         self.refined_data = np.array(refined_data)
 
-    def split_data(self,test_prop = 0.2):
+    def split_data(self,test_prop = 0.15):
         if self.refined_data is None:
             raise Exception("Could not find any refined_data object attribute. make sure you run self.clean_jsons")
 
@@ -54,21 +62,26 @@ class ReprocessorReal:
         train_data = data_to_split[:int((1-test_prop)*len(self.refined_data))]
         test_data = data_to_split[int((1-test_prop)*len(self.refined_data)):]
 
-        with open(f'datasets/current_to_run/train.jsonl', "w", encoding="utf-8") as f:  
+        train_string = f"datasets/e2e_artifacts/train_noimpute_{self.datestamp}.jsonl"
+        test_string = f"datasets/e2e_artifacts/valid_noimpute_{self.datestamp}.jsonl"
+
+        with open(train_string, "w", encoding="utf-8") as f:  
             for d in train_data:
                 f.write(json.dumps(d))
                 f.write("\n")
 
-        with open(f'datasets/current_to_run/valid.jsonl', "w", encoding="utf-8") as f:  
+        with open(test_string, "w", encoding="utf-8") as f:  
             for d in test_data:
                 f.write(json.dumps(d))
                 f.write("\n")
                 
         print("Done processing")
 
+        return train_string, test_string
+
 
         
 if __name__ == "__main__":
-    rp = ReprocessorReal("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/processed_real/joined_2026-02-20__08_01_44__301077.jsonl")
+    rp = ReprocessorReal("datasets/processed_real/mega_joined_3txt_with_textbook_ids.jsonl")
     rp.clean_jsons()
     rp.split_data()

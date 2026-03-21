@@ -12,7 +12,7 @@ def relative_error(y_true, y_hat):
     return np.abs(y_hat - y_true) / np.abs(y_true)
 
 if __name__ == "__main__":
-    df = pd.read_csv("/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_comparison.csv")
+    df = pd.read_csv("/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_comparison_run1.csv") 
 
     valid = df['ground_truth'].notna()
     df = df[valid].reset_index(drop=True)

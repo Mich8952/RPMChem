@@ -1,0 +1,188 @@
+,prompt,ground_truth,ground_truth_unit,model1_value_raw,model1_unit_raw,model1_converted_value,model1_ans,model2_value_raw,model2_unit_raw,model2_converted_value,model2_ans
+0,Estimate the spin-only molar susceptibility of CuSO₄·5H₂O at 25 °C.,1.59e-08,m³ mol⁻¹,,NA,,,2.84e-06,cm³/mol,2.84e-12,2.84e-12
+1,What is the efficiency of an ideal heat engine in which the hot source is at 100°C and the cold sink is at 10°C?,24.1,%,24.0,%,24.0,24.0,24.2,%,24.2,24.2
+2,"G. Bakale et al. (J. Phys. Chem., 12477 (1996)) measured the mobility of singly charged C₆₀⁻ ions in a variety of nonpolar solvents. In cyclohexane at 22 °C (viscosity is 0.93 × 10⁻³ kg m⁻¹ s⁻¹), the mobility is 1.1 × 10⁻⁴ cm² V⁻¹ s⁻¹. Estimate the effective radius of the C₆₀⁻ ion. Suggest a reason why there is a substantial difference between this number and the van der Waals radius of neutral C₆₀.",0.83,nm,1.42e-15,m,1.42e-06,1.42e-06,0.99,nm,0.99,0.99
+3,If E = 0.830 V,0.101,NA,,NA,,,0.83,V,0.83,0.83
+4,"The following sequence of reactions occurs in the commercial production of aqueous nitric acid:
+4NH3(g) + 5O2(g) → 4NO(g) + 6H2O(l)    ΔH = −907 kJ
+2NO(g) + O2(g) → 2NO2(g)    ΔH = −113 kJ
+3NO2 + H2O(l) → 2HNO3(aq) + NO(g)    ΔH = −139 kJ
+Determine the total energy change for the production of one mole of aqueous nitric acid by this process.",-494.0,kJ/mol,,NA,,,-1159.0,kJ,,
+5,Calculate the factor by which vapor pressure of a droplet of methanol of radius 1.00 x 10^-8 m at 325 K in equilibrium with its vapor is increased with respect to a very large droplet. Use the tabulated value of the density and surface tension in Appendix A for this problem. (Hint: You need to calculate the vapor pressure of methanol at this temperature.),1.068,NA,,NA,,,1e-11,NA,1e-11,1e-11
+6,"Imagine a particle confined to move on the circumference of a circle ('a particle on a ring'), such that its position can be described by an angle φ in the range 0 to 2π. Find the normalizing factor for the wavefunctions: (a) e^(imφ) and (b) e^(imφ), where m is an integer.",0.399,NA,0.39894228,NA,0.39894228,0.39894228,0.39894228,NA,0.39894228,0.39894228
+7,Convert Kp to Kc for Na2SO4·10H2O(s) ⇌ Na2SO4(s) + 10H2O(g).,5.3399999999999997e-39,NA,,NA,,,1e+24,NA,1e+24,1e+24
+8,The diffusion coefficient of the protein lysozyme (MW = 14.1 kg/mol) is 0.104 x 10^-5 cm^2 s^-1. How long will it take this protein to diffuse an rms distance of 1 μm? b) You are about to perform a microscopy experiment in which you will monitor the,1.58,ms,0.0016,s,1.6,1.6,288.0,s,288000.0,288000.0
+9,"Alcohol is removed from the bloodstream by a series of metabolic reactions. The first reaction produces
+acetaldehyde; then other products are formed. The following data have been determined for the rate at which
+alcohol is removed from the blood of an average male, although individual rates can vary by 25–30%. Women
+metabolize alcohol a little more slowly than men:
+[C2H5OH] (M) 4.4 10−2 3.3 10−2 2.2 10−2
+Rate (mol L−1 h−1) 2.0 10−2 2.0 10−2 2.0 10−2
+Determine the rate law, the rate constant, and the overall order for this reaction.",0.02,mol L−1 h−1,0.02,mol L^-1 h^-1,0.02,0.02,0.454,h^-1,,
+10,A 2.00-L bottle of a solution of concentrated HCl was purchased for the general chemistry laboratory. The solution contained 868.8 g of HCl. What is the molarity of the solution?,11.9,M,11.9,M,11.9,11.9,0.2847,mol/L,0.2847,0.2847
+11,"I = 0.0010 mol kg^-1
+ln γ± = 1.173 x 4 x √0.0010 = -0.148374
+γ± = 0.8621
+K_sp = (c_Ba^2+ / c°)^2 x (0.8621)^2 = 1.08 x 10^-10
+c_Ba^2+ = 1.21 x 10^-5 mol kg^-1
+The relative error is 20%. There is no need for a further iteration because the ionic strength in the solution is not influenced by the dissociation of BaSO4.",20.0,%,9.9441e-06,mol kg^-1,,,,NA,,
+12,A sample of radium-226 produces 0.0001 mL of radon-222 at STP in 24 hours. What is the half-life of Ra-226?,2000.0,years,18144.0,year,18144.0,18144.0,213.0,days,0.5835616438356164,0.5835616438356164
+13,"With the partition function evaluated, the probability of occupying the excited energy level is readily determined:",0.479,NA,,NA,,,,NA,,
+14,What volume of a 0.20-M K2SO4 solution contains 57 g of K2SO4?,1.6,L,1635.0,mL,1.635,1.635,0.328,L,0.328,0.328
+15,Calculate the pressure differential of water across the surface of a spherical droplet of radius 200 nm at 20 °C. The surface tension of ethanol at 20 °C is 22.39 mN m⁻¹.,728.0,kPa,112000.0,Pa,112.0,112.0,-4.478e-13,Pa,-4.478e-16,-4.478e-16
+16,Calculate the value of ΔHm - ΔUm for the reaction N2(g) + 3H2(g) → 2NH3(g) at 298 K.,-5.0,kJ mol⁻¹,,NA,,,0.0,NA,0.0,0.0
+17,What volume of a 0.33-M C12H22O11 solution can be diluted to prepare 25 mL of a solution with a concentration of 0.025 M?,1.9,mL,1890.0,mL,1890.0,1890.0,40.3,mL,40.3,40.3
+18,"3.00 moles of a gas are compressed isothermally from 60.0 L to 20.0 L using a constant external pressure of 5.00 atm. Calculate q, w, Delta U, and Delta H.",20300.0,J,0.0,NA,0.0,0.0,,NA,,
+19,"Given that the mass density of air at 0.987 bar and 27 °C is 1.146 kg m⁻³, calculate (i) air consists only of these two gases, (ii) air also contains 1.0 mole per cent Ar.",39.5,mol,,NA,,,1.143,kg m⁻³,,
+20,"In the Michaelis-Menten mechanism, it is assumed that the formation of product from the enzyme-substrate complex is irreversible. However, consider the following modified version in which the product formation step is reversible:",70.4,μM,,NA,,,,NA,,
+21,"The molecule NO has a ground electronic level that is doubly degenerate, and a first excited level at 121.1 cm^-1 that is also twofold degenerate. Determine the contribution of electronic degrees of freedom to the standard molar entropy of NO. Compare your result to R ln(4). What is the significance of this comparison?",11.2,J mol^-1 K^-1,0.0,NA,0.0,0.0,0.530288,J/mol·K^0,,
+22,"For the system described in Exercise E7B.1(a), what is the probability of finding the electron between x = L/4 and x = L/2?",0.25,NA,,NA,,,,NA,,
+23,An increase in temperature from -80° to 20°C converts a solid to a gas with no intermediate liquid phase.,5.11,atm,-78.5,°C,,,,NA,,
+24,c) Calculate the ratio (E_{α+1} - E_α) / kT and use your result to conclude whether a classical or quantum mechanical description is appropriate for the particle.,8.87e-12,NA,,NA,,,,NA,,
+25,"The limiting molar conductivities of NaI, NaNO₃, and AgNO₃ are 12.69 mS m² mol⁻¹, 12.16 mS m² mol⁻¹, and 13.34 mS m² mol⁻¹, respectively (all at 25 °C). What is the limiting molar conductivity of AgI at this temperature? Hint: Each limiting molar conductivity can be expressed as a sum of two ionic conductivities.",13.87,mS m² mol⁻¹,,NA,,,1.18,mS m²/mol,1.18,1.18
+26,The standard potential of the cell Ag(s)|AgI(s)|AgI(aq) is +0.9509 V at 25°C. Calculate the equilibrium constant for the dissolution of AgI.,8.445e-17,NA,,NA,,,1.322,NA,1.322,1.322
+27,Calculate the ionic strength of a solution that is 0.10 mol kg⁻¹ in KCl(aq) and 0.20 mol kg⁻¹ in CuSO₄(aq).,0.9,NA,1.7,mol kg⁻¹,1.7,1.7,0.3,mol kg⁻¹,0.3,0.3
+28,"Consider a Carnot cycle in which the working substance is 0.10 mol of perfect gas molecules, the temperature of the hot source is 373 K, and that of the cold sink is 273 K; the initial volume of gas is 1.00 dm³, which doubles over the course of the first isothermal stage. For the reversible adiabatic stages it may be assumed that VγT = constant. (a) Calculate the volume of the gas after Stage 1 and after Stage 2 (Fig. 3A.8). (b) Calculate the volume of gas after Stage 3 by considering the reversible adiabatic compression from the starting point. (c) Hence, for each of the four stages of the cycle, calculate the heat transferred to or from the gas. (d) Explain why the work done is equal to the difference between the heat extracted from the hot source and that deposited in the cold sink. (e) Calculate the work done over the cycle and hence the efficiency η. (f) Confirm that your answer agrees with the efficiency given by eqn 3A.9 and that your values for the work done are in accord with eqn 3A.6.",3.19,dm^3,,NA,,,2.0,dm^3,2.0,2.0
+29,Consider the case of 10 oscillators and eight quanta of energy. Determine the dominant configuration of energy for this system by identifying energy configurations and calculating the corresponding weights. What is the probability of observing the dominant configuration?,0.25,NA,,NA,,,,NA,,
+30,"Calculate I, γ±, and a± for a 0.025m solution of AlCl3 at 298 K. Assume complete dissociation.",0.0146,NA,0.000625,M^2,0.000625,0.000625,,NA,,
+31,"The slope of the line yields the activation energy:
+-E_a/R = slope
+E_a = -(8.314 J mol^-1 K^-1)(-95.04 K)
+= 790 J mol^-1
+And the y-intercept of the graph yields ln(A):
+y-int = ln(A)
+e^24.611 = A
+A = 4.88 x 10^10 M^-1 s^-1
+b) k = Ae^(-E_a/RT)
+= (4.88 x 10^10 M^-1 s^-1) exp(-790 J mol^-1 / (8.314 J mol^-1 K^-1)(220 K))
+= (4.88 x 10^10 M^-1 s^-1)(0.649)
+= 3.17 x 10^10 M^-1 s^-1",31700000000.0,M^-1 s^-1,,M^-1 s^-1,,,,M^-1 s^-1,,
+32,Canadian tire pressure gauges are marked in units of kilopascals. What reading on such a gauge corresponds to 32 psi?,220.0,kPa,219.88,kPa,219.88,219.88,0.689476,kPa,0.689476,0.689476
+33,Calculate ΔS°_reaction for the reaction AgNO3(aq) + KCl(aq) → AgCl(s) + KNO3(aq).,-32.9,J K^-1 mol^-1,-65.3,J/K·mol,-65.3,-65.3,-2.03,J mol⁻¹ K⁻¹,-2.03,-2.03
+34,"Calculate the density of Freon 12, CF2Cl2, at 30.0 °C and 0.954 atm.",4.64,g L−1,,NA,,,2.62,g/L,2.62,2.62
+35,"All this momentum is transferred to the H_2 molecule
+Δp_H_2 = 6.626x10^-27 kg m s^-1 = mΔv
+Δv_H_2 = 6.626x10^-27 kg m s^-1 / 2.016 amu x 1.661x10^-27 kg/amu = 1.98 m s^-1
+Δv/v = 1.98 m s^-1 / √(3RT/M) = 1.98 m s^-1 / √(3x8.314 J mol^-1 K^-1 x 298 K / 2.016x10^-3 kg mol^-1) = 1.03x10^-3",0.00103,NA,0.00103,NA,0.00103,0.00103,0.00103,NA,0.00103,0.00103
+36,Calculate the molar susceptibility of benzene given that its volume susceptibility is −7.2 × 10⁻⁷ and its mass density is 0.879 g cm⁻³ at 25 °C.,-6.4e-11,m³ mol⁻¹,,cm³·g⁻¹ mol⁻¹,,,-5.9e-05,cm^3 mol^-1,-5.9e-11,-5.9e-11
+37,"Use the values for ΔG_f (ethanol, l) and ΔG_f (ethanol, g) in Appendix A to calculate the vapor pressure of ethanol at 298.15 K. For the transformation C2H5OH (l) → C2H5OH (g)",6170.0,Pa,6674.0,Pa,6674.0,6674.0,2.17e-34,NA,2.17e-34,2.17e-34
+38,"Assuming ideal solution behavior, what is the freezing temperature of a solution of 115.0 g of sucrose,
+C12H22O11, in 350.0 g of water?
+(a) Outline the steps necessary to answer the question.
+(b) Answer the question.",-1.8,°C,,NA,,,-19.86,°C,-19.86,-19.86
+39,"When a 0.740-g sample of trinitrotoluene (TNT), C7H5N2O6, is burned in a bomb calorimeter, the temperature increases from 23.4 °C to 26.9 °C. The heat capacity of the calorimeter is 534 J/°C, and it contains 675 mL of water. How much heat was produced by the combustion of the TNT sample?",11.7,kJ,,NA,,,5046.0,J,5.046,5.046
+40,The bulk modulus of polystyrene is 3.43 GPa. Calculate the hydrostatic pressure (stress) needed for a sample of this material to change volume by 1.0 per cent.,34.3,MPa,0.0343,GPa,34.3,34.3,34300000.0,Pa,34.3,34.3
+41,"Two parallel metal plates separated by 1 cm are held at 300 and 298 K, respectively. The space between the plates is filled with N₂ (σ = 0.430 nm² and C_v,m = 5/2 R). Determine the heat flow between the two plates in units of W cm⁻². The flux is given by: J = -κ(ΔT/Δx) where κ = (1/3)(C_v,m / N_A) v_ave λ = (1/3)(C_v,m / N_A)(8RT/πM)^(1/2) / √(2σ). Using the average temperature of 299 K to calculate the thermal conductivity, the flux is:",-7.2e-23,W cm⁻²,,NA,,,0.021,W cm⁻²,0.021,0.021
+42,"The effect of symmetry on the rotational partition function for H2 was evaluated by recognizing that each hydrogen is a spin 1/2 particle and is, therefore, a fermion. However, this development is not limited to fermions, but is also applicable to CO2 in which rotation by 180° results in the interchange of two spin 0 particles.",1.3e+29,NA,,NA,,,,NA,,
+43,Calculate the change in the molar Gibbs energy of a perfect gas when its pressure is increased isothermally from 50.0 kPa to 100.0 kPa at 298 K.,11.0,kJ mol^−1,-2472.25,J/mol,-2.47225,-2.47225,4.15,kJ·mol⁻¹,4.15,4.15
+44,"Consider this question: What mass of a concentrated solution of nitric acid (68.0% HNO3 by mass) is needed to prepare 400.0 g of a 10.0% solution of HNO3 by mass?
+(a) Outline the steps necessary to answer the question.
+(b) Answer the question.",58.8,g,58.82,g,58.82,58.82,58.8,g,58.8,58.8
+45,"Which of the following wave functions are eigenfunctions of the operator d^2/dx^2? If they are eigenfunctions, what is the eigenvalue?",-1.0,NA,-2.0,NA,-2.0,-2.0,,NA,,
+46,Calculate the mean ionic activity of a 0.0150m K2SO4 solution for which the mean activity coefficient is 0.465.,0.0111,NA,0.0577,NA,0.0577,0.0577,0.0232,mol/L,0.0232,0.0232
+47,Calculate the solubility of H_2S in 1 L of water if its pressure above the solution is 3.25 bar. The density of water at this temperature is 997 kg m^-3.,0.327,mol,17.53,g,,,0.418,mol kg^-1,,
+48,Water is heated from 25 °C to 35 °C. By how much does its chemical potential change? The standard molar entropy of liquid water at 298 K is 69.9 J K⁻¹ mol⁻¹.,-699.0,J mol⁻¹,475.16,J mol⁻¹,475.16,475.16,2.311,J K⁻¹ mol⁻¹,,
+49,"A chemist dissolves a 1.497-g sample of a type of metal (an alloy of Sn, Pb, Sb, and Cu) in nitric acid, and metastannic acid, H2SnO3, is precipitated. She heats the precipitate to drive off the water, which leaves 0.4909 g of tin(IV) oxide. What was the percentage of tin in the original sample?",25.83,%,19.64,%,19.64,19.64,62.5,%,62.5,62.5
+50,Calculate ion concentrations in a saturated solution of AgI.,1.3e-05,M,9.23e-09,M,9.23e-09,9.23e-09,,mol/L,,
+51,"Compare the average speed and average kinetic energy of O_2 with that of CCl_4 at 298 K. M_O_2 = 0.032 kg mol^-1 M_CCl_4 = 0.154 kg mol^-1 At the same temperature, the speed for two particles of different mass is related by the square root of the mass ratios. For this case of O_2 and CCl_4: v_CCl_4 = (M_O_2 / M_CCl_4)^1/2 v_O_2 v_CCl_4 = (0.032 kg mol^-1 / 0.154 kg mol^-1)^1/2 v_O_2 = (0.456)v_O_2 The average speed for O_2 at 298 K is: v_ave = (8RT / πM)^1/2 = (8(8.314 J mol^-1 K^-1)(298 K) / π * 0.032 kg mol^-1)^1/2 = 444 m s^-1 Using this result, the average speed for CCl_4 at this same temperature is: v_ave,CCl_4 = 0.456 * v_ave,O_2 v_ave,CCl_4 = (0.456)(444 m s^-1) = 203 m s^-1 The average kinetic energy is mass independent, thus for a given temperature, all gases have the same kinetic energy. The average kinetic energy per gas particle is therefore: <KE> = 3/2 kT = 3/2 (1.38 x 10^-23 J K^-1)(298 K) <KE> = 6.17 x 10^-21 J",6.170000000000001e-21,J,6.17e-21,J,6.17e-21,6.17e-21,,J,,
+52,"Estimate the increase in the molar entropy of O₂(g) when the temperature is increased at constant pressure from 298 K to 348 K, given that the molar constant-pressure heat capacity of O₂ is 29.355 J K⁻¹ mol⁻¹ at 298 K.",4.55,J K-1 mol-1,4.88,J K⁻¹ mol⁻¹,4.88,4.88,0.305,J K⁻¹ mol⁻¹,0.305,0.305
+53,"Optimize the structure of SF4 in a seesaw geometry (C2v symmetry) using the HF/3-21G model and calculate vibrational frequencies. This calculation is necessary to verify that the energy is at a minimum. Next, optimize the geometry of SF4 in a trigonal pyramidal geometry and calculate its vibrational frequencies. Is the seesaw structure an energy minimum? What leads you to your conclusion? Is it lower in energy than the corresponding trigonal pyramidal structure? What is the energy difference between the two forms? Is it small enough that both might actually be observed at room temperature? Is the trigonal pyramidal structure an energy minimum?",143.0,kJ/mol,0.415,kcal/mol,1.736,1.736,0.68,kJ/mol,0.68,0.68
+54,"Calculate the rotational partition function for CINO at 500 K where B_A = 2.84 cm^-1, B_B = 0.187 cm^-1, and B_C = 0.175 cm^-1.",37800.0,NA,,NA,,,1.0,NA,1.0,1.0
+55,"By what factor must the applied magnetic field be increased for the relative population difference (Nα - Nβ)/N to be increased by a factor of 5 for (i) 1H nuclei, (ii) 13C nuclei?",5.0,NA,,NA,,,6.42,NA,6.42,6.42
+56,Calculate the molar solubility of BaSO4 in NaHSO4 solution.,4.7e-07,M,,NA,,,0.00011,mol L^-1,0.00011,0.00011
+57,What is the Doppler-broadened linewidth of the electronic transition at 821 nm in atomic hydrogen at 300 K?,0.151,cm⁻¹,50900000.0,Hz,0.001698,0.001698,59700000000000.0,Hz,1991.0,1991.0
+58,"Since the helium is ^4He, only even J states are allowed; therefore, the first excited rotational state is J = 2.",143.4,mJ mol^-1,2.0,NA,2.0,2.0,2.0,NA,2.0,2.0
+59,Calculate the flux of energy arising from a temperature gradient of 10.5 K m⁻¹ in a sample of argon in which the mean temperature is 280 K. The necessary data to calculate the thermal conductivity are in Exercise E16A.3(a).,-0.078,J m^-2 s^-1,211.05,W m⁻²,211.05,211.05,0.00037,W m^-2,0.00037,0.00037
+60,"The enzyme fumarase catalyzes the hydrolysis of fumarate: Fumarate + H_2O -> L-malate The turnover number for this enzyme is 2.5 x 10^3 s^-1, and the Michaelis constant is 4.2 x 10^-6 M. What is the rate of fumarate conversion if the initial enzyme concentration is 1 x 10^-6 M and the fumarate concentration is 2 x 10^-4 M?",0.00245,M/s,2.06,M s^-1,2.06,2.06,24.54,M s^-1,24.54,24.54
+61,The temperature of the cooling water as it leaves the hot engine of an automobile is 240 °F. After it passes through the radiator it has a temperature of 175 °F. Calculate the amount of heat transferred from the engine to the surroundings by one gallon of water with a specific heat of 4.184 J/g °C.,570.0,kJ,-288976.0,J,-288.976,-288.976,-3.697,GJ,-3697000.0,-3697000.0
+62,"At 25°C, the mass density of a 50 per cent by mass ethanol-water solution is 0.914 g·cm⁻³. Given that the partial molar volume of water in the solution is 17.0 cm³·mol⁻¹, calculate the partial molar volume of the ethanol.",886.8,cm^3,,NA,,,1281.0,cm³,1281.0,1281.0
+63,"You are a NASA engineer faced with the task of ensuring that the material on the hull of a spacecraft can withstand puncturing by space debris. The initial cabin air pressure in the craft is 1 atm and the temperature in the cabin is 285 K. Assuming it takes the space shuttle about 8 hours from entry into orbit until landing, what is the largest circular aperture created by a hull puncture that can be safely tolerated assuming that the flow of gas out of the spaceship is effusive? Can the escaping gas from the spaceship be considered as an effusive process? (You can assume that the air is adequately represented by N_2.)",1.07e-05,m^2,,NA,,,,NA,,
+64,"What is the half-life for the first-order decay of phosphorus-32? The rate constant
+for the decay is 4.85 10−2 day−1.",14.3,d,14.3,days,14.3,14.3,14.3,days,14.3,14.3
+65,What value would you obtain if you assumed that ΔH°_reaction were constant at its value for 298.15 K up to 1200 K?,6.2e-05,bar,531.30586,NA,531.30586,531.30586,-38.1,kJ/mol,,
+66,"The best-fit straight line to the data yields the following equation: 1/rate = 1.39 x 10^8 s/[S] + 2.11 x 10^6 μM^-1 s. The maximum rate is equal to the inverse of the y-intercept: rate_max = 1/(2.11 x 10^7 μM^-1 s). With the maximum rate and slope of the best-fit line, the Michaelis constant is obtained as follows: K_m = (slope)(rate_max). Using the inhibited data, the Lineweaver-Burk plot is:",6.49,μM,,NA,,,,NA,,
+67,"The rotational constant of CO is 1.931 cm⁻¹. Evaluate the rotational partition function explicitly (without approximation) and plot its value as a function of temperature. At what temperature is the value within 5 per cent of the value calculated by using eqn 13B.12a, which gives the high-temperature limit? Hint: Use mathematical software or a spreadsheet.",18.0,K,,NA,,,,NA,,
+68,Calculate the resultant of two dipole moments of magnitude 2.5 D and 0.50 D that make an angle of 120° to each other.,1.4,D,2.0,D,2.0,2.0,,C·m,,
+69,Calculate the degree of dissociation of acetic acid in a solution where the molality of the salt is 0.012 mol kg^-1. The activity coefficient is calculated using the Debye-Hückel equation.,13.6,%,,NA,,,0.78,NA,0.78,0.78
+70,The gas undergoes an expansion against a constant external pressure of zero bar until the final pressure is equal to half of its initial value.,5.76,J K^-1,,NA,,,,NA,,
+71,Calculate grams of HI present at equilibrium.,507.0,g,,NA,,,0.008014,g,0.008014,0.008014
+72,Evaluate the electronic partition function for atomic Fe at 298 K given the following energy levels. Terms in parentheses are divided by 2m.,10.16,NA,9.23588436656848,NA,9.23588436656848,9.23588436656848,1.0,NA,1.0,1.0
+73,Estimate the freezing point of 200 cm^3 of water sweetened by the addition of 2.5 g of sucrose. Treat the solution as ideal.,273.08,K,,NA,,,1.43,K,1.43,1.43
+74,"Consider a Carnot cycle in which the working substance is 0.10 mol of perfect gas molecules, the temperature of the hot source is 373 K, and that of the cold sink is 273 K; the initial volume of gas is 1.00 dm³, which doubles over the course of the first isothermal stage. For the reversible adiabatic stages it may be assumed that VT^(3/2) = constant. (a) Calculate the volume of the gas after Stage 1 and after Stage 2 (Fig. 3A.8). (b) Calculate the volume from the starting point. (c) Hence, for each of the four stages of the cycle, calculate the heat transferred to or from the gas. (d) Explain why the work done is equal to the difference between the heat extracted from the hot source and that deposited in the cold sink. (e) Calculate the work done over the cycle and hence the efficiency η. (f) Confirm that your answer agrees with the efficiency given by eqn 3A.9 and that your values for the heat involved in the isothermal stages are in accord with eqn 3A.6.",3.19,dm^3,,NA,,,0.2678527,NA,0.2678527,0.2678527
+75,"Write the balanced cell reaction for the cell schematic Cu(s) | Cu2+(aq) || Au3+(aq) | Au(s), calculate the standard cell potential, and note whether the reaction is spontaneous under standard state conditions.",1.16,V,1.178,V,1.178,1.178,1.34,V,1.34,1.34
+76,"For the reaction C₂H₅OH(l) + 3 O₂(g) → 2 CO₂(g) + 3 H₂O(g), Δ_rH° = –1373 kJ mol⁻¹ at 298 K. Calculate Δ_rH°.",-1368.0,kJ mol^-1,,NA,,,1373.0,kJ mol⁻¹,1373.0,1373.0
+77,The first ionization potential of ground-state He is 24.6 eV. The wavelength of light associated with the 1s2p ^1P term is 58.44 nm. What is the ionization energy of the He atom in this excited state?,3.4,eV,24.182,eV,24.182,24.182,23.4,eV,23.4,23.4
+78,The vibrational frequency of Cl2 is 525 cm^-1. Will the temperature be higher or lower relative to I2 (see Problem P31.16) at which the population in the first excited vibrational state is half that of the ground state? What is this temperature?,1100.0,K,,NA,,,3743.0,K,3743.0,3743.0
+79,Convert Kc to Kp for H2(g) + I2(g) ⇌ 2HI(g).,50.2,NA,,NA,,,18.2,NA,18.2,18.2
+80,A reaction has ΔH° = 100 kJ/mol and ΔS° = 250 J/mol·K. Is the reaction spontaneous at room temperature? At what temperature will it become spontaneous?,400.0,K,400.0,K,400.0,400.0,400.0,K,400.0,400.0
+81,"A reasonable approximation to the vapor pressure of krypton is given by log_10(P/Torr) = b - 0.0523 a/T. For solid krypton, a = 10065 and b = 7.1770. For liquid krypton, a = 9377.0 and b = 6.92387. Use these formulas to estimate the triple point temperature and pressure and also the enthalpies of vaporization, fusion, and sublimation. At the triple point, the vapor pressures of the solid and liquid are equal.",240.3,K,9.66,K,9.66,9.66,,NA,,
+82,"For H_2, v~ = 4401.2 cm^-1 and x~v~ = 121.3 cm^-1. Use the result from part (a) to determine the percent error in q_v if anharmonicity is ignored.",0.177,%,11.49,%,11.49,11.49,3583.0,%,3583.0,3583.0
+83,A glow-worm of mass 5.0 g emits red light (650 nm) with a power of 0.10 W entirely in the backward direction. To what speed will it have accelerated after 10 y if released into free space?,21.0,m s^-1,,NA,,,5.6e-09,m s^-1,5.6e-09,5.6e-09
+84,"The standard Gibbs energy of formation of NH₃(g) is −16.5 kJ mol⁻¹ at 298 K. What is the corresponding reaction Gibbs energy when the partial pressures of the N₂, H₂, and NH₃ (treated as perfect gases) are 3.0 bar, 1.0 bar, and 4.0 bar, respectively?",-14.0,kJ mol⁻¹,,NA,,,-18.7,kJ,,
+85,"(a) Calculate the mass density of diamond assuming that it is a close-packed structure of hard spheres with radii equal to half the carbon–carbon bond length of 154.45 pm. (b) The diamond lattice is in fact based on a face-centred cubic lattice but with two atoms per lattice point, one with its origin at (0,0,0) and the other with its origin at (1/4,1/4,1/4). The experimentally determined mass density is 3.516 g cm⁻³: can you explain the difference between this value and that in (a)?",3.516,g cm⁻³,3.511,g cm⁻³,3.511,3.511,3.5137,g cm⁻³,3.5137,3.5137
+86,"The force constant for the ^1H^35Cl molecule is 516 N m^-1. Calculate the vibrational zero point energy of this molecule. If this amount of energy were converted to translational energy, how fast would the molecule be moving? Compare this speed to the root mean square speed from the kinetic gas theory, |v|_rms = sqrt(3kT / m) for T = 300 K.",997.0,m s^-1,,NA,,,0.0015,m s^-1,0.0015,0.0015
+87,Data on a single crystal of MnF₂ give χm = 0.1463 cm³ mol⁻¹ at 294.53 K. Identify the effective number of unpaired electrons in this compound and compare your result with the theoretical value.,4.3,NA,,NA,,,5.0,NA,5.0,5.0
+88,"Calculate the boiling point elevation of 0.100 kg of water containing 0.010 mol of NaCl, 0.020 mol of
+Na2SO4, and 0.030 mol of MgCl2, assuming complete dissociation of these electrolytes and ideal solution
+behavior.",0.87,°C,4.096,K,-269.054,-269.054,0.0233,K,-273.1267,-273.1267
+89,The contact angle for water on clean glass is close to zero. Calculate the surface tension of water at 20 °C given that at that temperature water climbs to a height of 4.96 cm in a clean glass capillary tube of internal radius 0.300 mm. The mass density of water at 20 °C is 998.2 kg m⁻³.,0.0728,kg s^-2,6825.836,N m⁻¹,6825.836,6825.836,49.0,J m⁻²,49.0,49.0
+90,"Which contains the greatest mass of oxygen: 0.75 mol of ethanol (C2H5OH), 0.60 mol of formic acid (HCO2H), or 1.0 mol of water (H2O)? Explain why.",1.2,mol,19.2,g,,,,NA,,
+91,"The mean activity coefficients of HBr in three dilute aqueous solutions at 25°C are 0.930 (at 5.00 mmol kg⁻¹), 0.907 (at 10.0 mmol kg⁻¹), and 0.879 (at 20.0 mmol kg⁻¹). Estimate the value of B in the Davies equation.",1.96,NA,,NA,,,0.396,NA,0.396,0.396
+92,An increase in pressure from 10 to 50 atm converts the liquid to the solid.,-56.6,°C,,NA,,,,NA,,
+93,Estimate the mean ionic activity coefficient of CaCl₂ in a solution that is 0.010 mol kg⁻¹ CaCl₂(aq) and 0.030 mol kg⁻¹ NaF(aq) at 25°C.,0.56,NA,2.05,NA,2.05,2.05,0.7,NA,0.7,0.7
+94,"What mass of magnesium forms when 100,000 A is passed through a MgCl2 melt for 1.00 h if the yield of magnesium is 85% of the theoretical yield?",39.0,kg,,NA,,,,NA,,
+95,Cobalt metal crystallizes in a hexagonal closest packed structure. What is the coordination number of a cobalt atom?,12.0,NA,12.0,NA,12.0,12.0,6.0,NA,6.0,6.0
+96,Calculate the ratio of the translational partition functions of H₂ and He at the same temperature and volume.,0.358,NA,0.63,NA,0.63,0.63,0.175,NA,0.175,0.175
+97,"when γ± = 1
+I = m/2 (2) = m = 7.75 x 10^-3 mol kg^-1
+ln γ± = -1.73 x 1 x √(7.75 x 10^-3) = -0.1033
+γ± = 0.9019
+when γ± = 0.9019
+m = 8.561 x 10^-3 mol kg^-1
+I = m = 8.561 x 10^-3 mol kg^-1
+ln γ± = -1.73 x √(8.561 x 10^-3) = -0.1085
+γ± = 0.8971
+when γ± = 0.8971
+m = 8.605 x 10^-3 mol kg^-1
+I = m = 8.605 x 10^-3 mol kg^-1
+ln γ± = -1.73 x √(8.605 x 10^-3) = -0.1088
+γ± = 0.8969
+when γ± = 0.8969
+m = 8.61 x 10^-3 mol kg^-1
+8.61 x 10^-3 / 0.125 x 100% = 6.89%",0.01006,mol kg^-1,6.89,%,,,,NA,,
+98,"Devise a temperature scale, abbreviated G, for which the magnitude of the ideal gas constant is 1.00 J G^-1 mol^-1. Let T and T' represent the Kelvin and G scales, and R and R' represent the gas constant in each of these scales. Then PV = nRT = nR'T'.",8.314,NA,,NA,,,,NA,,
+99,"It is found that the dissolution of 5.25 g of a substance in 565 g of benzene at 298 K raises the boiling point by 0.625°C. Note that K_f = 5.12 K kg mol^-1, K_b = 2.53 K kg mol^-1, and the density of benzene is 876.6 kg m^-3. Calculate the freezing point depression, the ratio of the vapor pressure above the solution to that of the pure solvent, and the osmotic pressure. P*_benzene = 103 Torr at 298 K.",537000.0,Pa,,NA,,,149.7,Torr,19958.36,19958.36
+100,"Could 131 g of xenon gas in a vessel of volume 1.0 dm³ exert a pressure of 20 atm at 25 °C if it behaved as a perfect gas? If not, what pressure would it exert?",24.4,atm,,NA,,,16.0,atm,16.0,16.0
+101,Water rises in a glass capillary tube to a height of 17 cm. What is the diameter of the capillary tube?,0.00017,m,0.5,cm,0.005,0.005,0.94,cm,0.0094,0.0094
+102,"The following molar conductivity data are obtained for an electrolyte:
+
+Concentration (M)     Λm (S m^2 mol^-1)
+0.0005                 0.01245
+0.001                  0.01237
+0.005                  0.01207
+0.01                   0.01185
+0.02                   0.01158
+0.05                   0.01111
+0.1                    0.01067
+
+Determine if the electrolyte is strong or weak, and the conductivity of the electrolyte at infinite dilution. According to Kohlrausch's law, a plot of conductivity versus √(c/c₀) should yield a straight line for a strong electrolyte: Λm = Λm° - K√(c/c₀). Using a reference concentration of 1 M, the following plot is obtained:",0.0125,S m^2 mol^-1,,NA,,,0.00012345,S cm^2 mol^-1,1.2345e-08,1.2345e-08
+103,Calculate the maximum non-expansion work per mole of CH₄ that may be obtained from a fuel cell in which the chemical reaction is the combustion of methane under standard conditions at 298 K.,817.9,kJ mol⁻¹,817.2,kJ/mol,817.2,817.2,-892.0,kJ/mol,-892.0,-892.0
+104,"Assuming that ΔH_f° is constant in the interval 275 K - 600 K, calculate ΔG° for the process ( H_2O, g, 298 K ) → ( H_2O, g, 525 K ).",-218500.0,J mol^-1,,NA,,,-0.525,kJ/mol,-525.0,-525.0
+105,"Carborundum is silicon carbide, SiC, a very hard material used as an abrasive on sandpaper and in other
+applications. It is prepared by the reaction of pure sand, SiO2, with carbon at high temperature. Carbon
+monoxide, CO, is the other product of this reaction. Write the balanced equation for the reaction, and
+calculate how much SiO2 is required to produce 3.00 kg of SiC.",4.5,kg,4.49,kg,4.49,4.49,4.493,kg,4.493,4.493
+106,What must the outcome of a binomial experiment be if P_E = 1?,1.0,NA,,NA,,,1.0,NA,1.0,1.0
+107,"Normalize the set of functions φ_n(θ) = e^(inθ), 0 ≤ θ ≤ 2π. To do so, you need to multiply the functions by a so-called normalization constant N so that the integral N*N*∫(from 0 to 2π) φ_m*(θ)φ_n(θ)dθ = 1 for m = n.",0.3989422804,NA,0.3989423,NA,0.3989423,0.3989423,1.0,NA,1.0,1.0
+108,Excitation rate constant required given the signal to noise constraints and the fluorescence quantum yield is:,7.19e+18,photons cm^-2 s^-1,,NA,,,6480000.0,photons/s,,
+109,"Calculate w for the adiabatic expansion of one mole of an ideal gas at an initial pressure of 2.00 bar from an initial temperature of 450 K to a final temperature of 300 K. Write an expression for the work done in the isothermal reversible expansion of the gas at 300 K from an initial pressure of 2.00 bar. What value of the final pressure would give the same value of w as the first part of this problem? Assume that C_p,m = 5/2 R.",0.944,bar,2.0,bar,2.0,2.0,-1517.82,J,,
+110,Explain how a mass of water in the surroundings can be used to determine q for a process. Calculate q if the temperature of 1.00 kg of water in the surroundings increases by 1.25°C. Assume that the surroundings are at a constant pressure.,-5240.0,J,5225.0,J,5225.0,5225.0,5.215,kJ,5215.0,5215.0
+111,"How many molecules of the sweetener saccharin can be prepared from 30 C atoms, 25 H atoms, 12 O
+atoms, 8 S atoms, and 14 N atoms?",4.0,NA,4.0,NA,4.0,4.0,4.0,NA,4.0,4.0
+112,A 2.0 mm cell was filled with a solution of benzene in a non-absorbing solvent. The concentration of the benzene was 0.010 mol dm⁻³ and the wavelength of the radiation was 256 nm (where there is a maximum in the absorption). Calculate the molar absorption coefficient of benzene at this wavelength given that a 4.0 mm cell at the same wavelength will transmit 48 per cent.,160.0,dm³ mol⁻¹ cm⁻¹,,NA,,,,dm³ mol⁻¹ cm⁻¹,,
+113,Determine the vibrational contribution to C_V for a mole of HCl (v~ = 2886 cm^-1) over a temperature range from 500 to 5000 K and plot your result. At what temperature do you expect to reach the high-temperature limit for the vibrational contribution to C_V?,3300.0,K,,NA,,,333000.0,K,333000.0,333000.0
+114,We first calculate the final volume of the right part.,97500.0,J,,NA,,,0.5,L,,
+115,"In a spectrometer operating at 500.130 000 MHz for 1H, a resonance is found to occur 750 Hz higher in frequency than TMS. What is the chemical shift (on the δ scale) of this peak?",1.5,NA,0.0,ppm,0.0,0.0,0.0015,NA,0.0015,0.0015
+116,"What will be the pH of a buffer solution prepared from 0.20 mol NH3, 0.40 mol NH4NO3, and just enough water to give 1.00 L of solution?",8.95,NA,8.95,NA,8.95,8.95,9.42,NA,9.42,9.42
+117,A long ton is defined as exactly 2240 lb. What is this mass in kilograms?,1016.0,kg,1016.0,kg,1016.0,1016.0,1016.0,kg,1016.0,1016.0
+118,Calculate the work done during a reversible isothermal expansion of 1 mol of a van der Waals gas from 2.50 L to 23.0 L at 300 K. The van der Waals constants are a = 1.366 L^2 bar mol^-2 and b = 0.0380 L mol^-1. Compare the result to that calculated for an ideal gas and determine the percent error.,-0.4,%,-10.2,%,-10.2,-10.2,170.0,%,170.0,170.0

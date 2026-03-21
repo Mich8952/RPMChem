@@ -1,1366 +1,199 @@
-,prompt,completion,all_pred
-0,Why do electronic degrees of freedom generally not contribute to the constant volume heat capacity?,"The electronic degrees of freedom do not generally contribute to the constant volume heat capacity since the electronic energy level spacings are generally quite large compared to kT. Therefore, the higher electronic energy levels are not readily accessible so that the contribution to the heat capacity is minimal.",NA
-1,Write an equation giving the relationship between the Rydberg constant for H and for Li2+.,"Because the Rydberg constant varies as the reduced mass, the ratio R_H / R_Li2+ is given by R_H / R_Li2+ = (m_H_nuclear + m_electron) / (m_Li2+_nuclear + m_electron)",NA
-2,"Show that for the particle in the box total energy eigenfunctions, ψn(x) = √(2/a) sin(nπx/a), ψ(x) is a continuous function of x at the edges of the box? Is dψ(x)/dx a continuous function of x at the edges of the box?","ψn(x) = √(2/a) sin(nπx/a) = 0 at x = 0 and x = a. Because the wave function is zero everywhere outside the box, it has the value zero at x = 0 and x = a. Therefore, ψ(x) is a continuous function of x because there is no abrupt change in the function at x = 0 or x = a. dψ(x)/dx = d/dx √(2/a) sin(nπx/a) = √(2/a) (nπ/a) cos(nπx/a). cos(nπ) = 1 for n even and -1 for n odd at x = a. Therefore, dψ(x)/dx is not a continuous function of x at the edges of the box.",NA
-3,"The chlorination of vinyl chloride, C_2H_3Cl + Cl_2 -> C_2H_3Cl_3, is believed to proceed by the following mechanism: Cl_2 ->[k_1] 2Cl. Cl + C_2H_3Cl ->[k_2] C_2H_3Cl_2. C_2H_3Cl_2 + Cl_2 ->[k_3] C_2H_3Cl_3 + Cl. C_2H_3Cl_3 + C_2H_3Cl_2 ->[k_4] stable species Derive the rate law expression for the chlorination of vinyl chloride based on this mechanism.","The rate of vinyl chloride production is
-
- d[C_2H_3Cl_3]/dt = k_3[C_2H_3Cl_2][Cl_2]
-
-The rate expressions of the intermediates are
-
- d[C_2H_3Cl_2]/dt = k_2[Cl][C_2H_3Cl] - k_3[C_2H_3Cl_2][Cl_2] - k_4[C_2H_3Cl_2]^2 = 0
-
- d[Cl]/dt = 2k_1[Cl_2] - k_2[Cl][C_2H_3Cl] + k_3[C_2H_3Cl_2][Cl_2] - 2k_4[C_2H_3Cl_2]^2 = 0
-
-Adding the two preceding equations yields:
-
- 0 = 2k_1[Cl_2] - 2k_4[C_2H_3Cl_2]^2
-
- [C_2H_3Cl_2] = (k_1/k_4)^[1/2][Cl_2]^[1/2]
-
-Substitution of this expression into the differential rate expression for vinyl chloride yields:
-
- d[C_2H_3Cl_3]/dt = k_3[(k_1/k_4)^[1/2][Cl_2]^[1/2]][Cl_2]
-
- = k_3(k_1/k_4)^[1/2][Cl_2]^[3/2]",NA
-4,"Spatial quantization was discussed in Supplemental Section 18.8. Suppose that we have a gas consisting of atoms, each of which has a nonzero angular momentum. Are all of their angular momentum vectors aligned?","No. Only the application of an external field will lead to spatial quantization. Even in this case, not all molecules will have the same component of angular momentum along the field direction. The number of molecules with a particular value for the component of angular momentum will be determined by the Boltzmann distribution.",NA
-5,Can specifically adsorbed ions in the electrochemical double layer influence electrode reactions?,"Yes, specifically adsorbed ions can play a central role in the atomic-scale processes occurring on an electrode surface (e.g. Cl- on Cu electrode).",NA
-6,Use the law of corresponding states and Figure 7.8 to estimate the molar volume of methane at T = 285 K and P = 180 bar.,"T_r = 285 K / 190.56 K = 1.5
-P_r = 180 bar / 45.99 bar = 3.91. Therefore, z ≈ 0.8",NA
-7,"Show that the set of functions φ_n(θ) = e^(inθ), 0 ≤ θ ≤ 2π, are orthogonal if n and m are integers. To do so, you need to show that the integral ∫(from 0 to 2π) φ_m*(θ)φ_n(θ)dθ = 0 for m ≠ n if n and m are integers.","∫(from 0 to 2π) φ_m*(θ)φ_n(θ)dθ = ∫(from 0 to 2π) e^(-imθ)e^(inθ)dθ = ∫(from 0 to 2π) e^(i(n-m)θ)dθ = [1/(i(n-m)) * e^(i(n-m)θ)](from 0 to 2π) = 1/(i(n-m)) * [e^(i(n-m)2π) - e^0] = 1/(i(n-m)) * [cos((n-m)2π) + i*sin((n-m)2π) - 1] Because n and m are integers, (n-m) is an integer and the arguments of the sine and cosine functions are integral multiples of 2π. ∫(from 0 to 2π) φ_m*(θ)φ_n(θ)dθ = 1/(i(n-m)) * [1 + 0 - 1] = 0",0
-8,Use the vapor pressures of Cl2 given in the following table to calculate the enthalpy of vaporization using a graphical method or a least squares fitting routine.,"T (K)   P (atm)   T (K)   P (atm)
-227.6   0.585     283.15  4.934
-238.7   0.982     294.3   6.807
-249.8   1.566     305.4   9.173
-260.9   2.388     316.5   12.105
-272.0   3.483     327.6   15.676
-
-A least squares fit of ln P versus 1/T gives the result ΔH_vaporization = 20.32 kJ mol^-1.",20.32
-9,"The operator for the square of the total spin of two electrons is Ŝ_total^2 = (Ŝ_1 + Ŝ_2)^2 = Ŝ_1^2 + Ŝ_2^2 + 2(Ŝ_1xŜ_2x + Ŝ_1yŜ_2y + Ŝ_1zŜ_2z). Given that
-Ŝ_xα = ħ/2 β
-Ŝ_xβ = ħ/2 α
-Ŝ_yα = iħ/2 β
-Ŝ_yβ = -iħ/2 α
-Ŝ_zα = ħ/2 α
-Ŝ_zβ = -ħ/2 β
-show that α(1)α(2) and β(1)β(2) are eigenfunctions of the operator Ŝ_total^2. What is the eigenvalue in each case?","The operator for the square of the total spin of two electrons is Ŝ_total^2 = (Ŝ_1 + Ŝ_2)^2 = Ŝ_1^2 + Ŝ_2^2 + 2(Ŝ_1xŜ_2x + Ŝ_1yŜ_2y + Ŝ_1zŜ_2z). Given that
-Ŝ_xα = ħ/2 β
-Ŝ_xβ = ħ/2 α
-Ŝ_yα = iħ/2 β
-Ŝ_yβ = -iħ/2 α
-Ŝ_zα = ħ/2 α
-Ŝ_zβ = -ħ/2 β
-show that α(1)α(2) and β(1)β(2) are eigenfunctions of the operator Ŝ_total^2. What is the eigenvalue in each case?",2
-10,"At 298 K, ΔH°_reaction = 131.28 kJ mol^-1 for the reaction C(graphite) + H_2O(g) -> CO(g) + H_2(g). C_p,m = 8.53, 33.58, 29.12, and 28.82 J K^-1 mol^-1 for graphite, H_2O(g), CO(g), and H_2(g), respectively. Calculate ΔH°_reaction at 125°C from this information. Assume that the heat capacities are independent of temperature.","ΔH°_reaction (398 K) = ΔH°_reaction (298 K) + ∫_298^398 ΔC_p(T) dT
-For this problem, it is assumed that the heat capacities are independent of T.
-ΔH°_reaction (398 K) = ΔH°_reaction (298 K)
-+ [C_p,m(H_2,g) + C_p,m(CO,g) - C_p,m(C,graphite) - C_p,m(H_2O,g)]ΔT
-= 131.28 kJ mol^-1 + [28.82 + 29.12 - 8.53 - 33.58] J mol^-1 K^-1 x 100 K
-= 132.86 kJ mol^-1",132.86
-11,"The C4v group has the following classes: E, 2 C4, C2, 2 σv, and 2 σd. How many irreducible representations does this group have and what is the dimensionality of each?","The C4v group has five classes and eight elements (1E, 2C4, 1C2, 2σv and 2σd). There are five irreducible representations because there are five classes. Their dimensions are determined by the equation d1^2 + d2^2 + d3^2 + d4^2 + d5^2 = 8 This can only be satisfied if d1 = 2, d2 = d3 = d4 = d5 = 1. Thus 5 irreducible representations; four 1-dimensional and one 2-dimensional.",5
-12,Show that (∂U/∂V)_T = (βT - κP)/κ.,"Using the cyclic rule
-(∂U/∂V)_T = T(∂P/∂T)_V - P",NA
-13,"Consider a two-level system with ε1 = 3.10 x 10^-21 J and ε2 = 6.10 x 10^-21 J. If g2 = g1, what value of T is required to obtain n2/n1 = 0.150? What value of T is required to obtain n2/n1 = 0.999?","n2/n1 = g2/g1 exp[-(ε2-ε1)/kT] = exp[-(6.10-3.10)x10^-21 J / 1.381x10^-23 J K^-1 x T]
-
-For n2/n1 = 0.150:
-0.150 = exp[-3.00x10^-21 J / 1.381x10^-23 J K^-1 x T]
-ln(0.150) = -3.00x10^-21 J / 1.381x10^-23 J K^-1 x T
--1.897 = -217.2 / T
-T = 217.2 / 1.897 = 114.5 K
-
-For n2/n1 = 0.999:
-0.999 = exp[-3.00x10^-21 J / 1.381x10^-23 J K^-1 x T]
-ln(0.999) = -3.00x10^-21 J / 1.381x10^-23 J K^-1 x T
--0.0010005 = -217.2 / T
-T = 217.2 / 0.0010005 = 217,000 K",NA
-14,Explain why the spectator species M in Equation (26.5) is needed to make the reaction proceed.,"It is needed to satisfy the requirement that energy is conserved in the process. Without the spectator, the reaction complex has no possibility to lose energy and reach the ground state.",NA
-15,"In the double-slit experiment, researchers found that an equal amount of energy passes through each slit. Does this result allow you to distinguish between purely particle-like or purely wave-like behavior?","No. This result would be expected for both waves and particles. In the case of particles, the same number would pass through each slit. For a wave, the fraction of the intensity of the wave that passes through each slit would be the same.",NA
-16,"From the following data, calculate ΔH°_reaction (391.4 K) for the reaction CH_3COOH(g) + 2O_2(g) -> 2H_2O(g) + 2CO_2(g). Assume that the heat capacities are independent of temperature.
-CH_3COOH(l) + 2O_2(g) -> 2H_2O(l) + 2CO_2(g) ΔH°_reaction (298 K) = -871.5 kJ mol^-1
-H_2O(l) -> H_2O(g) ΔH°_reaction (373.15 K) = 40.656 kJ mol^-1
-CH_3COOH(l) -> CH_3COOH(g) ΔH°_reaction (391.4 K) = 24.4 kJ mol^-1
-Substance CH_3COOH(l) O_2(g) CO_2(g) H_2O(l) H_2O(g)
-C_p,m / R 14.9 3.53 4.46 9.055 4.038","The desired overall reaction can be related to the individual reactions for which the data are given as follows:
-CH_3COOH(g) + 2O_2(g) -> 2H_2O(g) + 2CO_2(g)
-= [CH_3COOH(l) + 2O_2(g) -> 2H_2O(l) + 2CO_2(g)]
-+ [CH_3COOH(l) -> CH_3COOH(g)]
-+ 2[H_2O(l) -> H_2O(g)]
-ΔH°_reaction (391.4 K) = ΔH°_reaction (298 K) + ΔH°_vap(CH_3COOH) + 2ΔH°_vap(H_2O)
-ΔH°_reaction (391.4 K) = -871.5 kJ mol^-1 + 24.4 kJ mol^-1 + 2 x 40.656 kJ mol^-1
-= -765.788 kJ mol^-1",-765.788
-17,"Determine the ratio of thermal conductivity for N_2 (σ = 0.43 nm^2) at sea level (T = 300 K, P = 1 atm) versus the lower stratosphere (T = 230 K, P = 0.25 atm). b) Determine the ratio of thermal conductivity for N_2 at sea level if the temperature is reduced to 100 K. Which energetic degrees of freedom will be operative at the lower temperature, and how will this affect C_V,m?","a) κ_sea / κ_strat = (1/3)(5/2)(R/N_A)(8RT_sea/πM)^1/2 / (1/3)(5/2)(R/N_A)(8RT_strat/πM)^1/2 = (T_sea/T_strat)^1/2 = (300 K / 230 K)^1/2 = 1.14
-
-b) Even at 100 K, the translational and rotational degrees of freedom will be in the high temperature limit so that C_V,m will be largely unaffected relative to 300 K.",1.14
-18,What is a half-life? Is the half-life for a first-order reaction dependent on concentration?,The half-life of a chemical reaction is the time it takes for the initial reactant concentration to be reduced by exactly one half. The half-life for a first order reaction does not depend on initial reactant concentration.,NA
-19,"The viscosity of H2 at 273 K at 1 atm is 84 μP. Determine the viscosities of D2 and HD. The expression for viscosity is: η = 1/3 (8RT/πM)^1/2 * 1/√2σ NA Taking the ratio of viscosities for two species (denoted as 1 and 2) yields: η2/η1 = √(M2/M1) * (√σ1/σ2) Assuming that the collisional cross sections for the species are the same, the ratio of viscosities reduces to: η2/η1 = √(M2/M1) Substituting the molecular weights into the above expression yields the following viscosities for D2 and HD:",η_D2 = η_H2 * √(M_D2/M_H2) = (84 μP) * √(4.04 g mol^-1 / 2.02 g mol^-1) = 118 μP η_HD = 84 μP * √(3.03 g mol^-1 / 2.02 g mol^-1) = 103 μP,NA
-20,"Determine v_mp, v_ave, and v_rms for the following species at 298 K: a) Ne b) Kr c) CH4 d) C6H6 e) C60 Note: J kg^-1 = m^2 s^-2","a) Ne: M = 0.020 kg mol^-1
-v_mp = sqrt(2RT/M) = sqrt(2(8.314 J mol^-1 K^-1)(298 K)/0.020 kg mol^-1) = 495 m s^-1
-v_ave = sqrt(8RT/piM) = sqrt(8(8.314 J mol^-1 K^-1)(298 K)/pi(0.020 kg mol^-1)) = 559 m s^-1
-v_rms = sqrt(3RT/M) = sqrt(3(8.314 J mol^-1 K^-1)(298 K)/0.020 kg mol^-1) = 607 m s^-1
-b) Kr: M = 0.084 kg mol^-1
-v_mp = sqrt(2RT/M) = sqrt(2(8.314 J mol^-1 K^-1)(298 K)/0.084 kg mol^-1) = 243 m s^-1",NA
-21,"As discussed in the text, the total system pressure can be used to monitor the progress of a chemical reaction. Consider the following reaction:
-SO_2Cl_2(g) -> SO_2(g) + Cl_2(g). The reaction is initiated, and the following data are obtained:
-Time (h) | 0 | 3 | 6 | 9 | 12 | 15
-P_total (kPa) | 11.07 | 14.79 | 17.26 | 18.90 | 19.99 | 20.71
-a) Is the reaction first or second order with respect to SO_2Cl_2?
-b) What is the rate constant for this reaction?
-As the reaction proceeds, stoichiometry dictates that every mole of SO_2Cl_2 that dissociates results in a mole of SO_2 and Cl_2. Defining the extent of dissociation as ξ, and the initial pressure P_0, the total pressure is given by:
-P_total = P_SO_2Cl_2 + P_SO_2 + P_Cl_2
-= (P_0 - ξ) + ξ + ξ = P_0 + ξ
-Therefore, the total pressure and initial pressure data in the table can be used to determine the extent of dissociation, ξ, and these quantities can be used to determine P_SO_2Cl_2. If the reaction is first order, a plot of ln(P_SO_2Cl_2) versus time should yield a straight line. If the reaction is second order, a plot of (P_SO_2Cl_2)^-1 versus time should yield a straight line. Therefore, the data provided in the table is used to determine the following:","t (hr) | P_SO_2Cl_2 (kPa) | ln(P_SO_2Cl_2) | 1/P_SO_2Cl_2
-0 | 11.07 | 2.404 | 0.090
-3 | 7.35 | 1.995 | 0.136
-6 | 4.88 | 1.585 | 0.205
-9 | 3.24 | 1.176 | 0.309
-12 | 2.15 | 0.765 | 0.465
-15 | 1.43 | 0.358 | 0.699",NA
-22,The statement 'The boiling point of a typical liquid mixture can be reduced by approximately 100°C if the pressure is reduced from 760 to 20 Torr' is found in Section 9.4. What figure(s) in Chapter 9 can you identify to support this statement in a qualitative sense?,"Figure 9.11 (b) shows the P-T phase diagram of a pure substance (and a corresponding solution). By looking at the liquid-vapor coexistence curves, the dependence of boiling point on pressure can be traced. Qualitatively, it is seen that a decrease in P leads to a decrease in T_b.",NA
-23,"In this problem, you will calculate the transmission probability through the barrier illustrated in Figure 16.7. We first go through the mathematics leading to the solution. The domain in which the calculation is carried out is divided into three regions for which the potentials are V(x) = 0 for x ≤ 0 Region I V(x) = V_0 for 0 < x < a Region II V(x) = 0 for x ≥ a Region III The wave functions must have the following form in the three regions if E < V_0: ψ(x) = A exp[i√(2mE)/ħ x] + B exp[-i√(2mE)/ħ x] Region I ψ(x) = C exp[-κx] + D exp[+κx] Region II ψ(x) = F exp[i√(2mE)/ħ x] + G exp[-i√(2mE)/ħ x] Region III Assume that the wave approaches the barrier from the negative x direction. The coefficient A cannot be set equal to zero because A exp[i√(2mE)/ħ x] represents reflection from the barrier. However, G can be set equal to zero because there is no wave incident on the barrier from the positive x direction.","a) The wave functions and their derivatives must be continuous at x = 0 and x = a. Show that the coefficients must satisfy the following conditions: A + B = C + D A - B = -(iκ/k)(C - D) C e^(-κa) + D e^(κa) = F e^(ika) - C e^(-κa) + D e^(κa) = (ik/κ) F e^(ika) b) Because the transmission probability is given by |F/A|^2, it is useful to manipulate these equations to get a relationship between F and A. By adding and subtracting the first pair of equations, A and B can be expressed in terms of C and D. The second pair of equations can be solved individually to give equations for D and C in terms of F.",NA
-24,Calculate the s and p character of the water lone pair hybrid orbitals ψ_c = -0.45 φ_2pz - 0.55 φ_2s + 0.71 φ_2px and ψ_d = -0.45 φ_2pz - 0.55 φ_2s - 0.71 φ_2px.,"Because the orbitals are normalized, the s character is given by the square of the coefficient of φ_2s. It is the same for both hybrid orbitals and is equal to (0.55)^2 ≈ 0.30. The p character is given by the sum of the squares of the coefficients of φ_2pz and φ_2px. It is the same for both hybrid orbitals and is equal to (0.45)^2 + (0.55)^2 ≈ 0.70.",NA
-25,At what temperature does the slope of the z versus P curve as P -> 0 have its maximum value for a van der Waals gas? What is the value of the maximum slope?,"The slope is given by the derivative of z with respect to P at constant T, as P approaches 0. For a van der Waals gas, this is:
-
-(∂z/∂P)_T,P->0 = 1/RT * (b - a/RT)
-
-The derivative of this with respect to T is:
-
-(∂/∂T)(∂z/∂P)_P->0 = -1/RT^2 * (b - a/RT) + 1/RT^3 * (-a/RT)
-
-Setting this derivative equal to zero to find the maximum gives:
-
-b - 2a/RT_max = 0
-
-Solving for T_max:
-
-T_max = 2a/Rb
-
-The maximum slope is then:
-
-(∂z/∂P)_max = 1/RT_max * (b - a/RT_max) = b/2a * [b - a/(2a/Rb)] = b/2a * [b - b/2] = b^2/4a",NA
-26,"Show by examining the position of the nodes that Re[A_+e^(i(kx-ωt))] and Re[A_-e^(i(-kx-ωt))] represent plane waves moving in the positive and negative x directions, respectively. The notation Re[ ] refers to the real part of the function in the brackets.","Re[A_+e^(i(kx-ωt))] = cos(kx-ωt). The nodes of this function occur at kx-ωt = (2n+1)π/2. x = (2n+1)π/2 + ωt. Because the position of the nodes is increasing as t increases, this function represents a plane wave moving in the positive x direction. Re[A_-e^(i(-kx-ωt))] = cos(-kx-ωt) = cos(kx+ωt). The nodes of this function occur at kx+ωt = (2n+1)π/2. x = (2n+1)π/2 - ωt. Because the position of the nodes is decreasing as t increases, this function represents a plane wave moving in the negative x direction.",NA
-27,"As discussed in Chapter 30, the nth moment of a distribution can be determined as follows: <x^n> = ∫ x^n f(x) dx, where integration is over the entire domain of the distribution. Derive expressions for the nth moment of the gas speed distribution.","<v^n> = ∫_0^∞ v^n F(v) dv
-= ∫_0^∞ v^n 4π (M / 2πRT)^(3/2) v^2 e^(-Mv^2 / 2RT) dv
-= 4π (β / π)^(3/2) ∫_0^∞ v^(n+2) e^(-βv^2) dv for β = M / 2RT
-This integral has 2 possible forms, depending on the parity of the integrand. If n is even (for n = 2, 4, 6...) then 2m = n + 2 for m = 2, 3... And the integral becomes",NA
-28,What is the explanation for the absence of a peak in the rotational-vibrational spectrum near 3000 cm⁻¹ in Figure 19.14?,"This energy would correspond to the J = 0 → J = 0 transition, which is forbidden by the selection rule for rotational transitions in diatomic molecules.",NA
-29,Predict the number of unpaired electrons and the ground-state term for the following:,"a) NO CH has 7 electrons and the configuration (1σ)^2 (2σ)^2 (3σ)^1. It will have one unpaired electron. Because only the unpaired electron with ML = ±1 is relevant, the ground state is a 2Π term.
-
-b) CO NH has 8 electrons and the configuration (1σ)^2 (2σ)^2 (3σ)^1 (1π)^1. Using the same analysis as in Example Problem 26.2, the ground state is 3Σ.",NA
-30,Why are the magnitudes of the coefficients c_a and c_b in the H_2^+ wavefunctions ψ_g and ψ_u equal?,"H_2^+ is a homonuclear diatomic molecule. Therefore ψ*ψ must be independent of which nucleus is called a, and which is called b. Expressed mathematically, (c_a*φ_H1sa + c_b*φ_H1sb)(c_a*φ_H1sa + c_b*φ_H1sb)* = (c_a*φ_H1sb + c_b*φ_H1sa)(c_a*φ_H1sb + c_b*φ_H1sa)* only if |c_a| = |c_b|.",NA
-31,a) Determine the total collisional frequency for CO2 at 1 atm and 298 K. b) At what temperature would the collisional frequency be 10% of the value determined in part (a)?,"For CO2, σ = 5.2 x 10^-19 m^2 and M = 0.044 kg mol^-1.
-a) Z_11 = 1/√2 * σ * (N_A * P)^2 * (8RT/πM)^1/2
-= 1/√2 * (5.2 x 10^-19 m^2) * ((6.022 x 10^23 mol^-1)(1 atm))^2 * (8(8.314 J mol^-1 K^-1)(298 K)/π(0.044 kg mol^-1))^1/2 * (1000 L / 1 m^3)^2
-Z_11 = 8.44 x 10^34 m^-3 s^-1",8.44e34
-32,"At 303 K, the vapor pressure of benzene is 118 Torr and that of cyclohexane is 122 Torr. Calculate the vapor pressure of a solution for which x_benzene = 0.25 assuming ideal behavior.","P_total = x_benzene * P*_benzene + x_cyclohexene * P*_cyclohexene
-= 0.25 x 118 Torr + (1 - 0.25) x 122 Torr = 121 Torr",121
-33,"The speed of sound is given by v_sound = sqrt(gamma*k*T/m) = sqrt(gamma*R*T/M), where gamma = Cp/Cv. a) What is the speed of sound in Ne, Kr, and Ar at 1000 K? b) At what temperature will the speed of sound in Kr equal the speed of sound in Ar at 1000 K?","a) The heat capacities for the three gases are the same: Cv = 12.5 J mol^-1 K^-1 and Cp = 20.8 J mol^-1 K^-1. Thus, gamma = 1.6666. a) Ne: v_sound = sqrt(1.67 * (8.314 J mol^-1 K^-1) * (1000 K) / 0.020 kg mol^-1) = 829 m s^-1. Kr: v_sound = sqrt(1.67 * (8.314 J mol^-1 K^-1) * (1000 K) / 0.084 kg mol^-1) = 407 m s^-1. Ar: v_sound = sqrt(1.67 * (8.314 J mol^-1 K^-1) * (1000 K) / 0.040 kg mol^-1) = 589 m s^-1. b) Setting the speed of sound equal for Kr and Ar: sqrt(gamma*R*T_Kr / M_Kr) = sqrt(gamma*R*T_Ar / M_Ar). T_Kr = M_Kr / M_Ar * T_Ar.",NA
-34,A sample of Na_2SO_4(s) is dissolved in 225g of water at 298 K such that the solution is 0.200 molar in Na_2SO_4. A temperature rise of 0.101°C is observed. The calorimeter constant is 330 J K^-1. Calculate the enthalpy of solution of Na_2SO_4 in water at this concentration. Compare your result with that calculated using the data in Table 4.1.,"0 = (m_s / M_s) * ΔH_solution,m + (m_H_2O / M_H_2O) * C_H_2O,m * ΔT + C_calorimeter * ΔT
-ΔH_solution,m = -((225g / 18.02g mol^-1) * 75.29J K^-1 mol^-1 * 0.101°C + 330 J K^-1 * 0.101°C) / (0.225 L * 0.200 mol L^-1)
-= -2.86 x 10^3 J mol^-1
-ΔH_solution,m = 2 * ΔH_solution,m(Na^+, aq) + ΔH_solution,m(SO_4^2-, aq) - ΔH_f(Na_2SO_4, s)
-= 2 * (-240.1 x 10^3 J mol^-1) + (-909.3 x 10^3 J mol^-1) + 1387.1 x 10^3 J mol^-1
-= -2.4 x 10^3 J mol^-1
-The relative error is (-2.86 kJ mol^-1 + 2.4 kJ mol^-1) / (-2.86 kJ mol^-1) = 16%",NA
-35,"The muzzle velocity of a rifle bullet is about 900 m s^-1. If the bullet weighs 30 g, and the uncertainty in its momentum is 0.10%, how accurately can the position of the bullet be measured?","p = mv = 30 x 10^-3 kg x 900 m s^-1 = 27 kg m s^-1
-
-Δp = 10^-3 p = 2.7 x 10^-2 kg m s^-1
-
-Δx = h_bar / (2Δp) = 1.055 x 10^-34 J s / (2 x 2.7 x 10^-2 kg m s^-1) = 1.9 x 10^-33 m",1.9e-33
-36,See Question Q21.11.,This orbital has one radial node and two angular nodes. It is therefore a 4d orbital.,NA
-37,"The diffusion coefficient of sucrose in water at 298 K is 0.522 x 10^-9 m^2 s^-1. Determine the time it will take a sucrose molecule on average to diffuse an rms distance of 1 mm. b) If the molecular diameter of sucrose is taken to be 0.8 nm, what is the time per random walk step?","a) D_sucrose = 0.522 x 10^-9 m^2 s^-1 @ T = 298 K
-r_rms = (6Dt)^(1/2)
-t = r_rms^2 / 6D
-= (1 mm)^2 / (6 x 0.522 x 10^-9 m^2 s^-1) x (1 m / 10^3 mm)^2
-= 319 s
-b) D = x_0^2 / 2τ
-τ = x_0^2 / 2D
-= (0.8 nm)^2 / (2 x 0.522 x 10^-9 m^2 s^-1) x (1 m / 10^9 nm)^2
-= 6.13 x 10^-10 s",NA
-38,Calculate the vibrational partition function for H^35Cl at 300 and 3000 K. What fraction of molecules will be in the ground vibrational state at these temperatures?,"At 300 K:
-q = 1 / (1 - e^(-hcv/kT)) = 1 / (1 - e^(-(6.626x10^-34 J s)(3.00x10^10 cm^-1)(2990 cm^-1) / (1.38x10^-23 J K^-1)(300 K))) = 1.00
-p_0 = e^(-hcv/kT) / q = 1.00 / 1.00 = 1.00
-and at 3000 K:
-q = 1 / (1 - e^(-hcv/kT)) = 1 / (1 - e^(-(6.626x10^-34 J s)(3.00x10^10 cm^-1)(2990 cm^-1) / (1.38x10^-23 J K^-1)(3000 K))) = 1.32
-p_0 = e^(-hcv/kT) / q = 0.762",NA
-39,Does the total energy of a molecule rise or fall when an electron is put in an antibonding orbital?,"The total energy of a molecule is lowered if the orbital energy of the antibonding MO is negative, and raised if the orbital energy of the antibonding MO is positive. The zero of energy is the electron and the molecule with n-1 electrons at infinite separation.",NA
-40,"Carry out the following coordinate transformations.
-a) Express the point x = 3, y = 2, and z = 1 in spherical coordinates.
-b) Express the point r = 5, θ = π/4, and φ = 3π/4 in Cartesian coordinates.","a) r = sqrt(x^2 + y^2 + z^2) = sqrt(3^2 + 2^2 + 1^2) = sqrt(14)
-θ = cos^-1(z / sqrt(x^2 + y^2 + z^2)) = cos^-1(1 / sqrt(14)) = 1.30 radians
-φ = tan^-1(y / x) = tan^-1(2 / 3) = 0.588 radians
-b) x = r sinθ cosφ = 5 sin(π/4) cos(3π/4) = -2.5
-y = r sinθ sinφ = 5 sin(π/4) sin(3π/4) = 2.5
-z = r cosθ = 5 cos(π/4) = 5 / sqrt(2)",NA
-41,Use the 3 x 3 matrices for the C2v group in Equation (28.2) to verify the group multiplication table for the following successive operations:,"a) σ_v σ'_v
-b) σ_v C_2
-c) C_2 C_2",NA
-42,"Why is the standard state of fugacity, f°, equal to the standard state of pressure, P°?",If this were not the case the fugacity would not become equal to the pressure in the limit of low pressures.,NA
-43,"When are rotational degrees of freedom expected to contribute R or 3/2R (linear and nonlinear, respectively) to the molar constant volume heat capacity? When will a vibrational degree of freedom contribute R to the molar heat capacity?","The rotational degrees of freedom will contribute R or 3/2R to the molar constant-volume heat capacity when the high-temperature limit is valid, defined as when T > 10ΘR where ΘR is the rotational temperature, defined as B/k. A vibrational degree of freedom will contribute R to the molar heat capacity when the high-temperature limit is applicable, defined as when T > 10Θv where Θv is the vibrational temperature, defined as ħν/k.",NA
-44,Why does NMR lead to a higher contrast in the medical imaging of soft tissues than X-ray techniques?,The signal to noise ratio of scattering measurements (such as X-ray measurements) is generally very small in comparison to the incident radiation. NMR techniques have greater resolution because the properties measured do not suffer from interference from the incident radiation.,NA
-45,What is the difference between a configuration and a microstate?,A configuration is a general arrangement of total energy available to the system. A microstate is a specific arrangement in which the energy content of specific oscillators is described.,NA
-46,"A process involving an ideal gas is carried out in which the temperature changes at constant volume. For a fixed value of ΔT, the mass of the gas is doubled. For which of these processes is ΔS greater? Why?","ΔS is greater if the mass is doubled, because ΔS increases linearly with the amount of material. By contrast, ΔS only increases as the logarithm of the temperature. This increase is much slower than a linear increase.",NA
-47,"In the diffraction of electrons by crystals, the volume sampled by the diffracting electrons is on the order of 3 to 10 atomic layers. If He atoms are incident on the surface, only the topmost atomic layer is sampled. Can you explain this difference?","Whereas electrons can penetrate through the topmost layer into the solid, He atoms are too large to allow penetration at thermal energies. Therefore electrons sample a number of atomic layers below the surface, and He atoms are only sensitive to the outermost layer.",NA
-48,"In the Michaelis-Menten mechanism, it is assumed that the formation of product from the enzyme-substrate complex is irreversible. However, consider the following modified version in which the product formation step is reversible:","The best fit by a straight line to the data yields the following equation:
-1/rate_0 = 5.01 x 10^8 s/[S]_0 + 2.01 x 10^7 μM^-1 s
-The maximum rate with inhibitor is equal to the inverse of the y-intercept:
-rate_max = 1/(2.01 x 10^7 μM^-1 s)
-= 4.98 x 10^-8 μM^-1 s
-The apparent Michaelis constant is given by:
-K*_m = (slope)(rate_max)
-= (5.01 x 10^8 s)(4.98 x 10^-8 μM^-1 s)
-K*_m = 24.9 μM
-Finally, the K_I value is given by:
-K_I = [I]/(K*_m/K_m - 1)
-= 200 μM/(24.9 μM/6.49 μM - 1)
-= 70.4 μM",70.4
-49,"In this problem, you will calculate the probability density of finding the electron within a sphere of radius r for the H atom in its ground state.
-
-a) Show using integration by parts, ∫udv = uv - ∫vdu, that
-
-∫r^2 e^(-r/α) dr = e^(-r/α) (-2α^3 - 2α^2 r - αr^2)
-
-Let u = r^2 and dv = e^(-r/α) dr
-
-∫r^2 e^(-r/α) dr = -αr^2 e^(-r/α) + 2α ∫r e^(-r/α) dr
-
-Integrating by parts again,
-
-∫r^2 e^(-r/α) dr = -αr^2 e^(-r/α) + 2α (-αr e^(-r/α) + α ∫e^(-r/α) dr)
-
-∫r^2 e^(-r/α) dr = -αr^2 e^(-r/α) - 2α^2 r e^(-r/α) - 2α^3 e^(-r/α)
-
-∫r^2 e^(-r/α) dr = e^(-r/α) (-2α^3 - 2α^2 r - αr^2)
-
-b) Using this result, show that the probability density of finding the electron within a sphere of radius r for the hydrogen atom in its ground state is 1 - e^(-2r/a_0) (1 + 2r/a_0).
-
-Setting α = a_0/2,
-
-1/πa_0^3 ∫dφ ∫sinθ dθ ∫r^2 e^(-2r/a_0) dr = 4/a_0^3 [e^(-2r/a_0) (-a_0^2 r^2 / 2 - a_0^3 r / 4 - a_0^3 / 4)] from 0 to r
-
-= 4/a_0^3 [e^(-2r/a_0) (-a_0^2 r^2 / 2 - a_0^3 r / 4 - a_0^3 / 4) - (-a_0^3 / 4)]
-
-= 4/a_0^3 [-a_0^2 r^2 / 2 e^(-2r/a_0) - a_0^3 r / 4 e^(-2r/a_0) - a_0^3 / 4 e^(-2r/a_0) + a_0^3 / 4]
-
-= -2r^2 / a_0^2 e^(-2r/a_0) - 2r / a_0 e^(-2r/a_0) - e^(-2r/a_0) + 1
-
-= 1 - e^(-2r/a_0) (1 + 2r/a_0)
-
-c) Evaluate this probability density for r = 0.1 a_0, r = 1.0 a_0, and r = 4.0 a_0.
-
-The probability evaluated at r = 0.1 a_0 = 1.1 x 10^-3. The probability evaluated at r = 1.0 a_0 = 0.32. The probability evaluated at r = 4.0 a_0 = 0.99.",The probability evaluated at r = 0.1 a_0 = 1.1 x 10^-3. The probability evaluated at r = 1.0 a_0 = 0.32. The probability evaluated at r = 4.0 a_0 = 0.99.,NA
-50,"The expressions (c_11)^2 + c_11 c_21 S_12 and (c_12)^2 + c_11 c_21 S_12 for the probability of finding an electron on the H and F atoms in HF, respectively, were derived in Section 24.3. Use your results from Problem P24.2 and these expressions to calculate the probability of finding an electron in the bonding orbital on the F atom for S_12 = 0.1, 0.2, and 0.6. Explain the trend shown by these results. To solve this problem, we must first solve for the coefficients c_21 and c_11.","The problem provides the expressions for the probability of finding an electron on the H and F atoms in the bonding orbital. The expression for the probability of finding an electron on the F atom is (c_12)^2 + c_11 c_21 S_12. To calculate this probability, we first need to determine the coefficients c_11 and c_21. The text references Problem P24.2 for the results. Based on the calculations shown in the image, we can find the values of c_11 and c_21 for different values of S_12. The text shows calculations for S_12 = 0.1, 0.2, and 0.6. The final answer shows the probability of finding an electron on the F atom for each value of S_12.
-
-For S_12 = 0.1:
-- c_11 = 0.40
-- c_21 = 0.71
-- Probability = (c_12)^2 + c_11 c_21 S_12 = (0.71)^2 + (0.40)(0.71)(0.1) = 0.5041 + 0.0284 = 0.5325
-
-For S_12 = 0.2:
-- c_11 = 0.40
-- c_21 = 0.71
-- Probability = (0.71)^2 + (0.40)(0.71)(0.2) = 0.5041 + 0.0568 = 0.5609
-
-For S_12 = 0.6:
-- c_11 = 0.40
-- c_21 = 0.71
-- Probability = (0.71)^2 + (0.40)(0.71)(0.6) = 0.5041 + 0.1704 = 0.6745
-
-The trend shows that as the overlap S_12 increases, the probability of finding an electron on the F atom in the bonding orbital also increases. This is because a greater overlap leads to a more stabilized bonding molecular orbital, which is more localized on the more electronegative atom (fluorine). The increase in probability reflects the increased electron density on the fluorine atom due to the greater orbital overlap.",NA
-51,"Normalize the set of functions φ_n(θ) = e^(inθ), 0 ≤ θ ≤ 2π. To do so, you need to multiply the functions by a so-called normalization constant N so that the integral N*N*∫(from 0 to 2π) φ_m*(θ)φ_n(θ)dθ = 1 for m = n.","N*N*∫(from 0 to 2π) e^(-inθ)e^(inθ)dθ = N*N*∫(from 0 to 2π) 1*dθ = 2πN*N = 1 This is satisfied for N = 1/√(2π) and the normalized functions are φ_n(θ) = 1/√(2π) * e^(inθ), 0 ≤ θ ≤ 2π.",0.3989422804
-52,The rate constant for the reaction of hydrogen with iodine is 2.45 x 10^-4 M^-1 s^-1 at 302°C and 0.950 M^-1 s^-1 at 508°C. a) Calculate the activation energy and Arrhenius preexponential factor for this reaction. b) What is the value of the rate constant at 400°C?,"a) To calculate the activation energy (E_a) and the Arrhenius preexponential factor (A), we use the two-point form of the Arrhenius equation:
-ln(k_2/k_1) = -(E_a/R)(1/T_2 - 1/T_1)
-
-First, convert temperatures to Kelvin:
-T_1 = 302°C + 273.15 = 575.15 K
-T_2 = 508°C + 273.15 = 781.15 K
-
-k_1 = 2.45 x 10^-4 M^-1 s^-1
-k_2 = 0.950 M^-1 s^-1
-
-ln(0.950 / (2.45 x 10^-4)) = -(E_a / 8.314 J mol^-1 K^-1) * (1/781.15 K - 1/575.15 K)
-
-ln(3877.55) = -(E_a / 8.314) * (0.001279 - 0.001738)
-8.263 = -(E_a / 8.314) * (-0.000459)
-8.263 = (E_a / 8.314) * 0.000459
-
-E_a = (8.263 * 8.314) / 0.000459
-E_a = 68.68 / 0.000459
-E_a = 149682 J mol^-1
-E_a = 149.7 kJ mol^-1
-
-Now calculate the preexponential factor (A) using the Arrhenius equation:
-ln(k_1) = ln(A) - E_a / RT_1
-ln(2.45 x 10^-4) = ln(A) - (149682 J mol^-1) / (8.314 J mol^-1 K^-1 * 575.15 K)
--8.288 = ln(A) - 30.62
-ln(A) = 22.33
-A = e^22.33
-A = 3.40 x 10^9 M^-1 s^-1
-
-b) To find the rate constant at 400°C:
-T = 400°C + 273.15 = 673.15 K
-
-k = Ae^-E_a/RT
-k = (3.40 x 10^9 M^-1 s^-1) * e^-(149682 J mol^-1) / (8.314 J mol^-1 K^-1 * 673.15 K)
-k = (3.40 x 10^9) * e^-(149682 / 5594.2)
-k = (3.40 x 10^9) * e^-26.76
-k = (3.40 x 10^9) * 1.73 x 10^-12
-k = 5.88 x 10^-3 M^-1 s^-1",0.00588
-53,Use the vapor pressures of ClF3 given in the following table to calculate the enthalpy of vaporization using a graphical method or a least squares fitting routine.,"T (°C)     P (Torr)     T (°C)     P (Torr)
--46.97     29.06        -33.14     74.31
--41.51     42.81        -30.75     86.43
--35.59     63.59        -27.17     107.66",NA
-54,"In the stratosphere, the rate constant for the conversion of ozone to molecular oxygen by atomic chlorine is Cl + O3 -> ClO + O2 [k = 1.7 x 10^10 M^-1 s^-1 e^(-260 K/T)]. a) What is the rate of this reaction at 20 km where [Cl] = 5 x 10^-17 M, [O3] = 8 x 10^-9 M, and T = 220 K? b) The actual concentrations at 45 km are [Cl] = 3 x 10^-15 M and [O3] = 8 x 10^-11 M. What is the rate of the reaction at this altitude where T = 270 K? c) (Optional) Given the concentrations in part a), what would you expect the concentrations at 45 km to be assuming that the gravity represents the operative force defining the potential energy?","a) Based on the units of k, the reaction is second order overall so that the rate law expression is: Rate = k[Cl][O3] For [Cl] = 5 x 10^-17 M, [O3] = 8 x 10^-9 M, and T = 220 K k = 1.7 x 10^10 M^-1 s^-1 e^(-260 K/220 K) k = 5.21 x 10^9 M^-1 s^-1 Rate = 5.21 x 10^9 M^-1 s^-1 (5 x 10^-17 M)(8 x 10^-9 M) Rate = 2.08 x 10^-15 M s^-1 b) [Cl] = 3 x 10^-15 M, [O3] = 8 x 10^-11 M, T = 270 K k = 1.7 x 10^10 M^-1 s^-1 e^(-260 K/270 K) k = 6.49 x 10^9 M^-1 s^-1 Rate = 6.49 x 10^9 M^-1 s^-1 (3 x 10^-15 M)(8 x 10^-11 M) Rate = 1.56 x 10^-15 M s^-1 b) The ratio of pressures at two altitudes is given by:",NA
-55,Derive the following expression for calculating the isothermal change in the constant volume heat capacity: (dC_V/dV)_T = T * (d^2P/dT^2)_V.,"(dC_V/dV)_T = (d/dV)(dU/dT)_V = (d/dT)(dU/dV)_T
-The order of differentiation can be reversed because U is a state function.
-Using the equation (dU/dV)_T = T*(dP/dT)_V - P
-(dC_V/dV)_T = (d/dT)(T*(dP/dT)_V - P)_V = (dP/dT)_V + T*(d^2P/dT^2)_V - (dP/dT)_V = T*(d^2P/dT^2)_V",NA
-56,See Question Q21.11.,This orbital has no radial nodes and three angular nodes. It is therefore a 4f orbital.,NA
-57,"Is the total energy wave function ψ_310(r,θ,φ) = 1/81 (2/π)^(1/2) (1/a_0)^(3/2) (6r/a_0 - r^2/a_0^2) e^(-r/3a_0) cosθ an eigenfunction of any operators? If so, which ones? What are the eigenvalues?","Yes, it is an eigenfunction of the operator l^2 with the eigenvalue 2ħ^2, and an eigenfunction of the operator l_z with the eigenvalue zero.",NA
-58,What is an occupation number? How is this number used to describe energy distributions?,The occupation number represents the number of units occupying a given energy level. The distribution of energy over a collection of units can be specified as the number of units occupying a given energy level.,NA
-59,What is the difference between z11 and z12?,"The term z11 is the single-particle collision frequency. The term z12 is the two-particle collision frequency. Term z11 corresponds to a homogenous gas with only one particle type. Term z12 corresponds to a gas mixture in which two types of particles occur. This principle difference between the two are a) z11 depends on the number density of particle 1, whereas z12 depends on the number density of particle 2 and b) z11 depends on the single particle reduced mass (m = m1/2), where z12 depends on the two-particle reduced mass (m = m1m2/(m1+m2)).",NA
-60,Is a whale likely to get the bends when it dives deep into the ocean and resurfaces? Answer this question by considering the likelihood of a diver getting the bends if he or she dives and resurfaces on one lungful of air as opposed to breathing air for a long time at the deepest point of the dive.,"The whale is unlikely to get the bends on one lungful of air. There is not enough N_2 present in a single lungful to yield a saturated solution of N_2 in the blood. Breathing air for a long time at depth, however, will result in saturated blood for the diver. For this reason, the diver is more susceptible to getting the bends than the whale.",NA
-61,Calculate ΔG°_reaction for the reaction CO(g) + 1/2 O_2(g) ↔ CO_2(g) at 298.15 K. Calculate ΔG°_reaction at 650 K assuming that ΔH°_reaction is constant in the temperature interval of interest.,"ΔG°_reaction (298.15 K) = ΔG_f°(CO_2, g) - ΔG_f°(CO, g) - 1/2 ΔG_f°(O_2, g)
-= -394.4 x 10^3 J mol^-1 + 137.2 x 10^3 J mol^-1 - 0
-= -257.2 x 10^3 J mol^-1
-ΔH°_reaction (298.15 K) = ΔH_f°(CO_2, g) - ΔH_f°(CO, g) - 1/2 ΔH_f°(O_2, g)
-= -393.5 x 10^3 J mol^-1 + 110.5 x 10^3 J mol^-1 - 0
-= -283.0 x 10^3 J mol^-1
-ΔG°_reaction (T_2) = T_2 [ ΔG°_reaction(T_1) / T_1 + ΔH°_reaction(T_1) (1/T_2 - 1/T_1) ]
-ΔG°_reaction (650 K) = 650 K x [ -257.2 x 10^3 J mol^-1 / 298.15 K - 283.0 x 10^3 J mol^-1 x (1/650 K - 1/298.15 K) ]
-= -226.8 x 10^3 J mol^-1",NA
-62,"For water, ΔH_vaporization is 40.65 kJ mol^-1, and the normal boiling point is 373.15 K. Calculate the boiling point for water on the top of a mountain of height 5500 m, where the normal barometric pressure is 380 Torr.",The question is incomplete. The solution and calculation are not visible on the page.,NA
-63,"Estimate the degree of dissociation of a 0.100 m solution of acetic acid (Ka = 1.75 x 10^-5), which is also 0.500 m in the strong electrolyte given in parts a-c. Use the data tables to obtain γ±, as the electrolyte concentration is too high to use the Debye-Hückel limiting law.","a. CaCl_2
-b. KCl
-c. MgSO_4
-
-In each case, the activity of the ions produced in the dissociation of acetic acid is determined by the strong electrolyte.
-a) Ca(Cl)_2
-Ca^2+ Cl^- ν+ = 1, ν- = 2
-0.500 m 1.00 m z+ = 2, z- = 1
-From Table 10.3, γ± = 0.448
-1.75 x 10^-5 = γ±^2 * m^2 / (0.100 - m) = (0.448)^2 * m^2 / (0.100 - m)
-m = 0.002910 mol kg^-1
-0.002910 / 0.100 x 100% = 2.91%",2.91
-64,"At 30 km above the Earth's surface (roughly in the middle of the stratosphere), the pressure is roughly 0.013 atm and the gas density is 3.74 x 10^23 molecules/m^3. Assuming N2 is representative of the stratosphere, using the collisional diameter information provided in Table 34.1 determine: a) The number of collisions a single gas particle undergoes in this region of the stratosphere in 1 s b) The total number of particles collisions that occur in 1 s c) The mean free path of a gas particle in this region of the stratosphere. Using the ideal gas law, the temperature at 30 km can be determined as follows: T = PV/nR = (0.0120 atm)(1.01325 x 10^5 Pa atm^-1) / (3.74 x 10^23 m^-3)(1.38 x 10^-23 J K^-1)","T = 235 K
-a) z_11 = (PN_A/RT) * sqrt(2) * sigma * (8RT/piM)^1/2
-= (0.012 atm)(6.022 x 10^23 mol^-1) / (8.21 x 10^-2 L atm mol^-1 K^-1)(235 K) * sqrt(2)(4.3 x 10^-19 m^2) * (8(8.314 J mol^-1 K^-1)(235 K)/pi(0.028 kg mol^-1))^1/2 * (1000 L / 1 m^3)
-z_11 = 9.60 x 10^7 s^-1",96000000
-65,"How is a catalyst defined, and how does such a species increase the reaction rate?",A catalyst is a chemical species that increases the rate of a chemical reaction without being consumed during the reaction. The catalyst serves to set up an additional reaction coordinate for which the activation energy is reduced relative to the uncatalyzed reaction.,NA
-66,"Use the vapor pressures for C2N2 given in the following table to estimate the temperature and pressure of the triple point and also the enthalpies of fusion, vaporization, and sublimation.","We follow the same procedures as in P8.26.
-
-Phase T (°C) P (Torr)
-Solid -62.7 40.0
-Solid -51.8 100
-Liquid -33.0 400
-Liquid -21.0 760",NA
-67,"The rate of reaction can be determined by measuring the change in optical rotation of the sample as a function of time if a reactant or product is chiral. This technique is especially useful for kinetic studies of enzyme catalysis involving sugars. For example, the enzyme invertase catalyzes the hydrolysis of sucrose, an optically active sugar. The initial reaction rates as a function of sucrose concentration are as follows:
-
-[Sucrose]₀ (M) | Rate (M s⁻¹)
--------------------|-----------------
-0.029             | 0.182
-0.059             | 0.266
-0.088             | 0.310
-0.117             | 0.330
-0.175             | 0.372
-0.234             | 0.371
-
-Use these data to determine the Michaelis constant for invertase. The Lineweaver-Burk plot and best fit to the data is as follows:
-
-The equation for the best-fit line is:
-
-1/rate₀ = 0.0947 s [S]₀⁻¹ + 2.197 M⁻¹ s
-
-The maximum rate is equal to the inverse of the y-intercept.","The Lineweaver-Burk equation is:
-1/rate₀ = 0.0947 s [S]₀⁻¹ + 2.197 M⁻¹ s
-
-The maximum rate (rate_max) is equal to the inverse of the y-intercept.
-rate_max = 1 / 2.197 M⁻¹ s
-rate_max = 0.455 M s⁻¹
-
-The Michaelis constant (K_M) is equal to the slope divided by the y-intercept.
-K_M = (0.0947 s) / (2.197 M⁻¹ s)
-K_M = 0.0431 M
-
-Therefore, the Michaelis constant for invertase is 0.0431 M.",0.0431
-68,"For one mole of an ideal gas, P_external = P = 200 x 10^3 Pa. The temperature is changed from 100 degrees C to 25.0 degrees C at constant pressure. C_v,m = 3/2 R. Calculate q, w, Delta U, and Delta H.","Delta U = n * C_v,m * Delta T = 3/2 * 8.314 J mol^-1 K^-1 * (298 K - 373 K) = -935 J
-Delta H = n * C_p,m * Delta T = n * (C_v,m + R) * Delta T = 5/2 * 8.314 J mol^-1 K^-1 * (298 K - 373 K) = -1.56 x 10^3 J
-w = -P * Delta V = -n * R * Delta T = -8.314 J mol^-1 K^-1 * (298 K - 373 K) = 623 J
-q = Delta H = -1.56 x 10^3 J",NA
-69,Is it correct to say that because the de Broglie wavelength of a H₂ molecule at 300 K is on the order of atomic dimensions that all properties of H₂ are quantized?,"No. While the de Broglie wavelength of a H₂ molecule at 300 K is on the order of atomic dimensions, this does not imply that all properties of H₂ are quantized. Quantization refers to the discrete nature of certain physical properties, such as energy levels. The de Broglie wavelength relates to the wave-like behavior of particles, but the fact that the wavelength is on the order of atomic dimensions does not mean that all properties are quantized. In fact, at room temperature, the thermal energy is much larger than the energy spacing between quantum states, so the system behaves classically in many respects. Therefore, while the de Broglie wavelength is small, the system does not exhibit significant quantum effects for most of its properties.",NA
-70,Calculate ΔH°_reaction and ΔG°_reaction for the reaction Ba(NO3)2(aq) + 2 KCl(aq) → BaCl2(s) + 2 KNO3(aq).,"ΔG°_reaction = ΔG°_f(BaCl2, s) + 2 ΔG°_f(K+, aq) + 2 ΔG°_f(NO3-, aq) - ΔG°_f(Ba2+, aq) - 2 ΔG°_f(Cl-, aq)
-ΔG°_reaction = -806.7 kJ mol^-1 + 560.8 kJ mol^-1 + 2 x 131.2 kJ mol^-1 = 16.5 kJ mol^-1
-ΔH°_reaction = ΔH°_f(BaCl2, s) - ΔH°_f(Ba2+, aq) - 2 ΔH°_f(Cl-, aq)
-ΔH°_reaction = -855.0 kJ mol^-1 + 537.6 kJ mol^-1 + 2 x 167.2 kJ mol^-1 = 17 kJ mol^-1",NA
-71,"A bottle at 21.0 degrees C contains an ideal gas at a pressure of 126.4 x 10^3 Pa. The rubber stopper closing the bottle is removed. The gas expands adiabatically against P_external = 101.9 x 10^3 Pa, and some gas is expelled from the bottle in the process. When P = P_external, the stopper is quickly replaced. The gas remaining in the bottle slowly warms up to 21.0 degrees C. What is the final pressure in the bottle for a monatomic gas, for which C_V,m = 3/2 R and a diatomic gas, for which C_V,m = 5/2 R?","In this adiabatic expansion, ΔU = w
-
-n C_V,m (T_f - T_i) = -P_ext (V_f - V_i)
-
-n C_V,m (T_f - T_i) = -P_ext (nRT/P_f - nRT/P_i)
-
-( C_V,m + RP_ext/P_f ) T_f = ( C_V,m + RP_ext/P_i ) T_i
-
-T_f/T_i = ( C_V,m + RP_ext/P_i ) / ( C_V,m + RP_ext/P_f )
-
-For a monatomic gas, C_V,m = 3/2 R = 1.5 x 8.314 J mol^-1 K^-1 = 12.47 J mol^-1 K^-1
-
-T_f = T_i ( 1.5 x 8.314 J mol^-1 K^-1 + 8.314 J mol^-1 K^-1 x 101.9 x 10^3 Pa / 126.4 x 10^3 Pa ) / ( 1.5 x 8.314 J mol^-1 K^-1 + 8.314 J mol^-1 K^-1 x 101.9 x 10^3 Pa / P_f )
-
-T_f/T_i = 0.923, T_f = 271 K
-
-Once the stopper is put in place, the gas makes a transformation from",NA
-72,What is the physical origin of the pressure difference across a curved liquid-gas interface?,"The origin is the cohesive forces in the liquid. Across an interface, the resultant force vector is not zero in magnitude. If the interface is curved, the resultant force tends to minimize the surface area, leading to a pressure difference across the interface.",NA
-73,"Classify the following functions as symmetric, antisymmetric, or neither in the exchange of electrons 1 and 2:","a) [1s(1)2s(2) + 2s(1)1s(2)][α(1)β(2) - β(1)α(2)] = -[1s(2)2s(1) + 2s(2)1s(1)][α(1)β(2) - β(1)α(2)] Therefore the function is antisymmetric in the exchange of electrons 1 and 2.
-b) [1s(2)2s(1) + 2s(2)1s(1)]α(1)α(2) = [1s(1)2s(2) + 2s(1)1s(2)]α(1)α(2) Therefore the function is symmetric in the exchange of electrons 1 and 2.
-c) [1s(2)2s(1) + 2s(2)1s(1)][α(1)β(2) + β(1)α(2)] = [1s(1)2s(2) + 2s(1)1s(2)][α(1)β(2) + β(1)α(2)] Therefore the function is symmetric in the exchange of electrons 1 and 2.",NA
-74,Have a closer look at Equation (17.6) and Figure 17.4. How would Figure 17.4 change if m increases? Generalize your conclusion to make a statement of how well the momentum is known if the position is known exactly.,The particle would be more localized because the uncertainty in momentum becomes infinite if the uncertainty in position is zero.,NA
-75,"A mass of 20.0 g of H_2O(g) at 373 K is flowed into 250 g of H_2O(l) at 300 K and 1 atm. Calculate the final temperature of the system once equilibrium has been reached. Assume that C_P,m for H_2O is constant at its values for 298 K throughout the temperature range of interest.","-n_steam * DeltaH_vaporization + n_steam * C_P,m,H_2O * (T_f - T_i,steam) + n_H_2O * C_P,m,H_2O * (T_f - T_i,H_2O) = 0
-
-T_f = (n_steam * C_P,m,H_2O * T_i,steam + n_H_2O * C_P,m,H_2O * T_i,H_2O - n_steam * DeltaH_vaporization) / (n_steam * C_P,m,H_2O + n_H_2O * C_P,m,H_2O)
-
-T_f = (20.0 g steam / 18.02 g steam mol^-1 * 75.291 J K^-1 mol^-1 * 373 K + 250.0 g H_2O / 18.02 g H_2O mol^-1 * 75.291 J K^-1 mol^-1 * 300 K - 20.0 g steam / 18.02 g steam mol^-1 * 40656 J mol^-1) / (20.0 g steam / 18.02 g steam mol^-1 * 75.291 J K^-1 mol^-1 + 250.0 g H_2O / 18.02 g H_2O mol^-1 * 75.291 J K^-1 mol^-1)
-
-T_f = 345 K",345
-76,"In Figure 19.13, n_J / n_0 increases initially with J for all three temperatures for CO, but only for the two highest temperatures for HD. Explain this difference.","The way that n_J / n_0 changes with J is determined by two opposing trends. The degeneracy ratio G_J / G_0 increases with J, and the exponential term e^(-ΔE/kT) decreases with temperature. If ΔE/kT is not very large at a particular value of T, the degeneracy ratio term will dominate at low values of J, and n_J / n_0 will increase with J. This is the case for CO. If ΔE/kT is large, the exponential term will dominate, and n_J / n_0 decreases as J increases from the value zero. This is the case for HD at the two lowest temperatures.",NA
-77,Why is it necessary to apply a bias voltage between the tip and surface in a scanning tunneling microscope (STM)?,"The highest occupied energy levels in the tip and sample have the same energy without a bias voltage. Because tunneling occurs at constant energy, there are no empty levels for the electron to tunnel into. By applying a bias voltage of the appropriate polarity, the highest filled states in the tip and sample are offset, and tunneling can occur.",NA
-78,Simplify the following expressions:,"a) n! / (n-2)! = (n)(n-1)(n-2)...(2)(1) / (n-2)! = (n)(n-1)
-b) [n! / (n/2)!]^2 = [(n)(n-1)(n-2)...(n/2+1)(n/2)...(2)(1) / (n/2)!]^2 = [(n)(n-1)(n-2)...(n/2+1)]^2 / [(n/2)!]^2 = [(n)(n-1)(n-2)...(n/2+1)]^2 / [(n/2)!]^2
-Note: n must be even.",NA
-79,"Determine the total molecular partition function for I_2, confined to a volume of 1000 cm^3 at 298 K. Other information you will find useful: B = 0.0374 cm^-1, v~ = 208 cm^-1, and the ground electronic state is nondegenerate.","Since q_total is the product of partition functions for each energetic degree of freedom, it is more straightforward to calculate the partition function for each of these degrees of freedom separately, then take the product of these functions:
-q_T = V/λ^3
-λ = (h^2 / 2πmkT)^1/2 = (6.626 x 10^-34 J s)^2 / (2π(0.254 kg mol^-1 / N_A)(1.38 x 10^-23 J K^-1)(298 K))^1/2 = 6.35 x 10^-12 m
-q_T = (1000 cm^3)(10^-6 m^3 cm^-3) / (6.35 x 10^-12 m)^3 = 3.91 x 10^30
-q_R = T / (σθ_R)
-θ_R = h^2 / (8π^2I k)
-I = μr^2 = (m_I / 2)(2r)^2 = m_I r^2
-r = (h^2 / 8π^2I k)^1/2
-B = h / (8π^2I c)
-I = h / (8π^2B c)
-I = (6.626 x 10^-34 J s) / (8π^2(0.0374 cm^-1)(3.00 x 10^10 cm s^-1))
-I = 2.25 x 10^-47 kg m^2
-θ_R = h^2 / (8π^2I k) = (6.626 x 10^-34 J s)^2 / (8π^2(2.25 x 10^-47 kg m^2)(1.38 x 10^-23 J K^-1))
-θ_R = 0.082 K
-q_R = T / (σθ_R) = 298 K / (2 x 0.082 K) = 1817
-q_V = 1 / (1 - exp(-hν~ / kT))
-hν~ = (6.626 x 10^-34 J s)(208 cm^-1)(3.00 x 10^10 cm s^-1) = 4.13 x 10^-21 J
-kT = (1.38 x 10^-23 J K^-1)(298 K) = 4.12 x 10^-21 J
-q_V = 1 / (1 - exp(-4.13 x 10^-21 J / 4.12 x 10^-21 J)) = 1 / (1 - exp(-1.00)) = 1 / (1 - 0.368) = 1 / 0.632 = 1.58
-q_E = 1
-q_total = q_T * q_R * q_V * q_E = (3.91 x 10^30)(1817)(1.58)(1) = 1.10 x 10^34",1.10e34
-80,"An experiment is performed on the branching reaction depicted in the text. Two things are determined: (1) The yield for B at a given temperature is found to be 0.3 and (2) the rate constants are described by an Arrhenius expression with the activation to B and C formation being 27 and 34 kJ mol^-1, respectively, and with identical preexponential factors. Demonstrate that these two statements are inconsistent.","The yield for B is given as
-
-Φ_B = k_B / (k_B + k_C) = 0.3
-
-or
-
-0.3 k_B + 0.3 k_C = k_B
-
-0.3 k_C = 0.7 k_B
-
-k_C / k_B = 7/3
-
-The Arrhenius expressions for k_B and k_C are:
-
-k_B = A_B * exp(-E_B / RT)
-
-k_C = A_C * exp(-E_C / RT)
-
-Given that the preexponential factors are identical (A_B = A_C = A) and the activation energies are E_B = 27 kJ mol^-1 and E_C = 34 kJ mol^-1, the ratio of the rate constants is:
-
-k_C / k_B = exp[-(E_C - E_B) / RT]
-
-k_C / k_B = exp[-(34 - 27) x 10^3 J mol^-1 / (8.314 J mol^-1 K^-1 * T)]
-
-k_C / k_B = exp[-7000 / (8.314 * T)]
-
-The ratio k_C / k_B is independent of the preexponential factor A. For the yield to be 0.3, the ratio k_C / k_B must be 7/3 ≈ 2.33.
-
-We need to check if this ratio can be achieved at any temperature.
-
-exp[-7000 / (8.314 * T)] = 2.33
-
--7000 / (8.314 * T) = ln(2.33) ≈ 0.845
-
-7000 / (8.314 * T) = -0.845
-
-T = 7000 / (8.314 * 0.845) ≈ 1000 K
-
-Therefore, the ratio k_C / k_B = 2.33 can be achieved at a temperature of approximately 1000 K.
-
-However, the problem states that the yield is 0.3 at a given temperature, but does not specify the temperature. The two statements are inconsistent because the ratio k_C / k_B depends only on the difference in activation energies and the temperature. The yield of B is given by Φ_B = k_B / (k_B + k_C) = 1 / (1 + k_C/k_B). The value of k_C/k_B is determined by the Arrhenius parameters and the temperature. If the preexponential factors are identical, then the ratio k_C/k_B is determined solely by the activation energies and the temperature. The yield of 0.3 corresponds to a specific value of k_C/k_B = 7/3. This specific ratio can be achieved at a specific temperature. The problem does not specify the temperature. Therefore, the two statements are not necessarily inconsistent. The two statements are consistent if the temperature is such that k_C/k_B = 7/3. However, the problem states that the yield is 0.3 and the activation energies are 27 and 34 kJ mol^-1. This implies that the yield is 0.3 at a specific temperature. We can calculate the temperature at which the yield is 0.3.
-
-k_C / k_B = exp[-(E_C - E_B) / RT]
-
-k_C / k_B = exp[-(34 - 27) x 10^3 J mol^-1 / (8.314 J mol^-1 K^-1 * T)]
-
-k_C / k_B = exp[-7000 / (8.314 * T)]
-
-We want k_C / k_B = 7/3 = 2.33
-
-exp[-7000 / (8.314 * T)] = 2.33
-
--7000 / (8.314 * T) = ln(2.33) ≈ 0.845
-
-7000 / (8.314 * T) = -0.845
-
-T = 7000 / (8.314 * 0.845) ≈ 1000 K
-
-Therefore, the two statements are consistent if the temperature is approximately 1000 K. The problem does not specify the temperature. Therefore, the two statements are not necessarily inconsistent. The two statements are consistent if the temperature is such that the ratio of the rate constants is 7/3. The problem does not specify the temperature. Therefore, the two statements are not necessarily inconsistent.",NA
-81,One mole of Ar undergoes an isothermal reversible expansion from an initial volume of 1.00 L to a final volume of 65.0 L at 298 K. Calculate the work done in this process using the ideal gas and van der Waals equations of state. What percentage of the work done by the van der Waals gas arises from the attractive potential?,"For the ideal gas,
-
-w = -nRT ln(V_f/V_i) = -1 mol x 8.314 J mol^-1 K^-1 x 298 K x ln(65.0 L / 1.00 L) = -10.34 x 10^3 J
-
-For the van der Waals gas,
-
-w = -∫(P)dV = -∫[nRT/(V-nb) - n^2a/V^2]dV from V_i to V_f
-
-= -[nRT ln(V-nb) + an^2/V] from V_i to V_f
-
-= -[1 mol x 8.314 J mol^-1 K^-1 x 298 K x ln(V-3.20 x 10^-5 m^3) + 0.1355 Pa m^6 / V] from 0.001 m^3 to 0.065 m^3
-
-= -10.42 x 10^3 J + 133 J = -10.29 x 10^3 J
-
-100 x 133 J / 10.29 x 10^3 J = 1.3%",1.3
-82,What is wrong with the following statement?: Burns caused by steam at 100°C can be more severe than those caused by water at 100°C because steam contains more heat. Rewrite the sentence to convey the same information in a correct way.,"Heat is not a substance that can be stored. When steam is in contact with your skin, it condenses to the liquid phase. In doing so, energy is released that is absorbed by the skin. Hot water does not release as much energy in the same situation because no phase change occurs.",NA
-83,Which result of the Stern-Gerlach experiment allows us to conclude that the operators for the z and x components of the magnetic moment do not commute?,"The observation that two sets of deflections are observed after the third analyzer, which is oriented in the same way as the first, show that the operators for the z and x components of the magnetic moment do not commute.",NA
-84,"The distribution in wavelengths of the light emitted from a radiating blackbody is a sensitive function of the temperature. This dependence is used to measure the temperature of hot objects, without making physical contact with those objects, in a technique called optical pyrometry. In the limit (hc/λkT) >> 1, the maximum in a plot of ρ(λ,T) versus λ is given by λ_max = hc/5kT. At what wavelength does the maximum in ρ(λ,T) occur for T = 450, 1500, and 4500 K?","According to Example Problem 14.1, λ_max = hc/5kT.
-λ_max = 6.626x10^-34 J s x 2.998x10^8 m s^-1 / 5 x 1.381x10^-23 J K^-1 x 450 K = 6.40x10^-6 m at 450 K. λ_max for 1500 K and 4500 K is 1.92x10^-6 m and 6.39x10^-7 m, respectively.",NA
-85,"Four bases (A, C, T, and G) appear in DNA. Assume that the appearance of each base in a DNA sequence is random.
-
-a) What is the probability of observing the sequence AAGACATGCA?
-
-b) What is the probability of finding the sequence GGGGGAAA?
-
-c) How do your answers to parts (a) and (b) of this question change if the probability of observing A is twice that of the probabilities used in parts (a) and (b) of this question when the preceding base is G?","a) There are four choices for each base, and the probability of observing any base is equal. Therefore, for a decamer the number of possible sequences is:
-N_total = (4)^10 = 1.05 x 10^6
-Since there is only one sequence that corresponds to the event of interest:
-P_E = E / N = 1 / 1.05 x 10^6 = 9.54 x 10^-7
-
-b) In this case, the probability of observing a base at a given location is dependent on which base is present. If G appears in the sequence, then the probability of observing A is 1/2 while the probability of observing any other base is 1/6 (watch the normalization!). Therefore, the probability of observing the sequence in part (a) is:
-P = (1/4)^3 * (1/2) * (1/4) * (1/6) * (1/4) = 1.27 x 10^-6
-
-c) The probability of observing A is twice that of the probabilities used in parts (a) and (b) of this question when the preceding base is G. This means that the probability of observing A is 2/6 = 1/3, and the probability of observing any other base is 1/6. Therefore, the probability of observing the sequence in part (a) is:
-P = (1/4)^3 * (1/3) * (1/4) * (1/6) * (1/4) = 1.27 x 10^-6
-
-The probability of observing the sequence in part (b) is:
-P = (1/6)^4 * (1/3) * (1/6)^3 = 1.27 x 10^-6
-
-Therefore, the answers to parts (a) and (b) of this question change if the probability of observing A is twice that of the probabilities used in parts (a) and (b) of this question when the preceding base is G.",NA
-86,"In this problem, you will derive the equations used to explain the Michelson interferometer for incident light of a single frequency.
-a) Show that the expression A(t) = A_0 / sqrt(2) (1 + e^i delta(t)) exp(i(ky_D - omega t)) represents the sum of two waves of the form A_0 / sqrt(2) exp(i(kx - omega t)), one of which is phase shifted by the amount delta(t) evaluated at the position y_D.
-b) Show using the definition I(t) = A(t) A*(t), that I(t) = I_0 / 2 (1 + cos(delta(t))).
-c) Expressing delta(t) in terms of delta d(t), show that I(t) = I_0 / 2 (1 + cos(2pi delta d(t) / lambda)).","a) A(t) = A_0 / sqrt(2) exp(i(kx - omega t)) + A_0 / sqrt(2) exp(i(kx - omega t + delta(t)))
-= A_0 / sqrt(2) (1 + e^i delta(t)) exp(i(ky_D - omega t))
-when evaluated at x = y_D.
-b) A(t) A*(t) = A_0 / sqrt(2) (1 + e^i delta(t)) exp(i(ky_D - omega t)) A_0 / sqrt(2) (1 + e^-i delta(t)) exp(-i(ky_D - omega t))
-= A_0^2 / 2 (1 + e^i delta(t)) (1 + e^-i delta(t))
-= A_0^2 / 2 (1 + cos(delta(t)) + i sin(delta(t)) + cos(delta(t)) - i sin(delta(t)))
-= A_0^2 / 2 (1 + cos(delta(t)))
-= I_0 / 2 (1 + cos(delta(t)))
-c) A(t) A*(t) = A_0^2 (1 + cos(delta(t))) and with delta(t) = 2pi delta d(t) / lambda,
-A(t) A*(t) = A_0^2 (1 + cos[2pi delta d(t) / lambda])",NA
-87,At what temperature are there Avogadro's number of translational states available for O2 confined to a volume of 1000 cm^3? Since the number of translational states is equal to q_T:,"q_T = 6.022 x 10^23 = V / lambda^3 = (1000 cm^3)(10^-6 m^3 cm^-3) / lambda^3
-lambda^3 = 1.66 x 10^-27 m^3
-lambda = (1.66 x 10^-27 m^3)^(1/3) = 1.11 x 10^-9 m
-lambda = (h^2 / 2pi m k T)^(1/2)
-T = h^2 / 2pi m k lambda^2 = (6.626 x 10^-34 J s)^2 / 2pi (0.0320 kg mol^-1)(1.38 x 10^-23 J K^-1)(1.11 x 10^-9 m)^2
-T = 0.086 K",0.086
-88,1H^35Cl has a force constant k = N m^-1 and a moment of inertia of 2.64 x 10^-47 kg m^2. Calculate the frequency of the light corresponding to the lowest energy pure vibrational and pure rotational transitions. In what regions of the electromagnetic spectrum do the transitions lie?,"The calculations for the vibrational transitions are as follows:
-
-For n = 0,
-\sqrt{\langle x^2 \rangle} = \left( \frac{\hbar}{2\sqrt{k\mu}} \right)^{1/2} = \left( \frac{1.055 \times 10^{-34} J s}{2 \times \sqrt{516 N m^{-1} \times 1.0078 \times 34.9688 \times 1.66 \times 10^{-27} kg amu^{-1}}} \right)^{1/2} = 7.59 \times 10^{-12} m
-\frac{\sqrt{\langle x^2 \rangle}}{bond length} = \frac{7.59 \times 10^{-12} m}{127 \times 10^{-12} m} = 5.97 \times 10^{-2}
-
-For n = 1,
-\sqrt{\langle x^2 \rangle} = \left( \frac{3\hbar}{2\sqrt{k\mu}} \right)^{1/2} = \left( \frac{3 \times 1.055 \times 10^{-34} J s}{2 \times \sqrt{516 N m^{-1} \times 1.0078 \times 34.9688 \times 1.66 \times 10^{-27} kg amu^{-1}}} \right)^{1/2} = 1.31 \times 10^{-11} m
-\frac{\sqrt{\langle x^2 \rangle}}{bond length} = \frac{1.31 \times 10^{-11} m}{127 \times 10^{-12} m} = 0.103
-
-For n = 2,
-\sqrt{\langle x^2 \rangle} = \left( \frac{5\hbar}{2\sqrt{k\mu}} \right)^{1/2} = \left( \frac{5 \times 1.055 \times 10^{-34} J s}{2 \times \sqrt{516 N m^{-1} \times 1.0078 \times 34.9688 \times 1.66 \times 10^{-27} kg amu^{-1}}} \right)^{1/2} = 1.70 \times 10^{-11} m
-\frac{\sqrt{\langle x^2 \rangle}}{bond length} = \frac{1.70 \times 10^{-11} m}{127 \times 10^{-12} m} = 0.134",NA
-89,"For a type II second-order reaction, the reaction is 60% complete in 60 seconds when [A]_0 = 0.1 M and [B]_0 = 0.5 M. a) What is the rate constant for this reaction? b) Will the time for the reaction to reach 60% completion change if the initial reactant concentrations are decreased by a factor of two?","a) The integrated rate-law expression for a second-order reaction of type II is:
-kt = 1/([B]_0 - [A]_0) ln([B]/[A]) - ln([B]_0/[A]_0)
-At t = 60 s, [A] = 0.04 M with 1:1 stoichiometry so that [B] = 0.44 M. Substituting these values into the above expression and using t = 60 s yields:
-kt = 1/(0.5 - 0.1) ln(0.44/0.04) - ln(0.5/0.1)
-kt = 1/0.4 ln(11) - ln(5)
-kt = 2.5 * (2.3979 - 1.6094)
-kt = 2.5 * 0.7885
-kt = 1.97125
-k = 1.97125 / 60
-k = 0.03285 M^-1 s^-1
-Therefore, the rate constant is 0.03285 M^-1 s^-1.
-b) The time for the reaction to reach 60% completion depends on the initial concentrations. If the initial concentrations are decreased by a factor of two, the reaction will be slower because the rate depends on the product of the concentrations. The time for 60% completion will increase. The integrated rate law shows that the time t is inversely proportional to the difference in initial concentrations. Since the initial concentrations are decreased by a factor of two, the time for 60% completion will increase.",0.03285
-90,Determine the mean free path for Ar at 298 K at the following pressures:,"a) 0.5 atm
-b) 0.005 atm
-c) 5 x 10^-6 atm
-For Ar, σ = 3.6 x 10^-19 m^2 and M = 0.040 kg mol^-1
-a) λ = (RT / PNA) * (1 / √2σ) = ((8.21 x 10^-2 L atm mol^-1 K^-1)(298 K)) / ((0.5 atm)(6.022 x 10^23 mol^-1)) * (1 / √2(3.6 x 10^-19 m^2)) * (1 m^3 / 1000 L)
-λ = 1.60 x 10^-7 m
-b) Since the mean free path is inversely proportional to pressure, the result from part (a) can be used to determine the mean free path at pressures specified in parts (b) and (c) as follows:",1.60e-7
-91,Why is <p^2> rather than <p> used to calculate the relative uncertainty for the particle in the box?,"Because the particle is equally likely to move to the right as the left, <p> is zero even though the magnitude of the momentum is not zero. Therefore, <p^2> is used to characterize the “average momentum.”",NA
-92,"What atomic terms are possible for the following electron configurations? Which of the possible terms has the lowest energy?
-a) ns^1 np^1 b) ns^1 nd^1 c) ns^2 np^1 d) ns^1 np^2","a) ns^1 np^1 L can only have the value 1, and S can have the values 0 and 1. The possible terms are ^1P and ^3P. Hund's Rules predict that the ^3P term will have the lower energy.
-b) ns^1 nd^1 L can only have the value 2, and S can have the values 0 and 1. The possible terms are ^1D and ^3D. Hund's Rules predict that the ^3D term will have the lower energy.
-c) ns^2 np^1 L can only have the value 1, and S can only have the value 1/2. The only possible term is ^2P.
-d) ns^1 np^2 A table such as the table in the text for the p^2 configuration can be combined with m_s = +1/2 for the ns electron. This gives a total of 30 states. Working through the table gives ^2D, ^4P, ^2P, and ^2S terms. Hund's Rules predict that the ^4P term will have the lowest energy.",NA
-93,"Consider the ""unimolecular"" isomerization of methylcyanide, a reaction that will be discussed in detail in the subsequent chapter:
-CH_3NC(g) -> CH_3CN(g)
-The Arrhenius parameters for this reaction are A = 2.5 x 10^16 s^-1 and E_a = 272 kJ mol^-1. Determine the Eyring parameters ΔH^‡ and ΔS^‡ for this reaction with T = 300 K.","For a unimolecular gas phase reaction
-E_a = ΔH^‡ + RT
-ΔH^‡ = E_a - RT
-= 272 x 10^3 J mol^-1 - (8.314 J mol^-1 K^-1)(300 K)
-= 272 x 10^3 J mol^-1 - 2.49 x 10^3 J mol^-1
-= 269.5 x 10^3 J mol^-1
-A = (e k_B T / h) * e^(ΔS^‡ / R)
-ΔS^‡ = R ln(Ah / e k_B T)
-= (8.314 J mol^-1 K^-1) ln((2.5 x 10^16 s^-1)(6.626 x 10^-34 J s) / e(1.38 x 10^-23 J K^-1)(300 K))
-= (8.314 J mol^-1 K^-1) ln(1737)
-= 62.0 J mol^-1 K^-1",NA
-94,"By looking at the a and b values for the van der Waals equation of state, decide whether 1 mole of O_2 or H_2O has the higher pressure at the same value of T and V.","A is significantly larger for H_2O. Therefore, the attractive forces between H_2O molecules are greater than between O_2 molecules. Consequently, O_2 will have a higher pressure.",NA
-95,"Evaluate the commutator [d/dx, x^2] by applying the operators to an arbitrary function f(x).","[d/dx, x^2] f(x) = d/dx (x^2 f(x)) - x^2 d/dx f(x)
-= 2x f(x) + x^2 d/dx f(x) - x^2 d/dx f(x) = 2x f(x)
-[d/dx, x^2] = 2x",NA
-96,a) Calculate the percent population of the first 10 rotational energy levels for HBr (B = 8.46 cm^-1) at 298 K. b) Repeat this calculation for HF assuming that the bond length of this molecule is identical to that of HBr.,"Since T >> Θ_R, the high-temperature limit is valid. In this limit, the probability of occupying a specific rotational state (p_J) is: p_J = ((2J+1)e^(-βhcBJ(J+1)))/q_R = ((2J+1)e^(-βhcBJ(J+1)))/((1/σβhcB)) Evaluating the above expression for J = 0: p_J = ((2J+1)e^(-βhcBJ(J+1)))/((1/σβhcB)) = 1/((1/σβhcB)) = σhcB/kT = ((1)(6.626x10^-34 J s)(3.00x10^10 cm s^-1)(8.46 cm^-1))/((1.38x10^-23 J K^-1)(298 K)) = 0.041 Performing similar calculations for J = 1 to 9:",0.041
-97,Justify the statement that the Coulomb integral J defined in Equation (21.30) is positive by explicitly formulating the integral that describes the interaction between two negative charge clouds.,"J_12 = e^2 / 8pi*epsilon_0 * int int [1s(1)]^2 * (1/|r_1 - r_2|) * [2s(2)]^2 d tau_1 d tau_2
-= 1/sqrt(32) * e^2 / 8pi^2*epsilon_0 * (1/a_0)^6 * int int e^(-r_1/a_0) * e^(-r_2/a_0) * (1/|r_1 - r_2|) * (2 - r_2/a_0)^2 * e^(-r_2/2a_0) * r_1^2 * r_2^2 * dr_1 dr_2
-The angular coordinates integrate to give a factor of 16pi^2, leaving only the integration over r_1 and r_2, which can vary between 0 and infinity. The terms 1/|r_1 - r_2|, e^(-r_1/a_0), and e^(-r_2/2a_0) are positive as r_1 and r_2 vary over their allowed ranges. The only other factor involving r_1 or r_2 appears as the square, and is therefore always positive. Therefore, the integrand is always positive, and we can conclude that J_12 must be positive.",NA
-98,"A proposed mechanism for the formation of N2O5 from NO2 and O3 is
-NO2 + O3 → NO3 + O2
-NO3 + NO2 + M → N2O5 + M
-Determine the rate law expression for the production of N2O5 given this mechanism.","d[N2O5]/dt = k2[NO2][NO3]
-Applying the steady state approximation to the intermediate NO3 and substituting back into the differential rate expression for N2O5 yields:
-
-From the mechanism:
-- d[NO3]/dt = k1[NO2][O3] - k2[NO2][NO3]
-
-Applying the steady state approximation:
-- d[NO3]/dt = 0
-
-Therefore:
-0 = k1[NO2][O3] - k2[NO2][NO3]
-
-Solving for [NO3]:
-[NO3] = (k1[NO2][O3]) / (k2[NO2]) = (k1/k2)[O3]
-
-Substitute this into the rate expression for N2O5:
-
-Rate = d[N2O5]/dt = k2[NO2][NO3]
-Rate = k2[NO2] * ((k1/k2)[O3])
-
-Simplify:
-Rate = k1[NO2][O3]
-
-Therefore, the rate law expression for the production of N2O5 is:
-Rate = k1[NO2][O3]",NA
-99,"The value of the Boyle temperature increases with the strength of the attractive interactions between molecules. Arrange the Boyle temperatures of the gases Ar, CH_4, and C_6H_6 in increasing order.",Ar < CH_4 < C_6H_6,NA
-100,Consider the molecular electrostatic potential map for the H_2O molecule shown here. Is the hydrogen atom (shown as a white sphere) an electron acceptor or an electron donor in this molecule?,"It is an electron donor, because the blue color around the H indicates a positive value for the electrostatic potential which results from a deficiency of electron charge.",NA
-101,"Given the limitations of the Langmuir model, many other empirical adsorption isotherms have been proposed to better reproduce observed adsorption behavior. One of these empirical isotherms is the Temkin isotherm: V_adsorbed = r ln sP, where V is the volume of gas adsorbed, P is pressure, and r and s are empirical constants. a) Given the Temkin isotherm provided, what type of plot is expected to give a straight line? b) Use your answer from part (a) to determine r and s for the data presented in Problem P37.22.","a) To obtain a straight line from the Temkin isotherm, V_adsorbed = r ln sP, the plot of V_adsorbed versus ln P should be a straight line. This is because the equation can be rearranged as V_adsorbed = r ln s + r ln P. Since r and s are constants, r ln s is a constant intercept and r is the slope. Therefore, a plot of V_adsorbed versus ln P will yield a straight line with slope r and intercept r ln s.
-b) To determine r and s, we use the data from Problem P37.22. The problem provides a plot of P/V versus P (torr), which is a Lineweaver-Burk plot. The equation for the best-fit line is y = 0.1982x + 3.07. In the context of the problem, y = P/V and x = P. The slope of this line is 0.1982 mL^-1 torr^-1. From the Lineweaver-Burk plot, we know that V_m = 1 / slope. Therefore, V_m = 1 / 0.1982 mL^-1 torr^-1 = 5.04 mL. The data table provides P (atm) and θ. We need to convert P to torr for consistency with the plot. 1 atm = 760 torr.
-
-P (atm) | P (torr) | θ
-------- | -------- | ---
-20      | 15200    | 0.595
-50      | 38000    | 0.754
-100     | 76000    | 0.853
-200     | 152000   | 0.932
-300     | 228000   | 0.952
-
-From the Temkin isotherm, V_adsorbed = r ln sP. We can use the formula for the fraction adsorbed, θ = V_adsorbed / V_m. So, θ = (r ln sP) / V_m. Rearranging, ln sP = (θ V_m) / r. This can be written as ln sP = ln s + ln P = (θ V_m) / r. Therefore, ln P = ((θ V_m) / r) - ln s. This is a linear equation of the form y = mx + c, where y = ln P, m = V_m / r, and c = -ln s.
-
-We can use the data points to calculate ln P and θ. We need to convert P to torr. The values are:
-
-P (torr) | ln P | θ
--------- | ---- | ---
-15200   | 9.629 | 0.595
-38000   | 10.545 | 0.754
-76000   | 11.238 | 0.853
-152000  | 11.932 | 0.932
-228000  | 12.337 | 0.952
-
-Now, we can plot ln P versus θ. The slope of this plot will be V_m / r. We can calculate the slope using two points. Using the first and last points:
-
-Slope = (12.337 - 9.629) / (0.952 - 0.595) = 2.708 / 0.357 = 7.585 torr.
-
-The slope is V_m / r. We know V_m = 5.04 mL. So, r = V_m / slope = 5.04 mL / 7.585 torr = 0.664 mL/torr.
-
-To find s, we use the intercept. The intercept of the ln P vs θ plot is -ln s. We can calculate the intercept using the slope and a data point. Using the first point:
-
-ln P = slope * θ + intercept
-9.629 = 7.585 * 0.595 + intercept
-9.629 = 4.513 + intercept
-intercept = 9.629 - 4.513 = 5.116
-
-So, -ln s = 5.116, which means ln s = -5.116. Therefore, s = e^(-5.116) = 0.00600 torr^-1.
-
-Thus, the values are r = 0.664 mL/torr and s = 0.00600 torr^-1.",NA
-102,For which energetic degrees of freedom are the spacings between energy levels small relative to kT at room temperature?,"At room temperature, the spacings between translational energy levels are extremely small relative to kT. The rotational energy level spacings are also generally small relative to kT, although some species involving light atoms (such as H_2) may have energy levels spacings that are comparable to kT. Vibrational and electronic energy levels usually have spacings that are greater than kT.",NA
-103,Calculate the angles that a spin angular momentum vector for an individual electron can make with the z axis.,The angle θ with the z axis is determined by cos θ = s_z / √[s(s+1)] = (±1/2) / √[1/2(1/2+1)] = ±1/√3. This gives values for θ of 54.7° and 125.3°.,NA
-104,Why is it necessary to include some ionic character in the wave function for the ground state of H2 to better approximate the true wave function?,"The calculated energy is lower after the inclusion of the ionic terms in the wave function. Because the variational theorem states that a lowering of the energy occurs as a result of an improvement in the wave function, we can conclude that the ionic terms are necessary to adequately describe bonding in H2.",NA
-105,You have containers of pure H_2 and He at 298 K and 1 atm pressure. Calculate ΔG_mixture relative to the unmixed gases of a. a mixture of 10 mol of H_2 and 10 mol of He b. a mixture of 10 mol of H_2 and 20 mol of He c. Calculate ΔG_mixture if 10 mol of pure He are added to the mixture of 10 mol of H_2 and 10 mol of He.,"ΔG_mixture = nRT(x_1 ln x_1 + x_2 ln x_2)
-
-a) ΔG_mixture = 20 mol x 8.314 J mol^-1 K^-1 x 298 K x (1/2 ln 1/2 + 1/2 ln 1/2) = -34.4 kJ
-
-b) ΔG_mixture = 30 mol x 8.314 J mol^-1 K^-1 x 298 K x (1/3 ln 1/3 + 2/3 ln 2/3) = -47.3 kJ
-
-c) ΔG_mixture = ΔG_mixture (pure gases) - ΔG_mixture (10 mol A + 10 mol B)
-= -47.3 + 34.4 = -12.9 kJ",NA
-106,"Using half-cell potentials, calculate the equilibrium constant at 298.15 K for the reaction 2H2O(l) → 2H2(g) + O2(g). Compare your answer with that calculated using the ΔG°f in the data tables from Appendix A. What is the value of E° for the overall reaction that makes the two methods agree exactly?","2H2O(l) + 2e- → H2(g) + 2OH-(aq)    E° = -0.8277V
-4OH-(aq) → O2(g) + 2H2O(l) + 4e-    E° = -0.401V
-2H2O(l) → 2H2(g) + O2(g)    E° = -1.2287V",-1.2287
-107,Why is it necessary to functionalize CdSe quantum dots with groups such as organic acids to make them useful in bioanalytical applications?,The role of the functional groups is to make the CdSe quantum dots soluble in aqueous solutions.,NA
-108,Express the following complex numbers in the form a + ib. a) 2*e^(i*pi/2) b) 2*sqrt(5)*e^(-i*pi/2) c) e^(i*pi) d) (3*sqrt(2))/(5 + sqrt(3)) * e^(i*pi/4),"To convert to the form a + ib, we use the equations Re z = z*cos theta and Im z = z*sin theta. a) 2*e^(i*pi/2) = 2*cos(pi/2) + (2*sin(pi/2))*i = 2i b) 2*sqrt(5)*e^(-i*pi/2) = 2*sqrt(5)*cos(-pi/2) + (2*sqrt(5)*sin(-pi/2))*i = -2*sqrt(5)*i c) e^(i*pi) = cos(pi) + (sin(pi))*i = -1 d) (3*sqrt(2))/(5 + sqrt(3)) * e^(i*pi/4) = (3*sqrt(2))/(5 + sqrt(3)) * cos(pi/4) + ((3*sqrt(2))/(5 + sqrt(3)) * sin(pi/4))*i = (3*sqrt(2))/(5 + sqrt(3)) * (sqrt(2)/2) + ((3*sqrt(2))/(5 + sqrt(3)) * (sqrt(2)/2))*i = 3/(5 + sqrt(3)) * (1 + i)",NA
-109,"An ideal solution at 298 K is made up of the volatile liquids A and B, for which P*_A = 125 Torr and P*_B = 46.3 Torr. As the pressure is reduced from 450 Torr, the first vapor is observed at a pressure of 70.0 Torr. Calculate x_A.","The first vapor is observed at a pressure of
-P_total = x_A * P*_A + (1 - x_A) * P*_B
-x_A = (P_total - P*_B) / (P*_A - P*_B) = (70.0 Torr - 46.3 Torr) / (125 Torr - 46.3 Torr) = 0.301",0.301
-110,Determine E° for the reaction Cr²⁺ + 2e⁻ → Cr from the one-electron reduction potential for Cr³⁺ given in Table 11.1 (see Appendix A).,"Cr³⁺ + 3e⁻ → Cr ΔG° = -nFE° = -3 × 96485 C mol⁻¹ × (-0.744 V) = 215.4 kJ mol⁻¹
-Cr²⁺ → Cr³⁺ + e⁻ ΔG° = -nFE° = -1 × 96485 C mol⁻¹ × 0.407 V = -39.27 kJ mol⁻¹
-Cr²⁺ + 2e⁻ → Cr ΔG° = 215.4 kJ mol⁻¹ - 39.27 kJ mol⁻¹ = 176.1 kJ mol⁻¹
-E°_Cr²⁺/Cr = -ΔG°/nF = -176.1 × 10³ J mol⁻¹ / (2 × 96485 C mol⁻¹) = -0.913 V",-0.913
-111,"Derive the following relation, (dU/dV_m)_T = 3a/(2√T * V_m * (V_m+b)), for the internal pressure of a gas that obeys the Redlich-Kwong equation of state, P = RT/(V_m-b) - a/√T * V_m * (V_m+b).","The internal pressure of a gas is given by
-(dU/dV)_T = T * (dP/dT)_V - P
-Using the Redlich-Kwong equation of state,
-(dP/dT)_V = R/(V_m-b) + a/(2T^(3/2) * V_m * (V_m+b))
-(dU/dV_m)_T = T * [R/(V_m-b) + a/(2T^(3/2) * V_m * (V_m+b))] - [RT/(V_m-b) - a/(√T * V_m * (V_m+b))]
-= T * R/(V_m-b) + T * a/(2T^(3/2) * V_m * (V_m+b)) - RT/(V_m-b) + a/(√T * V_m * (V_m+b))
-= a/(2T^(1/2) * V_m * (V_m+b)) + a/(√T * V_m * (V_m+b))
-= (3a)/(2√T * V_m * (V_m+b))",NA
-112,"Suppose that you draw a card from a standard deck of 52 cards. What is the probability of drawing:
-a) an ace of any suit?
-b) the ace of spades?
-c) How would your answers to parts (a) and (b) change if you were allowed to draw three times, replacing the card drawn back into the deck after each draw?","a) In a deck of 52 cards there are four aces, therefore: P_E = E/N = 4/52
-b) There is only one card that corresponds to the event of interest, therefore: P_E = E/N = 1/52
-c) By replacing the card, the probability for each drawing is independent, and the total probability is the sum of probabilities for each event. Therefore, the probability will be 3P_E with P_E as given above.",NA
-113,"Calculate I, γ±, and a± for a 0.0325m solution of K4Fe(CN)6 at 298 K.","I = m/2 (ν+z+^2 + ν-z-^2) = 1/2 (4 x 0.0325 mol kg^-1 + 4^2 x 0.0325 mol kg^-1) = 0.325 mol kg^-1
-ln γ± = -1.173|z+z-|√(I/mol kg^-1) = -1.173 x 4 x √0.325 = -2.679
-γ± = 0.069
-m± = (ν+ν-)^1/ν m = (4^4)^1/5 x 0.0325 mol kg^-1 = 0.099 mol kg^-1
-a± = (m±/m°)γ± = 0.099 x 0.069 = 0.0068
-Not very confident. Figures 10.5 and 10.6 show significant deviations from predicted behavior for I > 0.01 mol kg^-1.",NA
-114,"Singlet carbenes add to alkenes to yield cyclopropanes. Stereochemistry is maintained, meaning that cis- and trans-substituted alkenes give cis- and trans-substituted cyclopropanes, respectively; for example:
-
-CF2 + CH3CH=CHCH3 → CH3CH-CHCH3
-            |     |
-            CF2   CF2
-
-This implies that the two σ bonds are formed more or less simultaneously, without the intervention of an intermediate that would allow cis-trans isomerization.
-
-Locate the transition state for addition of singlet difluorocarbene and ethene using the HF/3-21G model, and following this, calculate vibrational frequencies. When completed, verify that you have in fact found a transition state and that it appears to be on the way to the correct product.
-
-What is the orientation of the carbene relative to ethene in your transition state? Is it the same orientation as adopted in the product (1,1-difluorocyclopropane)? If not, what is the reason for the difference? (Hint: Consider that the π electrons on ethene need to go into a low-lying unoccupied molecular orbital on the carbene. Build difluorocarbene and display the LUMO.)","(difluorocarbene; difluorocarbene+ethene) The FCF plane (in difluorocarbene) lies above and nearly parallel to the plane of ethene. This is quite far from the ""perpendicular orientation"" in the product (1,1-difluorocyclopropane). The reason for this is that it is the LUMO in difluorocarbene, which is a p orbital out of the FCF plane, that needs to interact with the ethene π bond. Positioning difluorocarbene in its final geometry would minimize this favorable interaction involving the HOMO on the carbene (an electron pair localized on carbon).",NA
-115,"For a reaction mechanism to be considered correct, what property must it demonstrate?","In order to be valid, a proposed reaction mechanism must agree with the experimentally determined rate law.",NA
-116,"Using the Helmholtz energy, demonstrate that the pressure for an ideal polyatomic gas is identical to that derived for an ideal monatomic gas in the text. A = -kT ln Q","P = - (dA/dV)_T = kT (d ln Q/dV)_T = NkT (d ln q/dV)_T = NkT (d ln (q_T q_R q_V q_E)/dV)_T = NkT (d/dV (ln q_T + ln q_R + ln q_V + ln q_E))_T Recall that only the translational partition function (q_T) is a function of volume, the other partition functions have no volume dependence. Therefore, only the derivative of the term involving q_T is non-vanishing: P = NkT (d ln q_T/dV)_T = NkT (1/q_T) (d q_T/dV)_T = NkT (1/q_T) (d (V/L^3)/dV)_T = NkT/V = nRT/V",NA
-117,"What is the solution of the time-dependent Schrödinger equation Ψ(x,t) for the total energy eigenfunction ψ_4(x) = √(2/a) sin(4πx/a) in the particle in the box model? Write ω = E/ħ explicitly in terms of the parameters of the problem.","Ψ(x,t) = ψ(x)e^(-iωt) = ψ(x)e^(-iEt/ħ)
-Because E = n²ħ² / 8ma² = 16ħ² / 8ma²,
-Ψ(x,t) = √(2/a) sin(4πx/a) e^(-i(16ħt)/ma²)",NA
-118,"At 39.9°C, a solution of ethanol (x_1 = 0.9006, P*_1 = 130.4 Torr) and isoctane (P*_2 = 43.9 Torr) forms a vapor phase with y_1 = 0.6667 at a total pressure of 185.9 Torr.
-a. Calculate the activity and activity coefficient of each component.
-b. Calculate the total pressure that the solution would have if it were ideal.","a) The activity and activity coefficient for ethanol are given by
-a_1 = y_1 P_total / P*_1 = 0.6667 x 185.9 Torr / 130.4 Torr = 0.9504
-γ_1 = a_1 / x_1 = 0.9504 / 0.9006 = 1.055",NA
-119,What is the relationship between the K_P for the two reactions 3/2H_2 + 1/2N_2 → NH_3 and 3H_2 + N_2 → 2NH_3?,K_P for the second reaction is the square of K_P for the first reaction as can be seen from the reaction quotients: (P_NH_3 / P°)^1/2 / ((P_H_2 / P°)^3/2 * (P_N_2 / P°)^1/2) and (P_NH_3 / P°)^2 / ((P_H_2 / P°)^3 * (P_N_2 / P°)).,NA
-120,"A thermopane window consists of two sheets of glass separated by a volume filled with air (which we will model as N_2 where k = 0.0240 J K^-1 m^-1 s^-1). For a thermopane window that is 1 m^2 in area with a separation between glass sheets of 3 cm, what is the loss of energy when:","a) the exterior of the window is at a temperature of 10 degrees C and the interior of the window is at a temperature of 22 degrees C?
-b) the exterior of the window is at a temperature of -20 degrees C and the interior of the window is at a temperature of 22 degrees C?",NA
-121,An STM can also be operated in a mode in which electrons tunnel from the surface into the tip. Use Figure 16.8 to explain how you would change the experimental setup to reverse the tunneling current.,"You would simply reverse the polarity of the battery. This would make the highest filled energy level in the surface higher than that in the tip. Therefore, the tunneling current would flow from the surface to the tip.",NA
-122,"Images of molecular orbitals for LiH calculated using the minimal basis set are shown here. In these images, the smaller atom is H. The energy of the MOs is (left to right) -63.9 eV, -7.92 eV, and +2.14 eV. Make a molecular orbital diagram for this molecule, associate the MOs with the images below as filled or empty. Which MO is the HOMO? Which MO is the LUMO? Do you expect the dipole moment in this molecule to have the negative end on H or Li?","The left image corresponds to the 1σ MO, because the MO is localized on the Li atom. From the MO diagram, the 2σ MO should have a larger coefficient for the H1s AO than for the Li2s AO, following the rules outlined in Section 24.2. Therefore, the middle image is the 2σ MO. Following the same reasoning, the 3σ* MO should have a larger coefficient for the Li2s AO. Therefore, the right image is the 3σ* MO. The 1σ and 2σ MOs are filled, and the 3σ* is empty. Because the coefficient for the H1s AO is larger than that for the Li2s AO in the 2σ MO, the bonding electrons have a higher probability of being on the H than on the Li. Therefore, the negative end of the dipole is on the H atom.",NA
-123,"Consider the reaction
-TiO_2(s) + 2 C(graphite) + 2 Cl_2(g) -> 2 CO(g) + TiCl_4(l) for which
-ΔH°_reaction (298 K) = -80.01 kJ mol^-1. Given the following data at 25°C,
-
-| Substance | TiO_2(s) | Cl_2(g) | C(graphite) | CO(g) | TiCl_4(l) |
-|---|---|---|---|---|---|
-| ΔH°_f (kJ mol^-1) | -945 | | | -110.5 | |
-| C_p,m (J K^-1 mol^-1) | 55.06 | 33.91 | 8.53 | 29.12 | 145.2 |
-
-a) Calculate ΔH°_reaction at 135.8°C, the boiling point of TiCl_4.
-b) Calculate ΔH°_f for TiCl_4(l) at 25°C.","a) To calculate ΔH°_reaction at 135.8°C (408.95 K), we use the formula:
-ΔH°_reaction(T_2) = ΔH°_reaction(T_1) + ΔC_p (T_2 - T_1)
-First, calculate ΔC_p:
-ΔC_p = ΣC_p(products) - ΣC_p(reactants)
-ΔC_p = [2 * C_p(CO) + C_p(TiCl_4(l))] - [C_p(TiO_2(s)) + 2 * C_p(C(graphite)) + 2 * C_p(Cl_2(g))]
-ΔC_p = [2 * 29.12 + 145.2] - [55.06 + 2 * 8.53 + 2 * 33.91]
-ΔC_p = [58.24 + 145.2] - [55.06 + 17.06 + 67.82]
-ΔC_p = 203.44 - 140.94 = 62.5 J K^-1 mol^-1
-Now calculate ΔH°_reaction at 408.95 K:
-ΔH°_reaction(408.95 K) = -80.01 kJ mol^-1 + (62.5 J K^-1 mol^-1) * (408.95 K - 298 K)
-ΔH°_reaction(408.95 K) = -80.01 kJ mol^-1 + (62.5 * 110.95) J mol^-1
-ΔH°_reaction(408.95 K) = -80.01 kJ mol^-1 + 6934.375 J mol^-1
-ΔH°_reaction(408.95 K) = -80.01 kJ mol^-1 + 6.934 kJ mol^-1
-ΔH°_reaction(408.95 K) = -73.076 kJ mol^-1
-
-b) To calculate ΔH°_f for TiCl_4(l) at 25°C, we use the formula:
-ΔH°_reaction = ΣΔH°_f(products) - ΣΔH°_f(reactants)
--80.01 kJ mol^-1 = [2 * ΔH°_f(CO(g)) + ΔH°_f(TiCl_4(l))] - [ΔH°_f(TiO_2(s)) + 2 * ΔH°_f(C(graphite)) + 2 * ΔH°_f(Cl_2(g))]
-We know:
-ΔH°_f(CO(g)) = -110.5 kJ mol^-1
-ΔH°_f(TiO_2(s)) = -945 kJ mol^-1
-ΔH°_f(C(graphite)) = 0 kJ mol^-1
-ΔH°_f(Cl_2(g)) = 0 kJ mol^-1
-Substitute the values:
--80.01 = [2 * (-110.5) + ΔH°_f(TiCl_4(l))] - [-945 + 0 + 0]
--80.01 = [-221 + ΔH°_f(TiCl_4(l))] + 945
--80.01 = -221 + ΔH°_f(TiCl_4(l)) + 945
--80.01 = 724 + ΔH°_f(TiCl_4(l))
-ΔH°_f(TiCl_4(l)) = -80.01 - 724
-ΔH°_f(TiCl_4(l)) = -804.01 kJ mol^-1",NA
-124,"Determine the molar entropy for 1 mol of gaseous Ar at 200, 300, and 500 K and V = 1000 cm^3 assuming that Ar can be treated as an ideal gas. How does the result of this calculation change if the gas is Kr instead of Ar?","Determining the molar entropy for gaseous Ar at 200 K yields:
-
-S = R ln(V/(N_A h^3/(2 pi m k T)^1.5)) + 3/2 R ln(T) + R ln(2 pi m k T/h^2) - R ln(2 pi) + 5/2 R
-
-where V is the volume, N_A is Avogadro's number, h is Planck's constant, m is the mass of an Ar atom, k is Boltzmann's constant, and T is the temperature. The calculation for Kr would be similar but use the mass of a Kr atom instead.",NA
-125,What feature of the distribution depicted as Case 1 in Figure 12.7 tells you that the broad distribution arises from diffraction?,The intensity goes through a minimum and increases again on both sides of the maximum. This can only occur through wave interference.,NA
-126,"Show that two of the set of four equivalent orbitals appropriate for sp^3 hybridization, ψ_a = 1/2(-φ_2s + φ_2px + φ_2py + φ_2pz) and ψ_b = 1/2(-φ_2s - φ_2px - φ_2py + φ_2pz) are orthogonal.","To show that ψ_a and ψ_b are orthogonal, we must evaluate ∫ ψ_a*ψ_b dτ = 1/4 ∫ (-φ_2s + φ_2px + φ_2py + φ_2pz)(-φ_2s - φ_2px - φ_2py + φ_2pz) dτ = 1/4 {∫ (φ_2s)^2 dτ + ∫ φ_2sφ_2px dτ + ∫ φ_2sφ_2py dτ + ∫ φ_2sφ_2pz dτ - ∫ φ_2pxφ_2s dτ - ∫ (φ_2px)^2 dτ - ∫ φ_2pxφ_2py dτ - ∫ φ_2pxφ_2pz dτ - ∫ φ_2pyφ_2s dτ - ∫ φ_2pyφ_2px dτ - ∫ (φ_2py)^2 dτ - ∫ φ_2pyφ_2pz dτ + ∫ φ_2pzφ_2s dτ + ∫ φ_2pzφ_2px dτ + ∫ φ_2pzφ_2py dτ + ∫ (φ_2pz)^2 dτ} Because the atomic orbitals are orthonormal, each integral containing two different atomic orbitals has the value zero, and the value one if the two atomic orbitals are identical. ∫ ψ_a*ψ_b dτ = 1/4 [1 - 1 - 1 + 1] = 0 Therefore, the two orbitals are orthogonal.",NA
-127,Use the following data to determine the Langmuir adsorption parameters for nitrogen on mica:,"The data is:
-
-| V_ads (cm^3 g^-1) | P (Torr) |
-|---|---|
-| 0.494 | 2.1 x 10^-3 |
-| 0.782 | 4.60 x 10^-3 |
-| 1.16 | 1.30 x 10^-2 |
-
-As illustrated in the example problem in the text, the following plot is used to compare the data to the prediction of the Langmuir model:
-
-The plot shows V_ads vs ln(P) with the best fit line equation: y = 0.6743x + 1.0834.
-
-Best fit to the data by a straight line yields the following equation:
-V_ads = 0.674 ln(P) + 1.083
-
-The slope of the line is equal to r:
-r = 0.674 mL
-
-With r, s can be determined as follows:
-s = e^(y-int/r) = e^(1.083/0.674)
-s = 4.99 torr^-1",4.99
-128,NH3 belongs to the C3v group. The character table for this group is shown here. The reducible representation for the vibrational modes is Gamma_reducible = 2A1 + 2E.,"E 2C3 3sigma_v
-Gamma_reducible 6 0 2",NA
-129,"Assume that a sealed vessel at constant pressure of 1 bar initially contains 2.00 mol of NO2(g). The system is allowed to equilibrate with respect to the reaction 2NO2(g) ↔ N2O4(g). The number of moles of NO2(g) and N2O4(g) at equilibrium is 2.00 - 2ξ and ξ, respectively, where ξ is the extent of reaction. a. Derive an expression for the entropy of mixing as a function of ξ. b. Graphically determine the value of ξ for which ΔSmixing has its maximum value.","a. Derive an expression for the entropy of mixing as a function of ξ.
-
-b. Graphically determine the value of ξ for which ΔSmixing has its maximum value.",NA
-130,The vibrational frequency of 1H35Cl is 8.963 x 10^13 s^-1. Calculate the force constant of the molecule. How large a mass would be required to stretch a classical spring with this force constant by 1.00 cm? Use the gravitational acceleration on Earth at sea level for this problem.,"v = 1/2pi * sqrt(k/mu); k = 4pi^2 * 1.008 * 34.969 amu * (8.963 x 10^13 s^-1)^2
-k = 516 kg s^-2
-F = kx = mg
-m = kx/g = 516 kg s^-2 * 10^-2 m / 9.81 m s^-2 = 0.525 kg",0.525
-131,How did Planck conclude that the discrepancy between experiments and classical theory for blackbody radiation was at high and not low frequencies?,The experimental results and the classical theory agree in the limit of low frequencies and diverge at high frequencies.,NA
-132,How does the Heisenberg uncertainty principle allow us to conclude that it is not possible to make exact copies of quantum mechanical objects?,"If we could make exact copies, we could measure the momentum in one system and the position in the other system. This would allow us to know both quantities exactly, which is a violation of the uncertainty principle.",NA
-133,"The viscosity of O2 at 293 K and 1 atm is 204 µP. What is the expected flow rate through a tube having a radius of 2 mm, length of 10 cm, input pressure of 765 Torr, output pressure of 760 Torr? b) If Ar were used in the apparatus (η = 223 µP), what would be the expected flow rate? Can you determine the flow rate without evaluating Poiseuille's equation?","a) The viscosity of O2 at 293 K and 1 atm is 204 µP. What is the expected flow rate through a tube having a radius of 2 mm, length of 10 cm, input pressure of 765 Torr, output pressure of 760 Torr? b) If Ar were used in the apparatus (η = 223 µP), what would be the expected flow rate? Can you determine the flow rate without evaluating Poiseuille's equation?",NA
-134,Use the tabulated values of the enthalpy of combustion of benzene and the enthalpies of formation of CO2(g) and H2O(l) to determine ΔH°_f for benzene.,"3H2O(l) + 6CO2(g) -> 15/2 O2(g) + C6H6(l)
-6C(s) + 6O2(g) -> 6CO2(g)
--ΔH°_combustion(C6H6,l) = -3268 kJ mol^-1
--ΔH°_f(CO2,g) = -393.5 kJ mol^-1
--ΔH°_f(H2O,l) = -285.8 kJ mol^-1
-ΔH°_f(C6H6,l) = 6ΔH°_f(CO2,g) + 3ΔH°_f(H2O,l) - ΔH°_combustion(C6H6,l)
-= 6 x (-393.5 kJ mol^-1) + 3 x (-285.8 kJ mol^-1) - (-3268 kJ mol^-1)
-= -2361 kJ mol^-1 - 857.4 kJ mol^-1 + 3268 kJ mol^-1
-= 40.6 kJ mol^-1",40.6
-135,"Locate the radial and angular nodes in the H orbitals ψ_3px(r,θ,φ) and ψ_3pz(r,θ,φ).","ψ_3px(r,θ,φ) = 1/81√2π (1/a0)^(3/2) (6r/a0 - r^2/a0^2) e^(-r/3a0) sinθ cosφ has radial nodes where 6r/a0 - r^2/a0^2 = 0, which does not count as a node, and r = 6a0. The angular nodes correspond to the angles at which the function is zero, or θ = 0 degrees and φ = 90 degrees, corresponding to the y-z plane.
-
-ψ_3pz(r,θ,φ) = 1/81 (2/π)^(1/2) (1/a0)^(3/2) (6r/a0 - r^2/a0^2) e^(-r/3a0) cosθ also has a radial node at r = 6a0. The angular node is for θ = 90 degrees, corresponding to the x-y plane.",6
-136,"The pressure dependence of G is quite different for gases and condensed phases. Calculate G_m(C, solid, graphite), 100 bar, 298.15 K and G_m(He, g, 100 bar, 298.15 K) relative to their standard state values. By what factor is the change in G_m greater for He than for graphite?","For a solid or liquid,
-ΔG = ∫ VdP = V(P_f - P_i)
-G_m(C, s, 100 bar) = G_m(C, s, 1 bar) + V_m(P_f - P_i)
-= 0 + (12.01 x 10^-3 kg mol^-1 / 2250 kg m^-3) x (100 - 1) x 10^5 Pa = 52.8 J
-Treating He as an ideal gas,
-G_m(He, g, 100 bar) = G_m(He, g, 1 bar) + ∫ VdP
-= 0 + RT ln(P_f/P_i) = 1 mol x 8.314 J mol^-1 K^-1 x 298.15 K x ln(100 bar / 1 bar) = 11.4 x 10^3 J
-This result is a factor of 216 greater than that for graphite.",216
-137,Why is the efficiency of a Carnot heat engine the upper bound to the efficiency of an internal combustion engine?,This is the case because the maximum work than can be done on the surroundings in the expansion of a gas is in a reversible process.,NA
-138,"Determine in each of the following cases if the function in the first column is an eigenfunction of the operator in the second column. If so, what is the eigenvalue?","a) x^3
-    d/dx^3 (x^3) = 6
-    Not an eigenfunction
-
-b) x y
-    x ∂/∂x (xy) + y ∂/∂y (xy) = 2xy
-    Eigenfunction with eigenvalue +2
-c) sinθ cosφ
-    ∂^2/∂θ^2 (sinθ cosφ) = -sinθ cosφ
-    Eigenfunction with eigenvalue -1",NA
-139,How does the average speed of a collection of gas particles vary with particle mass and temperature?,"The average speed of a particle in a gas is directly proportional to the square root of the temperature, and inversely proportional to the square root of the mass. Thus, as the temperature increases, the average speed increases (as the square root), and as the mass increases, the average speed decreases (as the square root).",NA
-140,Why does the mean free path depend on σ^2? Would an increase in Ñ increase or decrease the mean free path?,"The cross section is an effective area related to the size of the particles. The larger this area for collision is, the more probable a collision resulting in a corresponding decrease in the mean free path. Collisional frequencies are directly proportional to Ñ; therefore, the mean free path will be inversely proportional to Ñ.",NA
-141,Why is the thermal conductivity for an ideal gas expected to be independent of pressure? Why does the thermal conductivity for an ideal gas increase as T^1/2?,"With reference to the equation provided in Question Q35.5 above, we see that the thermal conductivity depends on the product of the number density and the mean free path. For an ideal gas, the mean free path is dependent on the pressure, while the number density is directly dependent on the pressure. As demonstrated below, the pressure term cancels, leaving the thermal conductivity independent of pressure for an ideal gas; Ñλ = (P/kT)(RT/PN_A)(1/√2σ) = 1/√2σ. The thermal conductivity is proportional to v_ave which varies as the square root of T.",NA
-142,Particles are confined to a plane and then allowed to diffuse. How does the number density vary with distance away from the initial plane?,"The number density of particles that diffuse from a fixed plane is given by the solution to Fick's Second Law of Diffusion, N~ = N_0 / (2A(πDt)^1/2) * exp[-x^2 / 4Dt], where N_0 is the number of particles initially confined to the plane, A is the area of the initial plane, and t is the time. The number density in the x-direction will decrease in accord with the exponential dependence on the square of distance away from the plane (so-called Gaussian dependence).",NA
-143,"What makes the z direction special so that we say that l^2, H, and l_z commute, whereas the individual angular momentum operators l_z, l_y, and l_x don't commute?","The z direction is special because the Hamiltonian H and the square of the angular momentum operator l^2 are both spherically symmetric and commute with the z-component of angular momentum l_z. However, the individual components of angular momentum l_x, l_y, and l_z do not commute with each other because they represent different spatial directions, and the uncertainty principle forbids simultaneous precise measurement of all three components.",NA
-144,"Use Equation (3.58), (∂U/∂V)T = βT - κP / κ to calculate (∂U/∂V)T for an ideal gas.","β = 1/V (∂V/∂T)P = 1/V nR/P; κ = -1/V (∂V/∂P)T = nRT/V^2P = 1/P
-(∂U/∂V)T = βT - κP / κ = 1/V nRT/P - 1 / 1/P = P(1-1) = 0",0
-145,"In explaining molecular structure, the MO model uses the change in MO energy with bond angle. Explain why the decrease in energy of the 1a1 and 2a1 MOs decreases more than offsets the increase in energy for the 1b2 MO for water.","The MO energies change because of the overlap of the AOs. For the 1b2 MO, the overlap between the O2py and the H1s AOs has its maximum value at 180°. Therefore, the 1b2 MO energy increases as the molecule is bent. The opposite is true for the 2a1 MO, where the overlap is zero for 180° and increases as the molecule is bent. The change in energy of the molecule with bond angle is determined by the sum of these three factors. Because the lowering of the 1a1 and 2a1 energies is greater than the increase in the 1b2 energy, the H2O molecule is bent rather than linear.",NA
-146,"To determine standard cell potentials, measurements are carried out in very dilute solutions rather than at unit activity. Why is this the case?","In order to determine the standard potential, the mean ionic activity must be known. It can be calculated in dilute solutions using the Debye-Hückel limiting law, but there is no reliable way to calculate the activity coefficient near unit activity.",NA
-147,"Predict which of the bent molecules, BH2 or NH2, should have the larger bond angle on the basis of the Walsh correlation diagram in Figure 25.10. Explain your answer.","Molecule: BH2 NH2
-Valence e-: 5 7
-HOMO: 2a1 1b1",NA
-148,"Determine the total molecular partition function for gaseous H_2O at 1000 K confined to a volume of 1 cm^3. The rotational constants for water are B_A = 27.8 cm^-1, B_B = 14.5 cm^-1, and B_C = 9.95 cm^-1. The vibrational frequencies are 1615, 3694, and 3802 cm^-1. The ground electronic state is nondegenerate.","Since q_total is the product of partition functions for each energetic degree of freedom (translational, rotational, vibrational, and electronic), it is more straightforward to calculate the partition function for each of these degrees of freedom separately, then take the product of these functions:
-
-q_T = V / Λ^3
-
-Λ = (h^2 / 2πmkT)^(1/2) = [(6.626x10^-34 J s)^2 / 2π(0.018 kg mol^-1 / N_A)(1.38x10^-23 J K^-1)(1000 K)]^(1/2) = 1.30x10^-11 m
-
-q_T = V / Λ^3 = (1 cm^3)(10^-6 m^3 cm^-3) / (1.30x10^-11 m)^3 = 4.53x10^26
-
-q_R = (1/σ)(1/βhcB) = (1/2)(1.38x10^-23 J K^-1)(298 K) / (6.626x10^-34 J s)(3.00x10^10 cm s^-1)(0.0374 cm^-1) = 2.77x10^3
-
-q_V = 1 / (1 - e^(-βhcν̃)) = 1 / (1 - e^(-1.38x10^-23 J K^-1)(298 K) / (6.626x10^-34 J s)(3.00x10^10 cm s^-1)(208 cm^-1)) = 1.58
-
-q_E = 1
-
-q_total = q_T q_R q_V q_E = (4.53x10^26)(2.77x10^3)(1.58)(1) = 1.91x10^30",1.91e+30
-149,"What possible geometrical forms can the nodes in the angular function for p and d orbitals in the H atom have? What possible geometrical forms can the nodes in the radial function for s, p, and d orbitals in the H atom have?","The angular nodes for the p orbitals are planes, and the angular nodes for the d orbitals can be planes or cones. All spatial nodes for the H atom orbitals are spherical surfaces, corresponding to radial nodes.",NA
-150,"Evaluate the difference between change in energy at 0 K in the absence of zero point vibration and both change in enthalpy and in free energy for real molecules at 298 K. Consider both a unimolecular isomerization that does not lead to a net change in the number of molecules and a thermal decomposition reaction that leads to an increase in the number of molecules.
-a) Calculate ΔU, ΔH(298), and ΔG(298) for the following isomerization reaction:
-CH_3N≡C → CH_3C≡N
-(acetonitrile, methyl isocyanide) ΔU, ΔH(298) and ΔG(298) for isomerization of methyl isocyanide to acetonitrile from B3LYP/6-31G* calculations are as follows:
-ΔU = -100.8 kJ/mol
-ΔH(298) = -100.9 kJ/mol
-ΔG(298) = -99.9 kJ/mol
-There is no significant difference among the three thermodynamic quantities. Do the calculated values for ΔU and ΔH differ significantly (by more than 10%)? If so, is the difference due primarily to the temperature correction or to the inclusion of zero point energy or to a combination of both? Is the calculated value for ΔG(298) significantly different from that of ΔH(298)?","b) Repeat your analysis (again using the B3LYP/6-31G* model) for the following pyrolysis reaction:
-HCO_2CH_3 → HCO_2H + H_2C=CH_2
-(ethyl formate, ethene, formic acid) ΔU, ΔH(298) and ΔG(298) for pyrolysis of ethyl formate leading to formic acid and ethene from B3LYP/6-31G* calculations are as follows:
-ΔU = -14.2 kJ/mol
-ΔH(298) = -13.4 kJ/mol
-ΔG(298) = -13.3 kJ/mol
-Do these two reactions provide a similar or a different picture as to the importance of relating experimental thermochemical data to calculated ΔG values rather than ΔU values? If different, explain your result.",NA
-151,"Compare the average speed and average kinetic energy of O_2 with that of CCl_4 at 298 K. M_O_2 = 0.032 kg mol^-1 M_CCl_4 = 0.154 kg mol^-1 At the same temperature, the speed for two particles of different mass is related by the square root of the mass ratios. For this case of O_2 and CCl_4: v_CCl_4 = (M_O_2 / M_CCl_4)^1/2 v_O_2 v_CCl_4 = (0.032 kg mol^-1 / 0.154 kg mol^-1)^1/2 v_O_2 = (0.456)v_O_2 The average speed for O_2 at 298 K is: v_ave = (8RT / πM)^1/2 = (8(8.314 J mol^-1 K^-1)(298 K) / π * 0.032 kg mol^-1)^1/2 = 444 m s^-1 Using this result, the average speed for CCl_4 at this same temperature is: v_ave,CCl_4 = 0.456 * v_ave,O_2 v_ave,CCl_4 = (0.456)(444 m s^-1) = 203 m s^-1 The average kinetic energy is mass independent, thus for a given temperature, all gases have the same kinetic energy. The average kinetic energy per gas particle is therefore: <KE> = 3/2 kT = 3/2 (1.38 x 10^-23 J K^-1)(298 K) <KE> = 6.17 x 10^-21 J","The average kinetic energy is mass independent, thus for a given temperature, all gases have the same kinetic energy. The average kinetic energy per gas particle is therefore: <KE> = 3/2 kT = 3/2 (1.38 x 10^-23 J K^-1)(298 K) <KE> = 6.17 x 10^-21 J",NA
-152,"Determine the standard molar entropy of N2O, a linear triatomic molecule at 298 K. For this molecule, B = 0.419 cm^-1 and v1 = 1285 cm^-1 (doubly degenerate), and v3 = 2224 cm^-1. At 298.15 K, both the translational and rotational degrees of freedom will be in the high-temperature limit, but the vibrational contributions must be calculated. Using the standard volume of 24.5 L and temperature of 298.15 K the entropy is determined as follows:",Sm = Um/T + k ln Q = Um/T + k ln(qtotal/N!) = Um/T + Nk ln(qtotal) - k ln(N!) = 5/2 R + R ln(qT qR qV qE) - R ln((1 mol) NA) + R = 7/2 R - 54.8 R + R ln(qT qR qV qE) 632 J mol^-1 K^-1 = R ln(qT qR qV qE) 76.0 = ln(qT qR qV qE) = ln(V/λ^3) + ln(qR) + ln(1 - e^-βhcν) + ln(g0) = ln(0.0245 m^3 / 5.72 x 10^-33 m^3) + ln(qR) + ln(1) + ln(3) 76.0 = 70.5 + ln(qR) + 1.10 4.4 = ln(qR) 81.5 = qR = (kT/σB) B = kT/σ = (0.695 cm^-1 K^-1)(298.15 K) / 2(81.5) = 1.27 cm^-1 B = h/8π^2cI = 1.27 cm^-1 r^2 = h/8π^2cμ = (6.626 x 10^-34 J s) / (8π^2)(3.00 x 10^10 cm s^-1)(1.33 x 10^-26 kg)(1.27 cm^-1) r^2 = 1.66 x 10^-20 m^2 r = 1.28 x 10^-10 m The experimental value for the bond length is 1.28 x 10^-10 m.,632
-153,"Assume that a system has a very large number of energy levels given by the formula ε = ε0l² with ε0 = 2.34×10^-22 J, where l takes on the integral values 1, 2, 3, ... . Assume further that the degeneracy of a level is given by gl = 2l. Calculate the ratios n5/n1 and n10/n1 for T = 100 K and T = 650 K, respectively.","n5/n1(100 K) = 10/2 exp[-(5²-1)ε0/kT] = 10/2 exp[-2.34x10^-22 J x (25-1)/1.381x10^-23 J K^-1 x 100 K] = 0.086
-
-n5/n1(650 K) = 10/2 exp[-2.34x10^-22 J x (25-1)/1.381x10^-23 J K^-1 x 650 K] = 2.67
-
-n10/n1(100 K) = 20/2 exp[-2.34x10^-22 J x (100-1)/1.381x10^-23 J K^-1 x 100 K] = 5.2x10^-7
-
-n10/n1(650 K) = 20/2 exp[-2.34x10^-22 J x (100-1)/1.381x10^-23 J K^-1 x 650 K] = 0.757",NA
-154,What properties of atomic and molecular systems could you imagine describing using probability distributions?,"Electron orbital densities, distributions of bond lengths or molecular geometries, locations of particles in space, etc. In quantum mechanics, the square modulus of the wavefunction is simply a statement of a probability distribution.",NA
-155,What is the kinetic definition of equilibrium?,The kinetic definition of equilibrium is the state at which the concentrations of reactants and products does not vary appreciably with time. This will occur when the forward and back reaction rates are equivalent.,NA
-156,"From the following data at 25 C
-1/2 H_2(g) + 1/2 O_2(g) -> OH(g)    ΔH°_reaction = 38.95 kJ mol^-1
-H_2(g) + 1/2 O_2(g) -> H_2O(g)    ΔH°_reaction = -241.814 kJ mol^-1
-H_2(g) -> 2H(g)    ΔH°_reaction = 435.994 kJ mol^-1
-O_2(g) -> 2O(g)    ΔH°_reaction = 498.34 kJ mol^-1
-Calculate ΔH°_reaction for
-a) OH(g) -> H(g) + 1/2 O_2(g)
-b) H_2O(g) -> 2H(g) + O(g)
-c) H_2O(g) -> H(g) + OH(g)
-Assuming ideal gas behavior, calculate ΔH°_reaction and ΔU°_reaction for all three reactions.","a) OH(g) -> 1/2 H_2(g) + 1/2 O_2(g)
-ΔH°_reaction = -38.95 kJ mol^-1
-ΔU°_reaction = ΔH°_reaction - Δn_g RT
-Δn_g = 1 - 0.5 - 0.5 = 0
-ΔU°_reaction = -38.95 kJ mol^-1
-b) H_2O(g) -> 2H(g) + O(g)
-ΔH°_reaction = 2 x 435.994 kJ mol^-1 + 498.34 kJ mol^-1 - 241.814 kJ mol^-1
-= 1118.414 kJ mol^-1
-Δn_g = 3 - 1 = 2
-ΔU°_reaction = ΔH°_reaction - Δn_g RT
-= 1118.414 kJ mol^-1 - 2 x 8.314 J mol^-1 K^-1 x 298 K
-= 1118.414 kJ mol^-1 - 4.95 kJ mol^-1
-= 1113.464 kJ mol^-1
-c) H_2O(g) -> H(g) + OH(g)
-ΔH°_reaction = ΔH°_reaction for H_2O(g) -> 2H(g) + O(g) - ΔH°_reaction for OH(g) -> H(g) + 1/2 O_2(g)
-= 1118.414 kJ mol^-1 - (-38.95 kJ mol^-1)
-= 1157.364 kJ mol^-1
-Δn_g = 2 - 1 = 1
-ΔU°_reaction = ΔH°_reaction - Δn_g RT
-= 1157.364 kJ mol^-1 - 8.314 J mol^-1 K^-1 x 298 K
-= 1157.364 kJ mol^-1 - 2.48 kJ mol^-1
-= 1154.884 kJ mol^-1",NA
-157,Explain the significance of the Boyle temperature.,"The Boyle temperature provides a way to classify the way in which z varies with P at low values of P for different gases. If T > T_B, z increases with increasing P; if T < T_B, z decreases with increasing P.",NA
-158,"In Example Problem 6.8, K_P for the reaction CO(g) + H_2O(l) ↔ CO_2(g) + H_2(g) was calculated to be 3.32 x 10^3 at 298.15 K. At what temperature does K_P = 5.00 x 10^3? Assume that ΔH°_reaction is independent of temperature.","ln K_P(T_f) = ln K_P(298.15 K) - ΔH°_reaction / R * (1/T_f - 1/298.15 K)
-ΔH°_reaction = ΔH°_f(CO_2, g) + ΔH°_f(H_2, g) - ΔH°_f(H_2O, l) - ΔH°_f(CO, g)
-= -393.5 x 10^3 J mol^-1 + 0 + 285.8 x 10^3 J mol^-1 + 110.5 x 10^3 J mol^-1 = 2.80 x 10^3 J mol^-1
-1/T_f = 1/298.15 K - R / ΔH°_reaction * ln(K_P(T_f) / K_P(298.15 K))
-= 1/298.15 K - 8.314 J K^-1 mol^-1 / 2.80 x 10^3 J mol^-1 * ln(5.00 x 10^3 / 3.32 x 10^3) = 2.1382 x 10^-3 K^-1
-T_f = 468 K
-Because the reaction is endothermic, K_P increases with temperature. As T → ∞,
-1/298.15 K - R / ΔH°_reaction * ln(K_P(T_f → ∞) / K_P(298.15 K)) = 0
-ln(K_P(T_f → ∞) / K_P(298.15 K)) = ΔH°_reaction / R * 1/298.15 K = 2.80 x 10^3 J mol^-1 / 8.314 J K^-1 mol^-1 * 1/298.15 K = 1.12957
-K_P(T_f → ∞) = 3.094 x K_P(298.15 K) = 3.094 x 3.32 x 10^3 = 1.03 x 10^4",468
-159,Consider a particle free to translate in one dimension. The classical Hamiltonian is H = p^2 / 2m. a) Determine q_classical for this system. To what quantum system should you compare it in order to determine the equivalence of the classical and quantum statistical mechanical treatments? b) Derive q_classical for a system with translational motion in three dimensions for which: H = (p_x^2 + p_y^2 + p_z^2) / 2m.,"a) The particle in a one-dimensional box model is the appropriate quantum-mechanical model for comparison. Integrating q_class = 1/h ∫∫ e^(-βp^2 / 2m) dx dp = 2L/h ∫(0 to ∞) e^(-βp^2 / 2m) dp = 2L/h (1/2) √(π/βm) = L (h^2 / 2πmkT)^(-1/2) = L/λ
-
-b) q_class = 1/h^3 ∫∫∫∫∫∫ e^(-β(p_x^2 + p_y^2 + p_z^2)/2m) dxdydzdp_xdp_ydp_z = (8L_xL_yL_z)/h^3 ∫(0 to ∞) ∫(0 to ∞) ∫(0 to ∞) e^(-β(p_x^2 + p_y^2 + p_z^2)/2m) dp_xdp_ydp_z = (8V/h^3) (1/2) √(π/βm) = V (h^2 / 2πmkT)^(-3/2) = V/λ^3",NA
-160,In what ways are radical polymerization reactions similar to radical reactions in general?,"The radical polymerizations are very similar to the general radical reaction mechanisms in that they involve initiation, propagation, and termination steps.",NA
-161,"One mole of an ideal gas with C_V,m = 5/2 R undergoes the transformations described in the following list from an initial state described by T = 250 K and P = 1.00 bar. Calculate q, w, ΔU, ΔH, and ΔS for each process.
+,prompt,all_pred,all_pred_value,all_pred_unit
+0,Estimate the spin-only molar susceptibility of CuSO₄·5H₂O at 25 °C.,1.59e-08,1.59e-08,m³ mol⁻¹
+1,What is the efficiency of an ideal heat engine in which the hot source is at 100°C and the cold sink is at 10°C?,24.1,24.1,%
+2,"G. Bakale et al. (J. Phys. Chem., 12477 (1996)) measured the mobility of singly charged C₆₀⁻ ions in a variety of nonpolar solvents. In cyclohexane at 22 °C (viscosity is 0.93 × 10⁻³ kg m⁻¹ s⁻¹), the mobility is 1.1 × 10⁻⁴ cm² V⁻¹ s⁻¹. Estimate the effective radius of the C₆₀⁻ ion. Suggest a reason why there is a substantial difference between this number and the van der Waals radius of neutral C₆₀.",0.83,0.83,nm
+3,If E = 0.830 V,0.101,0.101,NA
+4,"The following sequence of reactions occurs in the commercial production of aqueous nitric acid:
+4NH3(g) + 5O2(g) → 4NO(g) + 6H2O(l)    ΔH = −907 kJ
+2NO(g) + O2(g) → 2NO2(g)    ΔH = −113 kJ
+3NO2 + H2O(l) → 2HNO3(aq) + NO(g)    ΔH = −139 kJ
+Determine the total energy change for the production of one mole of aqueous nitric acid by this process.",-494.0,-494.0,kJ/mol
+5,Calculate the factor by which vapor pressure of a droplet of methanol of radius 1.00 x 10^-8 m at 325 K in equilibrium with its vapor is increased with respect to a very large droplet. Use the tabulated value of the density and surface tension in Appendix A for this problem. (Hint: You need to calculate the vapor pressure of methanol at this temperature.),1.068,1.068,NA
+6,"Imagine a particle confined to move on the circumference of a circle ('a particle on a ring'), such that its position can be described by an angle φ in the range 0 to 2π. Find the normalizing factor for the wavefunctions: (a) e^(imφ) and (b) e^(imφ), where m is an integer.",0.399,0.399,NA
+7,Convert Kp to Kc for Na2SO4·10H2O(s) ⇌ Na2SO4(s) + 10H2O(g).,5.34e-39,5.34e-39,NA
+8,The diffusion coefficient of the protein lysozyme (MW = 14.1 kg/mol) is 0.104 x 10^-5 cm^2 s^-1. How long will it take this protein to diffuse an rms distance of 1 μm? b) You are about to perform a microscopy experiment in which you will monitor the,1.58,1.58,ms
+9,"Alcohol is removed from the bloodstream by a series of metabolic reactions. The first reaction produces
+acetaldehyde; then other products are formed. The following data have been determined for the rate at which
+alcohol is removed from the blood of an average male, although individual rates can vary by 25–30%. Women
+metabolize alcohol a little more slowly than men:
+[C2H5OH] (M) 4.4 10−2 3.3 10−2 2.2 10−2
+Rate (mol L−1 h−1) 2.0 10−2 2.0 10−2 2.0 10−2
+Determine the rate law, the rate constant, and the overall order for this reaction.",0.02,0.02,mol L−1 h−1
+10,A 2.00-L bottle of a solution of concentrated HCl was purchased for the general chemistry laboratory. The solution contained 868.8 g of HCl. What is the molarity of the solution?,11.9,11.9,M
+11,"I = 0.0010 mol kg^-1
+ln γ± = 1.173 x 4 x √0.0010 = -0.148374
+γ± = 0.8621
+K_sp = (c_Ba^2+ / c°)^2 x (0.8621)^2 = 1.08 x 10^-10
+c_Ba^2+ = 1.21 x 10^-5 mol kg^-1
+The relative error is 20%. There is no need for a further iteration because the ionic strength in the solution is not influenced by the dissociation of BaSO4.",20.0,20.0,%
+12,A sample of radium-226 produces 0.0001 mL of radon-222 at STP in 24 hours. What is the half-life of Ra-226?,2000.0,2000.0,years
+13,"With the partition function evaluated, the probability of occupying the excited energy level is readily determined:",0.479,0.479,NA
+14,What volume of a 0.20-M K2SO4 solution contains 57 g of K2SO4?,1.6,1.6,L
+15,Calculate the pressure differential of water across the surface of a spherical droplet of radius 200 nm at 20 °C. The surface tension of ethanol at 20 °C is 22.39 mN m⁻¹.,728.0,728.0,kPa
+16,Calculate the value of ΔHm - ΔUm for the reaction N2(g) + 3H2(g) → 2NH3(g) at 298 K.,-5.0,-5.0,kJ mol⁻¹
+17,What volume of a 0.33-M C12H22O11 solution can be diluted to prepare 25 mL of a solution with a concentration of 0.025 M?,1.9,1.9,mL
+18,"Show that two of the set of four equivalent orbitals appropriate for sp^3 hybridization, ψ_a = 1/2(-φ_2s + φ_2px + φ_2py + φ_2pz) and ψ_b = 1/2(-φ_2s - φ_2px - φ_2py + φ_2pz) are orthogonal.",0.0,0.0,NA
+19,"3.00 moles of a gas are compressed isothermally from 60.0 L to 20.0 L using a constant external pressure of 5.00 atm. Calculate q, w, Delta U, and Delta H.",20300.0,20300.0,J
+20,"Given that the mass density of air at 0.987 bar and 27 °C is 1.146 kg m⁻³, calculate (i) air consists only of these two gases, (ii) air also contains 1.0 mole per cent Ar.",39.5,39.5,mol
+21,"In the Michaelis-Menten mechanism, it is assumed that the formation of product from the enzyme-substrate complex is irreversible. However, consider the following modified version in which the product formation step is reversible:",70.4,70.4,μM
+22,"The molecule NO has a ground electronic level that is doubly degenerate, and a first excited level at 121.1 cm^-1 that is also twofold degenerate. Determine the contribution of electronic degrees of freedom to the standard molar entropy of NO. Compare your result to R ln(4). What is the significance of this comparison?",11.2,11.2,J mol^-1 K^-1
+23,"For the system described in Exercise E7B.1(a), what is the probability of finding the electron between x = L/4 and x = L/2?",0.25,0.25,NA
+24,An increase in temperature from -80° to 20°C converts a solid to a gas with no intermediate liquid phase.,5.11,5.11,atm
+25,"Calculate the transition dipole moment, μ_z^mn = ∫ψ_m* μ_z ψ_n dτ where μ_z = -e r cosθ for a transition from the 1s level to the 2s level in H. Show that this transition is forbidden. The integration is over r, θ, and φ. We need to show that the integral ∫ sinθ dθ ∫ r^2 ψ_2s* (r) r cosθ ψ_1s (r) dr = 0. This can be shown by carrying out the integration over θ.",0.0,0.0,NA
+26,c) Calculate the ratio (E_{α+1} - E_α) / kT and use your result to conclude whether a classical or quantum mechanical description is appropriate for the particle.,8.87e-12,8.87e-12,NA
+27,"The limiting molar conductivities of NaI, NaNO₃, and AgNO₃ are 12.69 mS m² mol⁻¹, 12.16 mS m² mol⁻¹, and 13.34 mS m² mol⁻¹, respectively (all at 25 °C). What is the limiting molar conductivity of AgI at this temperature? Hint: Each limiting molar conductivity can be expressed as a sum of two ionic conductivities.",13.87,13.87,mS m² mol⁻¹
+28,The standard potential of the cell Ag(s)|AgI(s)|AgI(aq) is +0.9509 V at 25°C. Calculate the equilibrium constant for the dissolution of AgI.,8.445e-17,8.445e-17,NA
+29,Calculate the ionic strength of a solution that is 0.10 mol kg⁻¹ in KCl(aq) and 0.20 mol kg⁻¹ in CuSO₄(aq).,0.9,0.9,NA
+30,"Consider a Carnot cycle in which the working substance is 0.10 mol of perfect gas molecules, the temperature of the hot source is 373 K, and that of the cold sink is 273 K; the initial volume of gas is 1.00 dm³, which doubles over the course of the first isothermal stage. For the reversible adiabatic stages it may be assumed that VγT = constant. (a) Calculate the volume of the gas after Stage 1 and after Stage 2 (Fig. 3A.8). (b) Calculate the volume of gas after Stage 3 by considering the reversible adiabatic compression from the starting point. (c) Hence, for each of the four stages of the cycle, calculate the heat transferred to or from the gas. (d) Explain why the work done is equal to the difference between the heat extracted from the hot source and that deposited in the cold sink. (e) Calculate the work done over the cycle and hence the efficiency η. (f) Confirm that your answer agrees with the efficiency given by eqn 3A.9 and that your values for the work done are in accord with eqn 3A.6.",3.19,3.19,dm^3
+31,Consider the case of 10 oscillators and eight quanta of energy. Determine the dominant configuration of energy for this system by identifying energy configurations and calculating the corresponding weights. What is the probability of observing the dominant configuration?,0.25,0.25,NA
+32,"Calculate I, γ±, and a± for a 0.025m solution of AlCl3 at 298 K. Assume complete dissociation.",0.0146,0.0146,NA
+33,"The slope of the line yields the activation energy:
+-E_a/R = slope
+E_a = -(8.314 J mol^-1 K^-1)(-95.04 K)
+= 790 J mol^-1
+And the y-intercept of the graph yields ln(A):
+y-int = ln(A)
+e^24.611 = A
+A = 4.88 x 10^10 M^-1 s^-1
+b) k = Ae^(-E_a/RT)
+= (4.88 x 10^10 M^-1 s^-1) exp(-790 J mol^-1 / (8.314 J mol^-1 K^-1)(220 K))
+= (4.88 x 10^10 M^-1 s^-1)(0.649)
+= 3.17 x 10^10 M^-1 s^-1",31700000000.0,31700000000.0,M^-1 s^-1
+34,Canadian tire pressure gauges are marked in units of kilopascals. What reading on such a gauge corresponds to 32 psi?,220.0,220.0,kPa
+35,Calculate ΔS°_reaction for the reaction AgNO3(aq) + KCl(aq) → AgCl(s) + KNO3(aq).,-32.9,-32.9,J K^-1 mol^-1
+36,"Calculate the density of Freon 12, CF2Cl2, at 30.0 °C and 0.954 atm.",4.64,4.64,g L−1
+37,"All this momentum is transferred to the H_2 molecule
+Δp_H_2 = 6.626x10^-27 kg m s^-1 = mΔv
+Δv_H_2 = 6.626x10^-27 kg m s^-1 / 2.016 amu x 1.661x10^-27 kg/amu = 1.98 m s^-1
+Δv/v = 1.98 m s^-1 / √(3RT/M) = 1.98 m s^-1 / √(3x8.314 J mol^-1 K^-1 x 298 K / 2.016x10^-3 kg mol^-1) = 1.03x10^-3",0.00103,0.00103,NA
+38,Calculate the molar susceptibility of benzene given that its volume susceptibility is −7.2 × 10⁻⁷ and its mass density is 0.879 g cm⁻³ at 25 °C.,-6.4e-11,-6.4e-11,m³ mol⁻¹
+39,"Use the values for ΔG_f (ethanol, l) and ΔG_f (ethanol, g) in Appendix A to calculate the vapor pressure of ethanol at 298.15 K. For the transformation C2H5OH (l) → C2H5OH (g)",6170.0,6170.0,Pa
+40,"Assuming ideal solution behavior, what is the freezing temperature of a solution of 115.0 g of sucrose,
+C12H22O11, in 350.0 g of water?
+(a) Outline the steps necessary to answer the question.
+(b) Answer the question.",-1.8,-1.8,°C
+41,"When a 0.740-g sample of trinitrotoluene (TNT), C7H5N2O6, is burned in a bomb calorimeter, the temperature increases from 23.4 °C to 26.9 °C. The heat capacity of the calorimeter is 534 J/°C, and it contains 675 mL of water. How much heat was produced by the combustion of the TNT sample?",11.7,11.7,kJ
+42,The bulk modulus of polystyrene is 3.43 GPa. Calculate the hydrostatic pressure (stress) needed for a sample of this material to change volume by 1.0 per cent.,34.3,34.3,MPa
+43,"Two parallel metal plates separated by 1 cm are held at 300 and 298 K, respectively. The space between the plates is filled with N₂ (σ = 0.430 nm² and C_v,m = 5/2 R). Determine the heat flow between the two plates in units of W cm⁻². The flux is given by: J = -κ(ΔT/Δx) where κ = (1/3)(C_v,m / N_A) v_ave λ = (1/3)(C_v,m / N_A)(8RT/πM)^(1/2) / √(2σ). Using the average temperature of 299 K to calculate the thermal conductivity, the flux is:",-7.2e-23,-7.2e-23,W cm⁻²
+44,"The effect of symmetry on the rotational partition function for H2 was evaluated by recognizing that each hydrogen is a spin 1/2 particle and is, therefore, a fermion. However, this development is not limited to fermions, but is also applicable to CO2 in which rotation by 180° results in the interchange of two spin 0 particles.",1.3e+29,1.3e+29,NA
+45,Calculate the change in the molar Gibbs energy of a perfect gas when its pressure is increased isothermally from 50.0 kPa to 100.0 kPa at 298 K.,11.0,11.0,kJ mol^−1
+46,"Consider this question: What mass of a concentrated solution of nitric acid (68.0% HNO3 by mass) is needed to prepare 400.0 g of a 10.0% solution of HNO3 by mass?
+(a) Outline the steps necessary to answer the question.
+(b) Answer the question.",58.8,58.8,g
+47,"Which of the following wave functions are eigenfunctions of the operator d^2/dx^2? If they are eigenfunctions, what is the eigenvalue?",-1.0,-1.0,NA
+48,Calculate the mean ionic activity of a 0.0150m K2SO4 solution for which the mean activity coefficient is 0.465.,0.0111,0.0111,NA
+49,Calculate the solubility of H_2S in 1 L of water if its pressure above the solution is 3.25 bar. The density of water at this temperature is 997 kg m^-3.,0.327,0.327,mol
+50,Water is heated from 25 °C to 35 °C. By how much does its chemical potential change? The standard molar entropy of liquid water at 298 K is 69.9 J K⁻¹ mol⁻¹.,-699.0,-699.0,J mol⁻¹
+51,"A chemist dissolves a 1.497-g sample of a type of metal (an alloy of Sn, Pb, Sb, and Cu) in nitric acid, and metastannic acid, H2SnO3, is precipitated. She heats the precipitate to drive off the water, which leaves 0.4909 g of tin(IV) oxide. What was the percentage of tin in the original sample?",25.83,25.83,%
+52,Calculate ion concentrations in a saturated solution of AgI.,1.3e-05,1.3e-05,M
+53,"One mole of an ideal gas with C_V,m = 5/2 R undergoes the transformations described in the following list from an initial state described by T = 250 K and P = 1.00 bar. Calculate q, w, ΔU, ΔH, and ΔS for each process.
 
 a. The gas undergoes a reversible adiabatic expansion until the final pressure is half its initial value.
 
 b. The gas undergoes an adiabatic expansion against a constant external pressure of 0.500 bar until the final pressure is equal to half of its initial value.
 
-c. The gas undergoes an expansion against a constant external pressure of zero bar until the final pressure is equal to half of its initial value.","a) The gas undergoes a reversible adiabatic expansion until the final pressure is half its initial value.
-
-q = 0 because the process is adiabatic.",0
-162,"Predict the number of chemically shifted 1H peaks and the multiplet splitting of each peak that you would observe for 1,1,2-tetrachloroethane. Justify your answer.","There is only one set of equivalent protons. They are H_1 and H_2. Each proton has one neighboring proton, yielding a multiplicity of 2.",NA
-163,"When Julius Caesar expired, his last exhalation had a volume of 500 cm^3 and contained 1.00 mole percent argon. Assume that T = 300 K and P = 1.00 atm at the location of his demise. Assume further that T and P currently have the same values throughout the Earth's atmosphere. If all of his exhaled CO2 molecules are now uniformly distributed throughout the atmosphere (which for our calculation is taken to have a thickness of 1.00 km), how many inhalations of 500 cm^3 must we make to inhale one of the Ar molecules exhaled in Caesar's last breath? Assume the radius of the Earth is 6.37 x 10^6 m. [Hint: Calculate the number of Ar atoms per m^3 at the surface of the Earth. The total number of Ar atoms in the atmosphere is N_Ar = ∫₀^∞ Ñ_Ar° A dz where Ñ_Ar° is the number of Ar atoms per m^3 at the surface of the earth. Ñ_Ar° is given by Ñ_Ar° = (N_A P_Ar)/(R T).]","The number of Ar atoms per m^3 at the surface of the earth is Ñ_Ar° = (N_A P_Ar)/(R T) = (6.023 x 10^23 x 0.0100 x 1 x 10^5 Pa)/(8.314 J mol^-1 K^-1 x 300 K) = 2.41 x 10^23 m^-3
-The total number of Ar atoms in the atmosphere is N_Ar = ∫₀^∞ Ñ_Ar° A dz = ∫₀^∞ Ñ_Ar° A e^(-M_Ar gz / R T) dz = Ñ_Ar° A R T / M_Ar g
-= 2.41 x 10^23 m^-3 x 4π x (6.37 x 10^6 m)^2 x 8.314 J mol^-1 K^-1 x 300 K / (39.9 x 10^-3 kg mol^-1 x 9.81 m s^-2) = 7.85 x 10^41
-The fraction of these atoms that came from Caesar's last breath, f, is given by
-f = (n_Ar V_exhaled / V_atmosphere)
-= (1.00 x 10^-2 mol x 500 x 10^-6 m^3) / (4π x (6.37 x 10^6 m)^2 x 1.00 x 10^3 m)
-= (5.00 x 10^-7 mol) / (5.09 x 10^14 m^3)
-= 9.82 x 10^-22 mol/m^3
-The number of Ar atoms in Caesar's last breath is N_Ar_breath = 1.00 x 10^-2 mol x 6.023 x 10^23 atoms/mol = 6.023 x 10^21 atoms
-The number of inhalations required to inhale one Ar atom from Caesar's breath is:
-1 / (f x number of Ar atoms per inhalation)
-= 1 / (9.82 x 10^-22 mol/m^3 x 6.023 x 10^21 atoms/mol)
-= 1 / (5.91 x 10^-1)
-= 1.69
-Therefore, you must make approximately 1.69 inhalations of 500 cm^3 to inhale one of the Ar atoms exhaled by Caesar.",1.69
-164,"The following data are given at 25°C:
-
-Compound: CuO(s), Cu(s), O2(g)
-ΔH_f° (kJ mol^-1): -157, -, 0
-ΔG_f° (kJ mol^-1): -130, -, 0
-C_p,m° (J K^-1 mol^-1): 42.3, 24.4, 29.4
-
-a) From equation 6.71, ∫(from K_p(T_0)) to (K_p(T_f)) d ln K_p = (1/R) ∫(from T_0) to (T_f) ΔH_reaction° / T^2 dT. To a good approximation, we can assume that the heat capacities are independent of temperature over a limited range in temperature, giving ΔH_reaction°(T) = ΔH_reaction°(T_0) + ΔC_p(T - T_0) where ΔC_p = Σ(v_i C_p,m(i)). By integrating equation 6.71, show that:
-
-ln K_p(T) = ln K_p(T_0) - (ΔH_reaction°(T_0)/R)(1/T - 1/T_0) + (T_0 x ΔC_p / R)(1/T - 1/T_0) + (ΔC_p / R) ln(T/T_0)","a) The integrated form of the van't Hoff equation is derived as follows:
-
-Starting from the differential form:
-∫(from K_p(T_0)) to (K_p(T_f)) d ln K_p = (1/R) ∫(from T_0) to (T_f) ΔH_reaction° / T^2 dT
-
-The enthalpy change is approximated as:
-ΔH_reaction°(T) = ΔH_reaction°(T_0) + ΔC_p(T - T_0)
-
-Substituting this into the integral:
-∫(from K_p(T_0)) to (K_p(T_f)) d ln K_p = (1/R) ∫(from T_0) to (T_f) [ΔH_reaction°(T_0) + ΔC_p(T - T_0)] / T^2 dT
-
-Splitting the integral:
-= (1/R) [ΔH_reaction°(T_0) ∫(from T_0) to (T_f) dT / T^2 + ΔC_p ∫(from T_0) to (T_f) (T - T_0) / T^2 dT]
-
-Solving the integrals:
-= (1/R) [ΔH_reaction°(T_0) (-1/T)|from T_0 to T_f + ΔC_p ∫(from T_0) to (T_f) (1/T - T_0/T^2) dT]
-= (1/R) [ΔH_reaction°(T_0) (-1/T_f + 1/T_0) + ΔC_p (ln|T| - T_0/T)|from T_0 to T_f]
-= (1/R) [ΔH_reaction°(T_0) (1/T_0 - 1/T_f) + ΔC_p (ln(T_f) - T_0/T_f - ln(T_0) + T_0/T_0)]
-= (1/R) [ΔH_reaction°(T_0) (1/T_0 - 1/T_f) + ΔC_p (ln(T_f/T_0) - T_0/T_f + 1)]
-
-The left side is ln K_p(T_f) - ln K_p(T_0), so:
-ln K_p(T) = ln K_p(T_0) - (ΔH_reaction°(T_0)/R)(1/T - 1/T_0) + (ΔC_p / R) ln(T/T_0) + (T_0 x ΔC_p / R)(1/T - 1/T_0)
-
-Note: The term (T_0 x ΔC_p / R)(1/T - 1/T_0) is an additional term due to the temperature dependence of ΔH. The standard form is often written as:
-ln K_p(T) = ln K_p(T_0) - (ΔH_reaction°(T_0)/R)(1/T - 1/T_0) + (ΔC_p / R) ln(T/T_0)
-
-The problem's expression includes the extra term, which is a result of the specific approximation used.",NA
-165,"The vapor pressure of a liquid can be written in the empirical form known as the Antoine equation, where A(1), A(2), and A(3) are constants determined from measurements: ln(P/Pa) = A(1) - A(2)/T/K + A(3). Starting with this equation, derive an equation giving ΔH_vaporization as a function of temperature.","For a liquid-gas equilibrium involving a single species, K_p = P/P°.
-ΔH = -R d ln K_p / d(1/T) = RT^2 d ln K_p / dT = RT^2 d/dT [A(1) - A(2)/T/K + A(3)]
-ΔH = RT^2 * A(2) / [T/K + A(3)]^2",NA
-166,"Consider the following mechanism for ozone thermal decomposition:
-O3 <-> O2 + O
-O3 + O -> 2O2
-a) Derive the rate law expression for the loss of O3.
-b) Under what conditions will the rate law expression for O3 decomposition be first order with respect to O3?","a) d[O3]/dt = -k1[O3] + k-1[O2][O] - k2[O3][O]
-b) Atomic oxygen is the intermediate species, and the differential rate expression for this species is:
-d[O]/dt = k1[O3] - k-1[O2][O] - k2[O3][O]
-Applying the steady-state approximation to the differential rate expression for O yields:",NA
-167,Predict the number of chemically shifted 1H peaks and the multiplet splitting of each peak that you would observe for diethyl ether. Justify your answer.,"There are two sets of equivalent protons. Set A consists of H1, H2, H3, H8, and H10 and has 2 neighboring protons, yielding a multiplicity of 3. Set B consists of H4, H5, H6, and H7 and has 3 neighboring protons, giving a multiplicity of 4.",NA
-168,"Identify the molecular orbitals for F2 in the images shown here in terms of the two designations discussed in Section 24.4. The molecular axis is the z axis, and the y axis is tilted slightly out of the plane of the image.","The left image has σ symmetry, the AOs are out of phase, and there is a single node between the atoms. Therefore it is the 3σu* or σu*(2pz) MO. The right image shows out of phase AOs with no overlap. Therefore it is the 1σu* or σu*(1s) MO.",NA
-169,Under what conditions does the equality ΔS = ΔH/T hold?,"Because ΔS = dq_reversible / T, the equality holds if dq_reversible = ΔH. This is the case for a reversible process at constant pressure.",NA
-170,"Determine in each of the following cases if the function in the first column is an eigenfunction of the operator in the second column. If so, what is the eigenvalue?","a) 3 cos^2θ - 1
-    1/sinθ d/dθ (sinθ d/dθ (3 cos^2θ - 1))
-    = 1/sinθ d/dθ (sinθ (-6 cosθ sinθ))
-    = 1/sinθ d/dθ (-6 cosθ sin^2θ)
-    = 1/sinθ (-6 cosθ * 2 sinθ cosθ - 6 cos^2θ sinθ)
-    = 1/sinθ (-12 cos^2θ sinθ - 6 cos^2θ sinθ)
-    = 1/sinθ (-18 cos^2θ sinθ)
-    = -18 cos^2θ
-    = -6 (3 cos^2θ - 1)
-    Eigenfunction with eigenvalue -6
-
-b) e^(-x^2/2)
-    d^2/dx^2 (e^(-x^2/2)) = d/dx (-x e^(-x^2/2)) = (-1 + x^2) e^(-x^2/2)
-    Not an eigenfunction
-
-c) e^(-4iφ)
-    d^2/dφ^2 (e^(-4iφ)) = d/dφ (-4i e^(-4iφ)) = (-4i)^2 e^(-4iφ) = -16 e^(-4iφ)
-    Eigenfunction with eigenvalue -16",NA
-171,Why is the value for the dielectric constant for water in the solvation shell around ions less than that for bulk water?,"Water molecules immediately around the ion are ordered more than those in the bulk. Thus, they cannot respond to the electric field due to solvated ions, leading to a smaller value of ε_r.",NA
-172,"Starting with the van der Waals equation of state, find an expression for the total differential dP in terms of dV and dT. By calculating the mixed partial derivatives (∂/∂V)(∂P/∂T)_V and (∂/∂T)(∂P/∂V)_T, determine if dP is an exact differential.","The van der Waals equation is P = [RT/(V_m - b)] - [a/V_m^2].
-
-The total differential dP is:
-
-(∂P/∂V)_T = ∂/∂V [RT/(V_m - b) - a/V_m^2] = -RT/(V_m - b)^2 + 2a/V_m^3
-(∂P/∂T)_V = ∂/∂T [RT/(V_m - b) - a/V_m^2] = R/(V_m - b)
-
-Therefore, dP = (∂P/∂V)_T dV + (∂P/∂T)_V dT = [-RT/(V_m - b)^2 + 2a/V_m^3] dV + [R/(V_m - b)] dT
-
-Now calculate the mixed partial derivatives:
-
-(∂/∂V)(∂P/∂T)_V = ∂/∂V [R/(V_m - b)] = -R/(V_m - b)^2
-(∂/∂T)(∂P/∂V)_T = ∂/∂T [-RT/(V_m - b)^2 + 2a/V_m^3] = -R/(V_m - b)^2
-
-Since (∂/∂V)(∂P/∂T)_V = (∂/∂T)(∂P/∂V)_T, dP is an exact differential.",NA
-173,"A solution is made up of 184.2 g of ethanol and 108.1 g of H_2O. If the volume of the solution is 333.4 cm^3 and the partial molar volume of H_2O is 17.0 cm^3 mol^-1, what is the partial molar volume of ethanol under these conditions?","V = n_H2O V_H2O + n_ethanol V_ethanol
-V_ethanol = (V - n_H2O V_H2O) / n_ethanol = (333.4 cm^3 - 108.1 g / 18.02 g mol^-1 x 17.0 cm^3 mol^-1) / (184.2 g / 46.04 g mol^-1) = 57.8 cm^3 mol^-1",57.8
-174,Why is it not possible to reconstruct the wave function of a quantum mechanical superposition state from experiments?,"Consider Equation (17.2): ψ = c1/√2 α + c2/√2 β with |c1|^2 + |c2|^2 = 1. Only the magnitudes |c1|^2_average = |c2|^2_average = 1/2 can be determined in an experiment. However, to reconstruct the wave function, we need c1 and c2, and not just their magnitudes.",0.5
-175,"The fundamental vibrational frequencies for 1H19F and 2D19F are 4138.52 and 2998.25 cm^-1, respectively, and D_e for both molecules is 5.86 eV. What is the difference in the bond energy of the two molecules?","D_e - 1/2 h c v _HF - D_e - 1/2 h c v _DF = 1/2 h c (v_HF - v_DF)
-= 1/2 x 6.626 x 10^-34 J s x 3.00 x 10^10 cm/s x (4138.52 cm^-1 - 2998.25 cm^-1) = 1.13 x 10^-20 J",1.13e-20
-176,"Calculate the molar internal energy of He, Ne, and Ar under standard thermodynamic conditions. Do you need to redo the entire calculation for each species?","Since the high-temperature limit is applicable at T = 298 K for translational degrees of freedom, all three gases will have a contribution of 3/2 RT to the total energy from translations. Since all three species are monatomic, there are no rotational or vibrational contributions to the total internal energy. Finally, under the assumption that electronic degrees of freedom are not accessible at this temperature, the total molar internal energy for each gas is U_m = 3/2 RT. The calculation is the same for all three species since they are all monatomic ideal gases and have the same number of accessible degrees of freedom at 298 K. Therefore, no, you do not need to redo the entire calculation for each species. The molar internal energy is the same for He, Ne, and Ar under standard conditions.",3714.858
-177,"Imagine performing the coin-flip experiment of Problem P30.14, but instead of using a fair coin, a weighted coin is employed for which the probability of landing heads is twofold greater than landing tails. After tossing the coin 10 times, what is the probability of observing","a) no heads?
-b) two heads?
-c) five heads?
-d) eight heads?
-
-a) The quantity of interest is the probability of observing a given number of successful trials (j) in a series of n trials in which the probability of observing a successful trial, P_E, is equal to 2/3:
-P(j) = C(n,j)(P_E)^j(1-P_E)^(n-j) = C(n,j)(2/3)^j(1/3)^(n-j)
-Substituting in for the specific case of j = 0 and n = 10 yields:
-P(0) = C(10,0)(2/3)^0(1/3)^10 = 1.69 x 10^-5
-
-b) In this case, j = 2 and n = 10:
-P(2) = C(10,2)(2/3)^2(1/3)^8 = 3.05 x 10^-3
-
-c) In this case, j = 5 and n = 10:
-P(5) = C(10,5)(2/3)^5(1/3)^5 = 0.137
-
-d) In this case, j = 8 and n = 10:
-P(8) = C(10,8)(2/3)^8(1/3)^2 = 0.195
-
-Notice that P(8) ≠ P(2), which differs from the case explored in Problem P30.14 where P_E = 0.5.",NA
-178,Why are ΔS_fusion and ΔS_vaporization always positive?,"This is the case because ΔH_fusion and ΔH_vaporization are always positive. In each of these transitions, attractive forces must be overcome.",NA
-179,"When a molecule absorbs a photon, both the energy and momentum are conserved. If a H_2 molecule at 300 K absorbs an ultraviolet photon of wavelength 100 nm, what is the change in its velocity Δv? Given that its average speed is v_rms = √(3kT/m), what is Δv / v_rms?","Because momentum is conserved,
-p_photon = h/λ = 6.626×10^-34 J s / 100×10^-9 m = 6.626×10^-27 kg m s^-1",NA
-180,"In general, the high-temperature limit for the rotational partition function is appropriate for almost all molecules at temperatures above their boiling point. Hydrogen is an exception to this generality because the moment of inertia is small due to the small mass of H. Given this, other molecules with H may also represent exceptions to this general rule. For example, methane (CH_4) has relatively modest moments of inertia (I_A = I_B = I_C = 5.31 x 10^-40 g cm^2), and has a relatively low boiling point of T = 112 K. a) Determine B_A, B_B, and B_C for this molecule. b) Use the answer from part (a) to determine the rotational partition function. Is the high-temperature limit valid?","a) Using the moment of inertia, the rotational constants can be determined. Paying careful attention to units, the rotational constants are:
-B_a = B_b = B_c = h / 8pi^2cI = (6.626 x 10^-34 J s) / (8pi^2 (3.00 x 10^8 m s^-1) (5.31 x 10^-47 kg m^2)) = 5.27 cm^-1
-b) If the high-temperature limit is valid T > theta_R. Determining theta_R:
-theta_R = h / 8pi^2ck_B = (6.626 x 10^-34 J s) / (8pi^2 (3.00 x 10^8 m s^-1) (1.38 x 10^-23 J K^-1)) = 10.5 K
-Since T = 112 K is much greater than theta_R = 10.5 K, the high-temperature limit is valid. The rotational partition function is:
-q_rot = T / (sigma * theta_R) = 112 K / (1 * 10.5 K) = 10.7
-The high-temperature limit is valid.",NA
-181,Explain why the radial distribution function rather than the square of the magnitude of the wave function should be used to make a comparison with the shell model of the atom.,The radial distribution function tells us what the probability is of finding the electron at a given radial distance from the nucleus regardless of its angular coordinates. This is what is needed to make a comparison with a shell model.,NA
-182,At what temperature is the v_rms of Ar equal to that of SF_6 at 298 K? Perform the same calculation for v_mp.,"M_Ar = 0.040 kg mol^-1 and M_SF6 = 0.146 kg mol^-1
-Setting the rms speeds equal and reducing yields:
-
-sqrt(3RT_Ar / M_Ar) = sqrt(3RT_SF6 / M_SF6)
-
-T_Ar = (M_Ar / M_SF6) * T_SF6",NA
-183,Why are standing-wave solutions for the free particle not compatible with the classical result x = x0 + v0t?,"Because the particle is moving, we must represent it by a traveling wave, for which the nodes move with time. This is not possible using a standing wave, because the nodes do not move with time.",NA
-184,A pellet of Zn of mass 10.0 g is dropped into a flask containing dilute H2SO4 at a pressure P = 1.00 bar and temperature T = 298 K. What is the reaction that occurs? Calculate w for the process.,"Zn(s) + H2SO4(aq) -> Zn^2+(aq) + SO4^2-(aq) + H2(g)
-
-The volume of H2 produced is given by
-V = (10.0 g / 65.39 g mol^-1) * (1 mol H2 / 1 mol Zn) * (8.314 J mol^-1 K^-1 * 298 K / 1 x 10^5 Pa) = 3.79 x 10^-3 m^3
-w = -P_external * delta V
-w = -1 x 10^5 Pa * 3.79 x 10^-3 m^3 = -379 J",-379
-185,"Because internal conversion is in general very fast, the absorption and fluorescence spectra are shifted in frequency as shown in Figure 26.10. This is due to the fact that the excited state has a longer bond. In that case the maximum intensity is observed for n' > 0, where the prime refers to the excited state. The molecule will quickly lose energy, and be in the n' = 0 vibrational level. Because fluorescence to the ground state occurs from this level, the whole fluorescence spectrum is shifted to lower frequencies relative to the absorption spectrum. The reason for the mirror symmetry can best be understood by looking at Figure 26.10. For a symmetric potential, the progression from the maximum to the minimum overlap leads to a decrease in the frequency of the fluorescence transition.","The fluorescence spectrum is shifted to lower frequencies because the molecule relaxes to the n' = 0 vibrational level in the excited state before fluorescing. This shift occurs because the excited state has a longer bond length, resulting in a different equilibrium position. The mirror symmetry arises because the potential energy curves for the ground and excited states are symmetric, leading to a similar overlap between the vibrational levels in absorption and emission transitions.",NA
-186,"One mole of N_2 at 20.5°C and 6.00 bar undergoes a transformation to the state described by 145°C and 2.75 bar. Calculate ΔS if
-C_p,m = 30.81 - 11.87 x 10^-3 T/K + 2.3968 x 10^-5 T^2/K^2 - 1.0176 x 10^-8 T^3/K^3.","ΔS = -nR ln(P_f/P_i) + n ∫ C_p,m dT/T
-= -1 mol x 8.314 J mol^-1 K^-1 x ln(2.75 bar / 6.00 bar) + ∫(293.65 K to 418.15 K) [30.81 - 11.87 x 10^-3 T/K + 2.3968 x 10^-5 T^2/K^2 - 1.0176 x 10^-8 T^3/K^3] dT/T
-= 6.48 J K^-1 + [30.81 ln(T/K) - 0.01187 T/K + 1.1984 x 10^-5 T^2/K^2 - 0.3392 x 10^-8 T^3/K^3] from 293.65 K to 418.15 K
-= 6.48 J K^-1 + 10.89 J K^-1 - 1.48 J K^-1 + 1.06 J K^-1 = 16.8 J K^-1",16.8
-187,"Calculate the bond order for O2 in the X^3Σg-, a^1Δg, and b^1Σg+ states. Arrange these states in order of increasing bond length on the basis of bond order. Do your results agree with the potential energy curves shown in Figure 26.1?","The X^3Σg-, a^1Δg, and b^1Σg+ states all belong to the ground-state configuration (1σg)^2 (1σu*)^2 (2σg)^2 (2σu*)^2 (3σg)^2 (1πu)^2 (1πg*)^1. The bond order for these states is 2. The A^3Σu+ and B^3Σu- states are associated with the (1σg)^2 (1σu*)^2 (2σg)^2 (2σu*)^2 (3σg)^2 (1πu)^1 (1πg*)^2 configuration. The bond order for these states is 1. These results agree with the potential energy curves shown in Figure 26.1, because the bond length of O2 in the X^3Σg-, a^1Δg, and b^1Σg+ states are equal and shorter than those in the A^3Σu+ and B^3Σu- states.",NA
-188,"The Lyman series in the hydrogen atom corresponds to transitions that originate from the n = 1 level in absorption or that terminate in the n = 1 level for emission. Calculate the energy, frequency (in inverse seconds) and wavelength of the least and most energetic transition in this series.","The least energetic transition in the Lyman series is from n=2 to n=1.
-
-The most energetic transition is from n=∞ to n=1.
-
-For the n=2 to n=1 transition:
-
-Energy = E_2 - E_1
-
-E_n = -2.1786 x 10^-18 J / n^2
-
-E_2 = -2.1786 x 10^-18 J / 4 = -5.4465 x 10^-19 J
-
-E_1 = -2.1786 x 10^-18 J
-
-Energy = (-5.4465 x 10^-19 J) - (-2.1786 x 10^-18 J) = 1.63395 x 10^-18 J
-
-Frequency = Energy / h
-
-h = 6.626 x 10^-34 J s
-
-Frequency = 1.63395 x 10^-18 J / 6.626 x 10^-34 J s = 2.466 x 10^15 s^-1
-
-Wavelength = c / frequency
-
-c = 3.00 x 10^8 m/s
-
-Wavelength = 3.00 x 10^8 m/s / 2.466 x 10^15 s^-1 = 1.215 x 10^-7 m = 121.5 nm
-
-For the n=∞ to n=1 transition:
-
-Energy = E_∞ - E_1 = 0 - (-2.1786 x 10^-18 J) = 2.1786 x 10^-18 J
-
-Frequency = Energy / h = 2.1786 x 10^-18 J / 6.626 x 10^-34 J s = 3.288 x 10^15 s^-1
-
-Wavelength = c / frequency = 3.00 x 10^8 m/s / 3.288 x 10^15 s^-1 = 9.125 x 10^-8 m = 91.25 nm",NA
-189,"What is an elementary chemical step, and how is one used in kinetics?",An elementary reaction step is a chemical process that occurs in a single step. Elementary reaction steps are combined to construct complex reaction mechanisms.,NA
-190,Explain why shielding is more effective by electrons in a shell of lower principal quantum number than by electrons having the same principal quantum number.,"Electrons in a shell of lower principal quantum number have a higher probability of being found between the nucleus and the electrons having the same principal quantum number. Therefore, they are more effective in shielding.",NA
-191,"The force constants for H2 and Br2 are 575 and 246 N m^-1, respectively. Calculate the ratio of the vibrational state populations n1/n0 and n2/n0 at T = 300 K and T = 1000 K. The vibrational energy is given by E_n = (n + 1/2)hv = (n + 1/2)h * sqrt(k/μ)","For H2: k = 575 N m^-1, μ = (1.008 x 1.008) / (1.008 + 1.008) amu = 0.504 amu
-v_H2 = (1/2π) * sqrt(k/μ) = (1/2π) * sqrt(575 / (0.504 x 1.6605 x 10^-27)) = 1.32 x 10^14 Hz
-E_0 = 1/2 * h * v_H2 = 1/2 * 6.626 x 10^-34 Js * 1.32 x 10^14 Hz = 4.38 x 10^-20 J
-E_1 = 3/2 * h * v_H2 = 3 * 4.38 x 10^-20 J = 1.31 x 10^-19 J
-E_2 = 5/2 * h * v_H2 = 5 * 4.38 x 10^-20 J = 2.19 x 10^-19 J
-For Br2: k = 246 N m^-1, μ = (79.90 x 79.90) / (79.90 + 79.90) amu = 39.95 amu
-v_Br2 = (1/2π) * sqrt(246 / (39.95 x 1.6605 x 10^-27)) = 1.00 x 10^13 Hz
-E_0 = 1/2 * h * v_Br2 = 1/2 * 6.626 x 10^-34 Js * 1.00 x 10^13 Hz = 3.31 x 10^-21 J
-E_1 = 3/2 * h * v_Br2 = 3 * 3.31 x 10^-21 J = 9.93 x 10^-21 J
-E_2 = 5/2 * h * v_Br2 = 5 * 3.31 x 10^-21 J = 1.66 x 10^-20 J
-At T = 300 K:
-E_0 = 4.38 x 10^-20 J / (1.381 x 10^-23 J/K * 300 K) = 10.5
-E_1 = 1.31 x 10^-19 J / (1.381 x 10^-23 J/K * 300 K) = 31.4
-E_2 = 2.19 x 10^-19 J / (1.381 x 10^-23 J/K * 300 K) = 52.3
-n1/n0 = exp(-E_1/kT) / exp(-E_0/kT) = exp(-E_1/kT + E_0/kT) = exp(-20.9) = 8.1 x 10^-10
-n2/n0 = exp(-E_2/kT) / exp(-E_0/kT) = exp(-E_2/kT + E_0/kT) = exp(-41.8) = 6.6 x 10^-19
-At T = 1000 K:
-E_0 = 4.38 x 10^-20 J / (1.381 x 10^-23 J/K * 1000 K) = 3.17
-E_1 = 1.31 x 10^-19 J / (1.381 x 10^-23 J/K * 1000 K) = 9.50
-E_2 = 2.19 x 10^-19 J / (1.381 x 10^-23 J/K * 1000 K) = 15.8
-n1/n0 = exp(-E_1/kT) / exp(-E_0/kT) = exp(-E_1/kT + E_0/kT) = exp(-6.33) = 0.00198
-n2/n0 = exp(-E_2/kT) / exp(-E_0/kT) = exp(-E_2/kT + E_0/kT) = exp(-12.6) = 3.7 x 10^-6",NA
-192,"Determine the predicted rate law expression for the following radical-chain reaction:
-A_2 ->[k_1] 2A.
-A. ->[k_2] B. + C
-A. + B. ->[k_3] P
-A. + P ->[k_4] B.
-
-The differential rate of P formation is
-
-d[P]/dt = k_3[A.][B.] - k_4[A.][P]
-
-The rate expressions for A. and B. are
-
-d[A.]/dt = 2k_1[A_2] - k_2[A.] - k_3[A.][B.] - k_4[A.][P]
-
-d[B.]/dt = k_2[A.] - k_3[A.][B.] + k_4[A.][P]
-
-Applying the steady-state approximation for [B.]
-
-k_3[A.][B.] = k_2[A.] + k_4[A.][P]
-
-[B.] = (k_2[A.] + k_4[A.][P])/k_3
-
-Substituting this result into the differential rate expression for P yields:
-
-d[P]/dt = k_3[A.](k_2[A.] + k_4[A.][P])/k_3 - k_4[A.][P]
-
-= k_2[A.] - k_4[A.][P]
-
-Now, applying the steady-state approximation for [A.]
-
-0 = 2k_1[A_2] - k_2[A.] - k_3[A.][B.] - k_4[A.][P]
-
-Substituting the expression for [B.]:
-
-0 = 2k_1[A_2] - k_2[A.] - k_3[A.](k_2[A.] + k_4[A.][P])/k_3 - k_4[A.][P]
-
-= 2k_1[A_2] - k_2[A.] - k_2[A.] - k_4[A.][P] - k_4[A.][P]
-
-= 2k_1[A_2] - 2k_2[A.] - 2k_4[A.][P]
-
-= k_1[A_2] - k_2[A.] - k_4[A.][P]
-
-Solving for [A.]:
-
-[A.] = k_1[A_2]/(k_2 + k_4[P])
-
-Substituting this expression into the differential rate expression for P yields the final result:
-
-d[P]/dt = k_2 * k_1[A_2]/(k_2 + k_4[P])",d[P]/dt = k_2 * k_1[A_2]/(k_2 + k_4[P]),NA
-193,Are the coefficients of the AOs of different atoms in MOs responsible for bonding in an ionically bonded diatomic molecule similar or different in magnitude?,They will be very different because the probability of finding the electron on an atom in an ionically bonded diatomic molecule is very different on the two atoms.,NA
-194,Are the real functions listed in Equations (18.34) and (18.35) eigenfunctions of l_z? Justify your answer.,"No. They are formed by the combination of Y_l^m_l and Y_l^-m_l. Therefore, the functions are eigenfunctions of H_hat and L^2, but not of L_z^hat.",NA
-195,Calculate the van der Waals parameters of methane from the values of the critical constants.,"b = (R*T_c)/(8*P_c) = (8.314 x 10^-2 dm^3 bar K^-1 mol^-1 x 190.56 K)/(8 x 45.99 bar) = 0.0431 dm^3 mol^-1
-a = (27*R^2*T_c^2)/(64*P_c) = (27 x (8.314 x 10^-2 dm^3 bar K^-1 mol^-1)^2 x (190.56 K)^2)/(64 x 45.99 bar) = 2.303 dm^6 bar mol^-2",NA
-196,Under what conditions are ΔH and ΔU for a reaction involving gases and/or liquids or solids identical?,"ΔH = ΔU + Δ(PV). ΔH ≈ ΔU for reactions involving only liquids or solids because, to a good approximation, the volume does not change as a result of the reaction. If gases are involved, Δ(PV) = ΔnRT. Therefore, ΔH ≈ ΔU if the number of moles of reactants and products that are gases are the same.",NA
-197,"Evaluate the average vibrational amplitude of the quantum harmonic oscillator about its equilibrium value, <x>, for the ground state (n = 0) and first two excited states (n = 1 and n = 2). Use the hint about evaluating integrals in Problem P18.3.","<x> = ∫_(-∞)^∞ ψ_n*(x) x ψ_n(x) dx = ∫_(-∞)^∞ x (ψ_n(x))^2 dx. Because (ψ_n(x))^2 is an even function of x for all n, the product x (ψ_n(x))^2 is an odd function of x. Therefore, <x> = 0 for all n.",0
-198,"Show that it follows from ΔG_f°(H+, aq) = 0 for all T that the potential of the standard hydrogen electrode is zero.","φ°_H+/H_2 = (μ°_H+ - 1/2 μ°_H_2)/F = -μ°_H+/F and μ°_H+ = ΔG_f°(H+, aq) = 0",0
-199,"Explain the following statement: If ħ = 0, it would be possible to measure the position and momentum of a particle exactly and simultaneously.","In that case, the Heisenberg uncertainty principle would be ΔpΔx = 0, and there are no uncertainties associated with the position and the momentum.",NA
-200,"The spectrum of the hydrogen atom reflects the splitting of the 1s^2 S and 2p^2 P terms into levels. The energy difference between the levels in each term is much smaller than the difference in energy between the terms. Given this information, how many spectral lines are observed in the 1^2 S -> 2^2 P transition? Are the frequencies of these transitions very similar or quite different?","The 2^2 S term has a single level, 2^2 S_1/2. The 2^2 P term splits into two levels, 2^2 P_1/2 and 2^2 P_3/2. Therefore, there will be two closely spaced lines in the spectrum corresponding to the transitions 2^2 S_1/2 -> 2^2 P_1/2 and 2^2 S_1/2 -> 2^2 P_3/2. The energy spacing between the lines will be much smaller than the energy of the transition.",NA
-201,Why is it reasonable to show the μ versus T segments for the three phases as straight lines as is done in <LINK>Figure 8.1? More realistic curves would have some curvature. Is the curvature upward or downward on a μ versus T plot?,"The curvature is downward. Because S increases with T, the realistic curves will curve downward.",NA
-202,The vapor pressure of methanol (l) is given by ln(P/Pa) = 23.593 - 3.6791 x 10^3/T/K. a. Calculate the standard boiling temperature. b. Calculate ΔH_vaporization at 298 K and at the standard boiling temperature.,a.,NA
-203,"Which of the following wave functions are eigenfunctions of the operator d/dx? If they are eigenfunctions, what is the eigenvalue?","a) a e^(-3x) + b e^(-3ix)
-    d/dx (a e^(-3x) + b e^(-3ix)) = -3a e^(-3x) - 3ib e^(-3ix)  Not an eigenfunction
-b) sin^2 x
-    d/dx (sin^2 x) = 2 sin x cos x  Not an eigenfunction
-c) e^(-ix)
-    d/dx (e^(-ix)) = -i e^(-ix)  Eigenfunction with eigenvalue -i
-d) cos ax
-    d/dx (cos ax) = -a sin ax  Not an eigenfunction
-e) e^(-ix^2)
-    d/dx (e^(-ix^2)) = -2ix e^(-ix^2)  Not an eigenfunction",NA
-204,"Use the geometrical construction shown in Example Problem 25.10 to derive the energy levels of the cycloheptatrienyl cation. What is the total π energy of the molecule? How many unpaired electrons will the molecule have? Would you expect this species, the neutral species, or the anion to be aromatic? Justify your answer.","From the diagram:
-
-2βsin(18°) = 0.618
-2βcos(36°) = 1.618
-
-The energy levels are:
-- α - 1.618β
-- α - 0.618β
-- α + 0.618β
-- α + 1.618β
-
-There are 6 π electrons. They will fill the orbitals as follows:
-- 2 electrons in α - 1.618β
-- 2 electrons in α - 0.618β
-- 2 electrons in α + 0.618β
-
-The total π energy is:
-E_π = 2(α - 1.618β) + 2(α - 0.618β) + 2(α + 0.618β)
-E_π = 2α - 3.236β + 2α - 1.236β + 2α + 1.236β
-E_π = 6α - 3.236β
-
-There are 0 unpaired electrons. The cation has 6 π electrons in a cyclic, planar, conjugated system, satisfying Hückel's rule (4n+2, n=1). Therefore, the cation is expected to be aromatic.",NA
-205,Why does the analysis of the photoelectric effect based on classical physics predict that the kinetic energy of electrons will increase with increasing light intensity?,"In the classical theory, more light intensity leads to more energy absorption by the solid and the electrons. At equilibrium, as much energy must leave the surface as is absorbed. Classical physicists thought that the greater energy would manifest as a higher speed. In fact, it appears as a larger number of electrons leaving the surface with a frequency determined by the photon energy and the work function of the surface.",NA
-206,"Is ψ(1,2) = 1s(1)α(1)1s(2)β(2) + 1s(2)α(2)1s(1)β(1) an eigenfunction of the operator Ŝ_z? If so, what is its eigenvalue M_S?","Ŝ_z[1s(1)α(1)1s(2)β(2) + 1s(2)α(2)1s(1)β(1)]
-= (Ŝ_z1 + Ŝ_z2)[1s(1)α(1)1s(2)β(2) + 1s(2)α(2)1s(1)β(1)]
-= ħ/2[1s(1)α(1)1s(2)β(2) - 1s(2)α(2)1s(1)β(1)]
-+ ħ/2[-1s(1)α(1)1s(2)β(2) + 1s(2)α(2)1s(1)β(1)]
-= ħ/2(0)
-= 0
-The function is an eigenfunction of Ŝ_z with the eigenvalue M_S = 0.",0
-207,"Use the 3 x 3 matrices for the C2v group in Equation (28.2) to verify the associative property for the following successive operations:
- a) σv(σ'vC2) = (σvσ'v)C2
- b) σv(EC2) = (σvE)C2","a) σvσ'v = (1 0 0)(-1 0 0) = (-1 0 0)
-           (0 -1 0) (-1 0 0)   (0 -1 0)
-           (0 0 1) (0 0 1)   (0 0 1)
-σvσ'v = C2
-
-b) σvC2 = (1 0 0)(-1 0 0) = (-1 0 0)
-         (0 -1 0) (0 0 1)   (0 1 0)
-         (0 0 1) (0 0 1)   (0 0 1)
-σvC2 = σ'v
-
-C2C2 = (-1 0 0)(-1 0 0) = (1 0 0)
-       (0 -1 0) (0 0 1)   (0 1 0)
-       (0 0 1) (0 0 1)   (0 0 1)
-C2C2 = E
-
-See the above problem for matrices.",NA
-208,"NO is a well-known example of a molecular system in which excited electronic states are readily accessible at room temperature. Both the ground and excited electronic states are doubly degenerate, and separated by ~121 cm⁻¹. a) Evaluate the electronic partition function for this molecule at 298 K. b) Determine the temperature at which q_E = 3.","a)
-q_E = g_0 e^(-βε_0) + g_1 e^(-βε_1) = 2e^(-0) + 2e^(-121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(298 K))
-= 2 + 2e^(-121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(298 K))
-= 2 + 2e^(-0.56)
-= 2 + 2(0.57)
-q_E = 2.14
-
-b)
-q_E = 2 + 2e^(-121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(T)) = 3
-2e^(-121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(T)) = 1
-e^(-121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(T)) = 0.5
--121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(T) = ln(0.5) = -0.693
-121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(T) = 0.693
-T = 121 cm⁻¹ / (0.695 cm⁻¹ K⁻¹)(0.693)
-T = 254 K",NA
-209,"In calculating ΔH°_reaction at 295.15 K, only the ΔH°_f of the compounds that take part in the reactions listed in Tables 4.1 and 4.2 (Appendix A, Data Tables) are needed. Is this statement also true if you want to calculate ΔH°_reaction at 500 K?","No. At any temperature other than 298.15 K, the heat capacities of all elements and compounds that appear in the overall reaction enter into the calculation.",NA
-210,"Consider a particle in a one-dimensional box defined by V(x) = 0, a > x > 0 and V(x) = ∞, x ≥ a, x ≤ 0. Explain why each of the following unnormalized functions is or is not an acceptable wave function based on criteria such as being consistent with the boundary conditions, and with the association of ψ*(x)ψ(x)dx with probability.","a) A cos(nπx/a) is not an acceptable wave function because it does not satisfy the boundary condition that ψ(0) = 0.
-b) B(x + x²) is not an acceptable wave function because it does not satisfy the boundary condition that ψ(a) = 0.
-c) C x³(x - a) is an acceptable wave function. It satisfies both boundary conditions and can be normalized.
-d) D sin(nπx/a) is not an acceptable wave function. It goes to infinity at x = 0 and cannot be normalized in the desired interval.",NA
-211,What is meant by the rate-determining step in a sequential reaction?,"The rate determining step in a sequential chemical reaction is the elementary reaction step with the smallest reaction rate. This step is called rate limiting because no matter how large the reaction rates are for the other elementary steps, the overall reaction rate is determined by the smallest rate.",NA
-212,"Assume that air has a mean molar mass of 28.9 g mol^-1 and that the atmosphere has a uniform temperature of 25.0 degrees C. Calculate the barometric pressure at Denver, for which z = 1600 m. Use the information contained in Problem P1.15.",P = P^0 e^(-M_i g z / R T) = 10^5 Pa exp(-28.9 x 10^-3 kg x 9.81 m s^-2 x 1600 m / 8.314 J mol^-1 K^-1 x 298 K) = 8.34 x 10^4 Pa,83400
-213,Use the following vapor pressures of 1-butene given here to calculate the enthalpy of vaporization using a graphical method or a least squares fitting routine.,"T(K) P(atm)
-273.15 1.268
-275.21 1.367
-277.60 1.490
-280.11 1.628
-283.15 1.810
-A least squares fit of ln P versus 1/T gives the result ΔH_vaporization = 22.88 kJ mol^-1.",22.88
-214,What is the general relationship between the spatial gradient in a system property and the flux of that property?,"The spatial gradient of a property is a continuous difference in a physical property such as pressure, temperature, or molecular distribution. The flux of the property is a change that occurs due to the spatial gradient, defined as the amount of a given property that passes through a specific area per unit time.",NA
-215,Calculate the expectation value <(r - <r>)^2> if the H atom wave function is ψ_100(r).,"<(r - <r>)^2> = <r^2 - 2r<r> + <r>^2> = <r^2> - 2<r>^2 + <r>^2 = <r^2> - <r>^2
-<r> = 1/πa_0^3 ∫dφ∫sinθdθ∫r^3e^(-2r/a_0)dr
-<r> = 4/a_0^3 ∫r^3e^(-2r/a_0)dr
-Using the standard integral ∫r^n e^(-αr)dr = n!/α^(n+1)
-<r> = 4/a_0^3 * 6a_0^4/16 = 3/2 a_0",NA
-216,"One mole of an ideal gas, for which C_V,m = 3/2 R, is subjected to two successive changes in state: a) From 25.0°C and 100 x 10^3 Pa, the gas is expanded isothermally against a constant pressure of 20.0 x 10^3 Pa to twice the initial volume. b) At the end of the previous process, the gas is cooled at constant volume from 25.0°C to -25.0°C. Calculate q, w, ΔU and ΔH for each of the stages. Also calculate q, w, ΔU and ΔH for the complete process.","a) V_i = nRT/P_i = 8.314 J mol^-1 K^-1 x 298 K / 100 x 10^3 Pa = 2.48 x 10^-2 m^3
-V_f = 2V_i = 4.96 x 10^-2 m^3
-w = -P_ext (V_f - V_i) = -20.0 x 10^3 Pa x (4.96 x 10^-2 m^3 - 2.48 x 10^-2 m^3) = -496 J
-ΔU and ΔH = 0 because ΔT = 0
-q = -w = 496 J
-b) ΔU = nC_V,m (T_f - T_i) = 1.5 x 8.314 J mol^-1 K^-1 x (248 K - 298 K) = -623 J
-w = 0 because ΔV = 0
-q = ΔU = -623 J
-ΔH = nC_P,m (T_f - T_i) = n(C_V,m + R)(T_f - T_i) = 2.5 x 8.314 J mol^-1 K^-1 x (248 K - 298 K) = -1.04 x 10^3 J
-ΔU_total = 0 - 623 J = -623 J
-w_total = 0 - 496 J = -496 J
-q_total = 496 J - 623 J = -127 J
-ΔH_total = 0 - 1.04 x 10^3 J = -1.04 x 10^3 J",NA
-217,See Question Q21.11.,This orbital has two radial nodes and no angular nodes. It is therefore a 3s orbital.,NA
-218,Calculate the mean ionic molality and mean ionic activity of a 0.150m Ca(NO3)2 solution for which the mean ionic activity coefficient is 0.165.,m_± = (ν_+^ν_+ ν_-^ν_-)^(1/ν) m = (2^2)^1/3 0.150 mol kg^-1 = 0.238 mol kg^-1 a_± = (m_± / m°) γ_± = 0.238 x 0.165 = 0.0393,NA
+c. The gas undergoes an expansion against a constant external pressure of zero bar until the final pressure is equal to half of its initial value.",0.0,0.0,NA
+54,"Compare the average speed and average kinetic energy of O_2 with that of CCl_4 at 298 K. M_O_2 = 0.032 kg mol^-1 M_CCl_4 = 0.154 kg mol^-1 At the same temperature, the speed for two particles of different mass is related by the square root of the mass ratios. For this case of O_2 and CCl_4: v_CCl_4 = (M_O_2 / M_CCl_4)^1/2 v_O_2 v_CCl_4 = (0.032 kg mol^-1 / 0.154 kg mol^-1)^1/2 v_O_2 = (0.456)v_O_2 The average speed for O_2 at 298 K is: v_ave = (8RT / πM)^1/2 = (8(8.314 J mol^-1 K^-1)(298 K) / π * 0.032 kg mol^-1)^1/2 = 444 m s^-1 Using this result, the average speed for CCl_4 at this same temperature is: v_ave,CCl_4 = 0.456 * v_ave,O_2 v_ave,CCl_4 = (0.456)(444 m s^-1) = 203 m s^-1 The average kinetic energy is mass independent, thus for a given temperature, all gases have the same kinetic energy. The average kinetic energy per gas particle is therefore: <KE> = 3/2 kT = 3/2 (1.38 x 10^-23 J K^-1)(298 K) <KE> = 6.17 x 10^-21 J",6.17e-21,6.17e-21,J
+55,"Estimate the increase in the molar entropy of O₂(g) when the temperature is increased at constant pressure from 298 K to 348 K, given that the molar constant-pressure heat capacity of O₂ is 29.355 J K⁻¹ mol⁻¹ at 298 K.",4.55,4.55,J K-1 mol-1
+56,"Optimize the structure of SF4 in a seesaw geometry (C2v symmetry) using the HF/3-21G model and calculate vibrational frequencies. This calculation is necessary to verify that the energy is at a minimum. Next, optimize the geometry of SF4 in a trigonal pyramidal geometry and calculate its vibrational frequencies. Is the seesaw structure an energy minimum? What leads you to your conclusion? Is it lower in energy than the corresponding trigonal pyramidal structure? What is the energy difference between the two forms? Is it small enough that both might actually be observed at room temperature? Is the trigonal pyramidal structure an energy minimum?",143.0,143.0,kJ/mol
+57,"Calculate the rotational partition function for CINO at 500 K where B_A = 2.84 cm^-1, B_B = 0.187 cm^-1, and B_C = 0.175 cm^-1.",37800.0,37800.0,NA
+58,"By what factor must the applied magnetic field be increased for the relative population difference (Nα - Nβ)/N to be increased by a factor of 5 for (i) 1H nuclei, (ii) 13C nuclei?",5.0,5.0,NA
+59,Calculate the molar solubility of BaSO4 in NaHSO4 solution.,4.7e-07,4.7e-07,M
+60,What is the Doppler-broadened linewidth of the electronic transition at 821 nm in atomic hydrogen at 300 K?,0.151,0.151,cm⁻¹
+61,"Since the helium is ^4He, only even J states are allowed; therefore, the first excited rotational state is J = 2.",143.4,143.4,mJ mol^-1
+62,Calculate the flux of energy arising from a temperature gradient of 10.5 K m⁻¹ in a sample of argon in which the mean temperature is 280 K. The necessary data to calculate the thermal conductivity are in Exercise E16A.3(a).,-0.078,-0.078,J m^-2 s^-1
+63,"The enzyme fumarase catalyzes the hydrolysis of fumarate: Fumarate + H_2O -> L-malate The turnover number for this enzyme is 2.5 x 10^3 s^-1, and the Michaelis constant is 4.2 x 10^-6 M. What is the rate of fumarate conversion if the initial enzyme concentration is 1 x 10^-6 M and the fumarate concentration is 2 x 10^-4 M?",0.00245,0.00245,M/s
+64,The temperature of the cooling water as it leaves the hot engine of an automobile is 240 °F. After it passes through the radiator it has a temperature of 175 °F. Calculate the amount of heat transferred from the engine to the surroundings by one gallon of water with a specific heat of 4.184 J/g °C.,570.0,570.0,kJ
+65,"At 25°C, the mass density of a 50 per cent by mass ethanol-water solution is 0.914 g·cm⁻³. Given that the partial molar volume of water in the solution is 17.0 cm³·mol⁻¹, calculate the partial molar volume of the ethanol.",886.8,886.8,cm^3
+66,"You are a NASA engineer faced with the task of ensuring that the material on the hull of a spacecraft can withstand puncturing by space debris. The initial cabin air pressure in the craft is 1 atm and the temperature in the cabin is 285 K. Assuming it takes the space shuttle about 8 hours from entry into orbit until landing, what is the largest circular aperture created by a hull puncture that can be safely tolerated assuming that the flow of gas out of the spaceship is effusive? Can the escaping gas from the spaceship be considered as an effusive process? (You can assume that the air is adequately represented by N_2.)",1.07e-05,1.07e-05,m^2
+67,"What is the half-life for the first-order decay of phosphorus-32? The rate constant
+for the decay is 4.85 10−2 day−1.",14.3,14.3,d
+68,What value would you obtain if you assumed that ΔH°_reaction were constant at its value for 298.15 K up to 1200 K?,6.2e-05,6.2e-05,bar
+69,"The best-fit straight line to the data yields the following equation: 1/rate = 1.39 x 10^8 s/[S] + 2.11 x 10^6 μM^-1 s. The maximum rate is equal to the inverse of the y-intercept: rate_max = 1/(2.11 x 10^7 μM^-1 s). With the maximum rate and slope of the best-fit line, the Michaelis constant is obtained as follows: K_m = (slope)(rate_max). Using the inhibited data, the Lineweaver-Burk plot is:",6.49,6.49,μM
+70,"The rotational constant of CO is 1.931 cm⁻¹. Evaluate the rotational partition function explicitly (without approximation) and plot its value as a function of temperature. At what temperature is the value within 5 per cent of the value calculated by using eqn 13B.12a, which gives the high-temperature limit? Hint: Use mathematical software or a spreadsheet.",18.0,18.0,K
+71,Calculate the resultant of two dipole moments of magnitude 2.5 D and 0.50 D that make an angle of 120° to each other.,1.4,1.4,D
+72,Calculate the degree of dissociation of acetic acid in a solution where the molality of the salt is 0.012 mol kg^-1. The activity coefficient is calculated using the Debye-Hückel equation.,13.6,13.6,%
+73,The gas undergoes an expansion against a constant external pressure of zero bar until the final pressure is equal to half of its initial value.,5.76,5.76,J K^-1
+74,Calculate grams of HI present at equilibrium.,507.0,507.0,g
+75,Evaluate the electronic partition function for atomic Fe at 298 K given the following energy levels. Terms in parentheses are divided by 2m.,10.16,10.16,NA
+76,Estimate the freezing point of 200 cm^3 of water sweetened by the addition of 2.5 g of sucrose. Treat the solution as ideal.,273.08,273.08,K
+77,"Consider a Carnot cycle in which the working substance is 0.10 mol of perfect gas molecules, the temperature of the hot source is 373 K, and that of the cold sink is 273 K; the initial volume of gas is 1.00 dm³, which doubles over the course of the first isothermal stage. For the reversible adiabatic stages it may be assumed that VT^(3/2) = constant. (a) Calculate the volume of the gas after Stage 1 and after Stage 2 (Fig. 3A.8). (b) Calculate the volume from the starting point. (c) Hence, for each of the four stages of the cycle, calculate the heat transferred to or from the gas. (d) Explain why the work done is equal to the difference between the heat extracted from the hot source and that deposited in the cold sink. (e) Calculate the work done over the cycle and hence the efficiency η. (f) Confirm that your answer agrees with the efficiency given by eqn 3A.9 and that your values for the heat involved in the isothermal stages are in accord with eqn 3A.6.",3.19,3.19,dm^3
+78,"Write the balanced cell reaction for the cell schematic Cu(s) | Cu2+(aq) || Au3+(aq) | Au(s), calculate the standard cell potential, and note whether the reaction is spontaneous under standard state conditions.",1.16,1.16,V
+79,"For the reaction C₂H₅OH(l) + 3 O₂(g) → 2 CO₂(g) + 3 H₂O(g), Δ_rH° = –1373 kJ mol⁻¹ at 298 K. Calculate Δ_rH°.",-1368.0,-1368.0,kJ mol^-1
+80,The first ionization potential of ground-state He is 24.6 eV. The wavelength of light associated with the 1s2p ^1P term is 58.44 nm. What is the ionization energy of the He atom in this excited state?,3.4,3.4,eV
+81,The vibrational frequency of Cl2 is 525 cm^-1. Will the temperature be higher or lower relative to I2 (see Problem P31.16) at which the population in the first excited vibrational state is half that of the ground state? What is this temperature?,1100.0,1100.0,K
+82,Convert Kc to Kp for H2(g) + I2(g) ⇌ 2HI(g).,50.2,50.2,NA
+83,A reaction has ΔH° = 100 kJ/mol and ΔS° = 250 J/mol·K. Is the reaction spontaneous at room temperature? At what temperature will it become spontaneous?,400.0,400.0,K
+84,"A reasonable approximation to the vapor pressure of krypton is given by log_10(P/Torr) = b - 0.0523 a/T. For solid krypton, a = 10065 and b = 7.1770. For liquid krypton, a = 9377.0 and b = 6.92387. Use these formulas to estimate the triple point temperature and pressure and also the enthalpies of vaporization, fusion, and sublimation. At the triple point, the vapor pressures of the solid and liquid are equal.",240.3,240.3,K
+85,"For H_2, v~ = 4401.2 cm^-1 and x~v~ = 121.3 cm^-1. Use the result from part (a) to determine the percent error in q_v if anharmonicity is ignored.",0.177,0.177,%
+86,A glow-worm of mass 5.0 g emits red light (650 nm) with a power of 0.10 W entirely in the backward direction. To what speed will it have accelerated after 10 y if released into free space?,21.0,21.0,m s^-1
+87,"The standard Gibbs energy of formation of NH₃(g) is −16.5 kJ mol⁻¹ at 298 K. What is the corresponding reaction Gibbs energy when the partial pressures of the N₂, H₂, and NH₃ (treated as perfect gases) are 3.0 bar, 1.0 bar, and 4.0 bar, respectively?",-14.0,-14.0,kJ mol⁻¹
+88,"(a) Calculate the mass density of diamond assuming that it is a close-packed structure of hard spheres with radii equal to half the carbon–carbon bond length of 154.45 pm. (b) The diamond lattice is in fact based on a face-centred cubic lattice but with two atoms per lattice point, one with its origin at (0,0,0) and the other with its origin at (1/4,1/4,1/4). The experimentally determined mass density is 3.516 g cm⁻³: can you explain the difference between this value and that in (a)?",3.516,3.516,g cm⁻³
+89,"The force constant for the ^1H^35Cl molecule is 516 N m^-1. Calculate the vibrational zero point energy of this molecule. If this amount of energy were converted to translational energy, how fast would the molecule be moving? Compare this speed to the root mean square speed from the kinetic gas theory, |v|_rms = sqrt(3kT / m) for T = 300 K.",997.0,997.0,m s^-1
+90,Data on a single crystal of MnF₂ give χm = 0.1463 cm³ mol⁻¹ at 294.53 K. Identify the effective number of unpaired electrons in this compound and compare your result with the theoretical value.,4.3,4.3,NA
+91,"Calculate the boiling point elevation of 0.100 kg of water containing 0.010 mol of NaCl, 0.020 mol of
+Na2SO4, and 0.030 mol of MgCl2, assuming complete dissociation of these electrolytes and ideal solution
+behavior.",0.87,0.87,°C
+92,The contact angle for water on clean glass is close to zero. Calculate the surface tension of water at 20 °C given that at that temperature water climbs to a height of 4.96 cm in a clean glass capillary tube of internal radius 0.300 mm. The mass density of water at 20 °C is 998.2 kg m⁻³.,0.0728,0.0728,kg s^-2
+93,"Which contains the greatest mass of oxygen: 0.75 mol of ethanol (C2H5OH), 0.60 mol of formic acid (HCO2H), or 1.0 mol of water (H2O)? Explain why.",1.2,1.2,mol
+94,"The mean activity coefficients of HBr in three dilute aqueous solutions at 25°C are 0.930 (at 5.00 mmol kg⁻¹), 0.907 (at 10.0 mmol kg⁻¹), and 0.879 (at 20.0 mmol kg⁻¹). Estimate the value of B in the Davies equation.",1.96,1.96,NA
+95,An increase in pressure from 10 to 50 atm converts the liquid to the solid.,-56.6,-56.6,°C
+96,Estimate the mean ionic activity coefficient of CaCl₂ in a solution that is 0.010 mol kg⁻¹ CaCl₂(aq) and 0.030 mol kg⁻¹ NaF(aq) at 25°C.,0.56,0.56,NA
+97,"What mass of magnesium forms when 100,000 A is passed through a MgCl2 melt for 1.00 h if the yield of magnesium is 85% of the theoretical yield?",39.0,39.0,kg
+98,Cobalt metal crystallizes in a hexagonal closest packed structure. What is the coordination number of a cobalt atom?,12.0,12.0,NA
+99,Calculate the ratio of the translational partition functions of H₂ and He at the same temperature and volume.,0.358,0.358,NA
+100,Calculate the matrix element μ_x^15 for the transition from n = 1 to n = 5 in a particle in a box model.,0.0,0.0,NA
+101,"when γ± = 1
+I = m/2 (2) = m = 7.75 x 10^-3 mol kg^-1
+ln γ± = -1.73 x 1 x √(7.75 x 10^-3) = -0.1033
+γ± = 0.9019
+when γ± = 0.9019
+m = 8.561 x 10^-3 mol kg^-1
+I = m = 8.561 x 10^-3 mol kg^-1
+ln γ± = -1.73 x √(8.561 x 10^-3) = -0.1085
+γ± = 0.8971
+when γ± = 0.8971
+m = 8.605 x 10^-3 mol kg^-1
+I = m = 8.605 x 10^-3 mol kg^-1
+ln γ± = -1.73 x √(8.605 x 10^-3) = -0.1088
+γ± = 0.8969
+when γ± = 0.8969
+m = 8.61 x 10^-3 mol kg^-1
+8.61 x 10^-3 / 0.125 x 100% = 6.89%",0.01006,0.01006,mol kg^-1
+102,"Devise a temperature scale, abbreviated G, for which the magnitude of the ideal gas constant is 1.00 J G^-1 mol^-1. Let T and T' represent the Kelvin and G scales, and R and R' represent the gas constant in each of these scales. Then PV = nRT = nR'T'.",8.314,8.314,NA
+103,"It is found that the dissolution of 5.25 g of a substance in 565 g of benzene at 298 K raises the boiling point by 0.625°C. Note that K_f = 5.12 K kg mol^-1, K_b = 2.53 K kg mol^-1, and the density of benzene is 876.6 kg m^-3. Calculate the freezing point depression, the ratio of the vapor pressure above the solution to that of the pure solvent, and the osmotic pressure. P*_benzene = 103 Torr at 298 K.",537000.0,537000.0,Pa
+104,"Could 131 g of xenon gas in a vessel of volume 1.0 dm³ exert a pressure of 20 atm at 25 °C if it behaved as a perfect gas? If not, what pressure would it exert?",24.4,24.4,atm
+105,Water rises in a glass capillary tube to a height of 17 cm. What is the diameter of the capillary tube?,0.00017,0.00017,m
+106,"The following molar conductivity data are obtained for an electrolyte:
+
+Concentration (M)     Λm (S m^2 mol^-1)
+0.0005                 0.01245
+0.001                  0.01237
+0.005                  0.01207
+0.01                   0.01185
+0.02                   0.01158
+0.05                   0.01111
+0.1                    0.01067
+
+Determine if the electrolyte is strong or weak, and the conductivity of the electrolyte at infinite dilution. According to Kohlrausch's law, a plot of conductivity versus √(c/c₀) should yield a straight line for a strong electrolyte: Λm = Λm° - K√(c/c₀). Using a reference concentration of 1 M, the following plot is obtained:",0.0125,0.0125,S m^2 mol^-1
+107,Calculate the maximum non-expansion work per mole of CH₄ that may be obtained from a fuel cell in which the chemical reaction is the combustion of methane under standard conditions at 298 K.,817.9,817.9,kJ mol⁻¹
+108,"Assuming that ΔH_f° is constant in the interval 275 K - 600 K, calculate ΔG° for the process ( H_2O, g, 298 K ) → ( H_2O, g, 525 K ).",-218500.0,-218500.0,J mol^-1
+109,"Carborundum is silicon carbide, SiC, a very hard material used as an abrasive on sandpaper and in other
+applications. It is prepared by the reaction of pure sand, SiO2, with carbon at high temperature. Carbon
+monoxide, CO, is the other product of this reaction. Write the balanced equation for the reaction, and
+calculate how much SiO2 is required to produce 3.00 kg of SiC.",4.5,4.5,kg
+110,What must the outcome of a binomial experiment be if P_E = 1?,1.0,1.0,NA
+111,"Normalize the set of functions φ_n(θ) = e^(inθ), 0 ≤ θ ≤ 2π. To do so, you need to multiply the functions by a so-called normalization constant N so that the integral N*N*∫(from 0 to 2π) φ_m*(θ)φ_n(θ)dθ = 1 for m = n.",0.3989422804,0.3989422804,NA
+112,Excitation rate constant required given the signal to noise constraints and the fluorescence quantum yield is:,7.19e+18,7.19e+18,photons cm^-2 s^-1
+113,"Calculate w for the adiabatic expansion of one mole of an ideal gas at an initial pressure of 2.00 bar from an initial temperature of 450 K to a final temperature of 300 K. Write an expression for the work done in the isothermal reversible expansion of the gas at 300 K from an initial pressure of 2.00 bar. What value of the final pressure would give the same value of w as the first part of this problem? Assume that C_p,m = 5/2 R.",0.944,0.944,bar
+114,Explain how a mass of water in the surroundings can be used to determine q for a process. Calculate q if the temperature of 1.00 kg of water in the surroundings increases by 1.25°C. Assume that the surroundings are at a constant pressure.,-5240.0,-5240.0,J
+115,"How many molecules of the sweetener saccharin can be prepared from 30 C atoms, 25 H atoms, 12 O
+atoms, 8 S atoms, and 14 N atoms?",4.0,4.0,NA
+116,A 2.0 mm cell was filled with a solution of benzene in a non-absorbing solvent. The concentration of the benzene was 0.010 mol dm⁻³ and the wavelength of the radiation was 256 nm (where there is a maximum in the absorption). Calculate the molar absorption coefficient of benzene at this wavelength given that a 4.0 mm cell at the same wavelength will transmit 48 per cent.,160.0,160.0,dm³ mol⁻¹ cm⁻¹
+117,Determine the vibrational contribution to C_V for a mole of HCl (v~ = 2886 cm^-1) over a temperature range from 500 to 5000 K and plot your result. At what temperature do you expect to reach the high-temperature limit for the vibrational contribution to C_V?,3300.0,3300.0,K
+118,"Show that it follows from ΔG_f°(H+, aq) = 0 for all T that the potential of the standard hydrogen electrode is zero.",0.0,0.0,V
+119,We first calculate the final volume of the right part.,97500.0,97500.0,J
+120,"In a spectrometer operating at 500.130 000 MHz for 1H, a resonance is found to occur 750 Hz higher in frequency than TMS. What is the chemical shift (on the δ scale) of this peak?",1.5,1.5,NA
+121,"What will be the pH of a buffer solution prepared from 0.20 mol NH3, 0.40 mol NH4NO3, and just enough water to give 1.00 L of solution?",8.95,8.95,NA
+122,A long ton is defined as exactly 2240 lb. What is this mass in kilograms?,1016.0,1016.0,kg
+123,Calculate the work done during a reversible isothermal expansion of 1 mol of a van der Waals gas from 2.50 L to 23.0 L at 300 K. The van der Waals constants are a = 1.366 L^2 bar mol^-2 and b = 0.0380 L mol^-1. Compare the result to that calculated for an ideal gas and determine the percent error.,-0.4,-0.4,%
