@@ -13,7 +13,7 @@ class TTestRunner: #paired student ttest
         self.groupB = np.array(groupB)
 
         self.alpha = alpha
-    
+
     def check_assumptions(self, bins = None):
         deltas = self.groupA - self.groupB
         the_median = np.median(deltas)
@@ -43,36 +43,39 @@ class TTestRunner: #paired student ttest
         plt.show()
     
     def run_test(self, test_hypothesis = "B>A"): 
-        """
-        if the test_hypothesis is B>A then its a one tailed test with the alternative hypothesis that groupB is larger than groupA
-        elif its the other alt. hypothesis
-        if its blank then dont implement yet (idk if i care about a two-tailed test yet)
-        """
+        if self.groupA.shape != self.groupB.shape:
+            raise ValueError("groupA and groupB must have the same shape for a paired test")
+        if self.groupA.size == 0:
+            raise ValueError("groupA and groupB cannot be empty")
 
-        hypothesis = test_hypothesis.strip().upper() 
-        if hypothesis == "B>A":
-            t_stat, p_two = stats.ttest_rel(self.groupB, self.groupA, nan_policy="omit") # we handle nans prior to this call anyways
-            p_one = p_two / 2 if t_stat > 0 else 1 - (p_two / 2) # depending on the direction we need to adjust the p value to grab the right tail
-            direction = "groupB > groupA"
-        elif hypothesis == "A>B":
-            t_stat, p_two = stats.ttest_rel(self.groupA, self.groupB, nan_policy="omit")
-            p_one = p_two / 2 if t_stat > 0 else 1 - (p_two / 2)
-            direction = "groupA > groupB"
+        t_stat, p_two = stats.ttest_rel(self.groupB, self.groupA, nan_policy="omit")
+        deltas = self.groupB - self.groupA
+        deltas = deltas[np.isfinite(deltas)]
+        if deltas.size == 0:
+            direction = "tie"
         else:
-            raise ValueError("test_hypothesis must be one of: 'B>A', 'A>B'")
+            delta = float(np.mean(deltas))
+            if np.isclose(delta, 0.0):
+                direction = "tie"
+            elif delta > 0:
+                direction = "groupB > groupA"
+            else:
+                direction = "groupA > groupB"
 
-        is_significant = bool(p_one < self.alpha)
-        print(f"Paired t-test ({direction})")
+        is_significant = bool(np.isfinite(p_two) and p_two < self.alpha)
+        print("Paired t-test (two-tailed)")
         print(f"t-statistic: {t_stat}")
-        print(f"p-value (one-tailed): {p_one}")
+        print(f"p-value (two-tailed): {p_two}")
+        print(f"Observed direction: {direction}")
         print(f"Alpha: {self.alpha}")
         print(f"Statistically significant: {is_significant}")
 
         return {
             "test": "paired_t_test",
             "hypothesis": test_hypothesis,
+            "observed_direction": direction,
             "t_statistic": t_stat,
-            "p_value_one_tailed": p_one,
+            "p_value_two_tailed": p_two,
             "alpha": self.alpha,
             "significant": is_significant,
         }
@@ -104,28 +107,40 @@ class WilcoxenRunner: # wilcoxon signed rank test
         if self.groupA.size == 0:
             raise ValueError("groupA and groupB cannot be empty")
 
-        hypothesis = test_hypothesis.strip().upper()
-        if hypothesis == "B>A":
-            statistic, p_value = stats.wilcoxon(self.groupB, self.groupA, alternative="greater")
-            direction = "groupB > groupA"
-        elif hypothesis == "A>B":
-            statistic, p_value = stats.wilcoxon(self.groupA, self.groupB, alternative="greater")
-            direction = "groupA > groupB"
-        else:
-            raise ValueError("test_hypothesis must be one of: 'B>A', 'A>B'")
+        try:
+            statistic, p_value = stats.wilcoxon(self.groupB, self.groupA, alternative="two-sided")
+        except ValueError:
+            statistic, p_value = 0.0, 1.0
 
-        is_significant = bool(p_value < self.alpha)
-        print(f"Wilcoxon signed-rank test ({direction})")
-        print(f"Statistic: {statistic:.6f}") # just 6 digits, but idrc that much about the stat value as we only care about p value really
-        print(f"p-value (one-tailed): {p_value:.6g}") # 6 sig figs because values can be very small
+        deltas = self.groupB - self.groupA
+        deltas = deltas[np.isfinite(deltas)]
+        if deltas.size == 0:
+            direction = "tie"
+        else:
+            delta = float(np.median(deltas))
+            if np.isclose(delta, 0.0):
+                delta = float(np.mean(deltas))
+            if np.isclose(delta, 0.0):
+                direction = "tie"
+            elif delta > 0:
+                direction = "groupB > groupA"
+            else:
+                direction = "groupA > groupB"
+
+        is_significant = bool(np.isfinite(p_value) and p_value < self.alpha)
+        print("Wilcoxon signed-rank test (two-tailed)")
+        print(f"Statistic: {statistic:.6f}")
+        print(f"p-value (two-tailed): {p_value:.6g}")
+        print(f"Observed direction: {direction}")
         print(f"Alpha: {self.alpha}")
         print(f"Statistically significant: {is_significant}")
 
         return {
             "test": "wilcoxon_signed_rank",
             "hypothesis": test_hypothesis,
+            "observed_direction": direction,
             "statistic": statistic,
-            "p_value_one_tailed": p_value,
+            "p_value_two_tailed": p_value,
             "alpha": self.alpha,
             "significant": is_significant,
         }

@@ -49,7 +49,7 @@ def penality_analysis(df):
             errs_a.append(errA)
             errs_b.append(errB)
         wcR = WilcoxenRunner(np.array(errs_a), np.array(errs_b))
-        stat_sig.append(wcR.run_test(test_hypothesis="A>B"))
+        stat_sig.append(wcR.run_test())
     
     sig_bool = [x['significant'] for x in stat_sig]
 
@@ -70,8 +70,32 @@ def penality_analysis(df):
     plt.show()
 
 if __name__ == "__main__":
-    df = pd.read_csv("/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_comparison_run1.csv") 
-    #0.019587
+    main_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_qlora_ir.csv"
+
+    consistent_m_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_qlora_no_ir.csv"
+    m_to_use = "1" # 1 means use model 1 from the consistent_m_dir and 2 means use model 2
+
+    df = pd.read_csv(main_dir)
+    if consistent_m_dir is None:
+        if m_to_use == "1":
+            pass
+        elif m_to_use == "2":
+            df["model1_converted_value"] = df["model2_converted_value"]
+            df["model1_ans"] = df["model2_ans"]
+        else:
+            raise Exception("Please specify m_to_use as either '1' or '2'")
+    else:
+        if m_to_use == "1":
+            df_m1 = pd.read_csv(consistent_m_dir)[["prompt", "ground_truth", "model1_converted_value", "model1_ans"]]
+        elif m_to_use == "2":
+            df_m1 = pd.read_csv(consistent_m_dir)[["prompt", "ground_truth", "model2_converted_value", "model2_ans"]].rename(columns={"model2_converted_value":"model1_converted_value","model2_ans":"model1_ans"})
+        else:
+            raise Exception("Please specify m_to_use as either '1' or '2'")
+        df_m2 = df[["prompt", "ground_truth", "model2_converted_value", "model2_ans"]]
+        df_m1["ground_truth"] = pd.to_numeric(df_m1["ground_truth"], errors="coerce")
+        df_m2["ground_truth"] = pd.to_numeric(df_m2["ground_truth"], errors="coerce")
+        df = df_m1.merge(df_m2, on=["prompt", "ground_truth"], how="inner")
+
     valid = df['ground_truth'].notna()
     df = df[valid].reset_index(drop=True)
 
@@ -92,7 +116,7 @@ if __name__ == "__main__":
     print("")
     wcR = WilcoxenRunner(err1.values, err2.values)
     wcR.check_assumptions(bins=20)
-    wcR.run_test(test_hypothesis="A>B")
+    wcR.run_test()
 
 
-    penality_analysis(df)
+    #penality_analysis(df)
