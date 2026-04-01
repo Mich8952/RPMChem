@@ -7,11 +7,7 @@
 todos.md
 fair_testing.md
 *.png
-TEMP_add_reasoning_context.py
 *.pkl
 *.json
-get_jsons_disjoint_textbookFASTER.py
-temp_add_back_txtbook_name.py
-COMEBACK.md
-totest.md
 *.DS_Store
+*.h5
