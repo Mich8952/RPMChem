@@ -1,10 +1,12 @@
 ## Compare vanilla LLM to the fine-tuned LLM
 
+import argparse
 import warnings
 import numpy as np
 import pandas as pd
 import mlx.core as mx
 import copy
+import os
 from rouge_score import rouge_scorer
 import re
 from datetime import datetime
@@ -256,9 +258,26 @@ class ModelComparatorSemantics:
 
 
 if __name__ == "__main__":
-    mc = ModelComparatorSemantics(dataset_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/current_to_run/valid_IMPUTED.jsonl")
-    m1 = "/Users/michaelmurray/.lmstudio/models/personal/8b_nolora"
-    m2 = "/Users/michaelmurray/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt"
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--dataset_dir",
+        default="datasets/current_to_run/valid_IMPUTED.jsonl",
+    )
+    parser.add_argument(
+        "--model_1",
+        default="~/.lmstudio/models/personal/8b_nolora",
+    )
+    parser.add_argument(
+        "--model_2",
+        default="~/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt",
+    )
+    args = parser.parse_args()
+
+    dataset_dir = os.path.expanduser(args.dataset_dir)
+    m1 = os.path.expanduser(args.model_1)
+    m2 = os.path.expanduser(args.model_2)
+
+    mc = ModelComparatorSemantics(dataset_dir=dataset_dir)
     #m2 = "/Users/michaelmurray/.lmstudio/models/introvoyz041/ChemDFM-v2.0-14B-mlx-4Bit"
     mc.compare(m1,m2)
     mc.save_results()

@@ -5,7 +5,7 @@ In this case we want to use a smart LLM (but I also don't want to spend money on
 """
 
 import json
-from pathlib import Path
+import os
 
 import lmstudio as lms
 
@@ -54,7 +54,8 @@ class SplitProcessor:
 
     def load_jsonl(self, path):
         rows = []
-        with path.open("r", encoding="utf-8") as f:
+        path_str = os.fspath(path)
+        with open(path_str, "r", encoding="utf-8") as f:
             for line_idx, line in enumerate(f, start=1):
                 line = line.strip()
                 if not line:
@@ -63,7 +64,7 @@ class SplitProcessor:
                 prompt = obj.get("prompt", "")
                 completion = obj.get("completion", "")
                 if not isinstance(prompt, str) or not isinstance(completion, str): # have to handle cases where it for some reason didnt save the formatting correctly before (likely an issue with my get_jsons script. Will debug in future)
-                    raise ValueError(f"Invalid prompt/completion at {path}:{line_idx}")
+                    raise ValueError(f"Invalid prompt/completion at {path_str}:{line_idx}")
                 rows.append({"prompt": prompt, "completion": completion})
 
         return rows
@@ -113,8 +114,11 @@ class SplitProcessor:
 
 
     def write_jsonl(self, path, rows):
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with path.open("w", encoding="utf-8") as f:
+        path_str = os.fspath(path)
+        parent_dir = os.path.dirname(path_str)
+        if parent_dir:
+            os.makedirs(parent_dir, exist_ok=True)
+        with open(path_str, "w", encoding="utf-8") as f:
             for row in rows:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n") # new the newline because its a jsonl.\
 
@@ -125,11 +129,6 @@ if __name__ == "__main__":
     output_train = "datasets/current_to_run/train_reasoning_n.jsonl"
     output_valid = "datasets/current_to_run/valid_reasoning_n.jsonl"
 
-    train_in = Path(input_train)
-    valid_in = Path(input_valid)
-    train_out = Path(output_train)
-    valid_out = Path(output_valid)
-
     sp = SplitProcessor()
-    sp.process_split(train_in,train_out)
-    sp.process_split(valid_in,valid_out)
+    sp.process_split(input_train, output_train)
+    sp.process_split(input_valid, output_valid)

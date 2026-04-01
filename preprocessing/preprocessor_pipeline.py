@@ -2,9 +2,10 @@
 # 1. run get_jsons (joint/disjoint depends on the file)
 # 2. run re_process_real (removes bad samples
 # 3. (optional reasoning imputation) add_reasoning_context.py
+import argparse
 import uuid
 import time
-from pathlib import Path
+import yaml
 from get_jsons_disjoint_textbook import PdfExtractor, extract_items_from_pdf, should_scan_pdf1_page, prompt_pdf1_questions, prompt_pdf2_answers
 from combine_jsons_disjoint import Combiner
 from combine_textbooks import TextbookCombiner
@@ -12,8 +13,9 @@ from re_process_real import ReprocessorReal
 from add_reasoning_context import SplitProcessor
 from extract_numerical_subset import NumberExtractor
 
+
 class Preprocessor:
-    def __init__(self, pdfs_to_process : list[tuple[str]], impute : bool = True):
+    def __init__(self, pdfs_to_process: list[tuple[str, str]], impute: bool = True):
         self.pdfs_to_process = pdfs_to_process # this is a list of tuples because
         self.session_id = str(uuid.uuid4())
         self.textbook_counter = 0
@@ -63,13 +65,16 @@ class Preprocessor:
         train_string, test_string = reprocessor.split_data()
 
         #now impute
-        #note that this call uses the Path functionliaty so we need to wrap strings as path objects
         if self.impute:
             sp = SplitProcessor()
-            sp.process_split(Path(train_string), Path(train_string.replace(".jsonl", "_reasoning.jsonl")))
-            sp.process_split(Path(test_string), Path(test_string.replace(".jsonl", "_reasoning.jsonl")))
+            sp.process_split(train_string, train_string.replace(".jsonl", "_reasoning.jsonl"))
+            sp.process_split(test_string, test_string.replace(".jsonl", "_reasoning.jsonl"))
 
-        numerical_output = str(Path(test_string).with_suffix("")) + "_numerical_prompts.csv"
+        if test_string.endswith(".jsonl"):
+            test_base = test_string.rsplit(".jsonl", 1)[0]
+        else:
+            test_base = test_string
+        numerical_output = f"{test_base}_numerical_prompts.csv"
         ne = NumberExtractor(test_string, output_csv=numerical_output)
         ne.run_all()
 
@@ -79,14 +84,32 @@ class Preprocessor:
 
 
 if __name__ == "__main__":
-    pdfs_to_process = [
-        ("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0).pdf" , "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0).pdf"),
-        
-        ("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/pdfs/Atkins_ Physical Chemistry 11e.pdf", "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf"),
+    parser = argparse.ArgumentParser(description="Run preprocessing pipeline from YAML config")
+    parser.add_argument(
+        "--config",
+        type=str,
+        default="conf/preprocessing.yaml",
+    )
+    parser.add_argument(
+        "--no-impute",
+        action="store_true",
+    )
+    args = parser.parse_args()
 
-        ("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/raw/Chemistry2e-Flowers.pdf", "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/raw/Chemistry2e-Flowers.pdf"),
-    
-    ]
+    with open(args.config, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
 
-    preprocessor = Preprocessor(pdfs_to_process)
+    textbook_dir = config["textbook_dir"].rstrip("/")
+    pdfs_to_process = []
+    for textbook in config["textbooks"]:
+        mode = textbook["mode"]
+        if mode == "joint":
+            q_path = f"{textbook_dir}/{textbook['textbook_pdf']}"
+            a_path = q_path
+        else:
+            q_path = f"{textbook_dir}/{textbook['question_pdf']}"
+            a_path = f"{textbook_dir}/{textbook['solutions_pdf']}"
+        pdfs_to_process.append((q_path, a_path))
+
+    preprocessor = Preprocessor(pdfs_to_process, impute=not args.no_impute)
     preprocessor()

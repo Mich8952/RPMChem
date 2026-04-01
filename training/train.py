@@ -1,9 +1,11 @@
+import argparse
 import copy
 import itertools
 import json
 import math
 import os
 import pickle
+import yaml
 import shutil
 from uuid import uuid4
 from early_stopper import EarlyStopper
@@ -27,10 +29,6 @@ try:
     from huggingface_hub import snapshot_download
 except ImportError:
     snapshot_download = None
-
-
-DEFAULT_SYSTEM_PROMPT = ""
-
 
 def resolve_model_dir(model_dir_or_repo):
     if os.path.exists(model_dir_or_repo):
@@ -441,27 +439,14 @@ def train(
 
 
 if __name__ == "__main__":
-    train(
-        model_dir="mlx-community/Meta-Llama-3.1-8B-Instruct-4bit",
-        train_jsonl="/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/current_to_run/train_IMPUTED.jsonl",
-        valid_jsonl="/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/current_to_run/valid_IMPUTED.jsonl",
-        save_dir="adapters_vx",
-        max_seq_len=5000,
-        batch_size=1,
-        iters=10000,
-        eval_every=100,
-        eval_batches=125,
-        save_every=250,
-        apply_chat_template=True,
-        mask_prompt=True,
-        system_prompt=DEFAULT_SYSTEM_PROMPT,
-        lr=1e-5,
-        weight_decay=0.0,
-        lora_rank=16,
-        lora_alpha=32.0,
-        lora_dropout=0.0,
-        num_layers=-1,
-        seed=42,
+    parser = argparse.ArgumentParser(description="Run LoRA training from YAML config")
+    parser.add_argument(
+        "--config",
+        type=str,
+        default="conf/training.yaml",
     )
+    args = parser.parse_args()
 
-
+    with open(args.config, "r", encoding="utf-8") as f:
+        train_config = yaml.safe_load(f)
+    train(**train_config)

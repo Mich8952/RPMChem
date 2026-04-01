@@ -1,0 +1,23 @@
+model_dir: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+train_jsonl: datasets/current_to_run_text_ids/train_with_ids_impute.jsonl
+valid_jsonl: split_from_train
+save_dir: adapters_vx
+
+max_seq_len: 5000
+batch_size: 1
+iters: 10000
+eval_every: 100
+eval_batches: 125
+save_every: 250
+
+apply_chat_template: true
+mask_prompt: true
+system_prompt: ""
+
+lr: 1.0e-5
+weight_decay: 0.0
+lora_rank: 16
+lora_alpha: 32.0
+lora_dropout: 0.0
+num_layers: -1
+seed: 42

@@ -1,0 +1,15 @@
+textbook_dir: datasets
+
+textbooks:
+  - name: engel_reid_solution_manual
+    mode: joint
+    textbook_pdf: pdfs/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0).pdf
+
+  - name: atkins_11e
+    mode: disjoint
+    question_pdf: pdfs/Atkins_ Physical Chemistry 11e.pdf
+    solutions_pdf: pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf
+
+  - name: chemistry2e_flowers
+    mode: joint
+    textbook_pdf: raw/Chemistry2e-Flowers.pdf
