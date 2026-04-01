@@ -7,7 +7,7 @@ Use `conf/preprocessing.yaml` to define what gets processed.
 `joint` means questions and solutions are in the same PDF.
 `disjoint` means questions and solutions are in separate PDFs.
 
-Minimal config format:
+Config format:
 
 ```yaml
 textbook_dir: datasets
