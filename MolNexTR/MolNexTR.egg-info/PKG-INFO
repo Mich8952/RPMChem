@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: MolNexTR
+Version: 1.0.0
+Summary: MolNexTR, a novel graph generation model
+Home-page: https://github.com/Kohulan/MolNexTR
+License: Apache License 2.0
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: Apache License 2.0
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+License-File: LICENSE
+Requires-Dist: pytorch-lightning
+Requires-Dist: opencv-python
+Requires-Dist: pystow
+Requires-Dist: pillow
+Requires-Dist: pyparsing
+Requires-Dist: six
+Requires-Dist: albumentations==1.1.0
+Requires-Dist: SmilesPE
+Requires-Dist: timm==0.4.12
+Requires-Dist: pyonmttok==1.37.1
+Requires-Dist: OpenNMT-py==2.2.0
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: rdkit
