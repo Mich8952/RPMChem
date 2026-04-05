@@ -1,3 +1,9 @@
+# preprocessing/combine_textbooks.py
+
+"""
+Combines multiple textbook JSONL files into one unified dataset.
+"""
+
 import json
 
 class TextbookCombiner:
@@ -22,3 +28,8 @@ class TextbookCombiner:
                         writer.write("\n")
 
         return output_path
+
+
+# ---------------------------------------------------------------------------
+# End of file!
+# ---------------------------------------------------------------------------

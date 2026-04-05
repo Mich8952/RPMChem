@@ -1,3 +1,9 @@
+# preprocessing/re_process_real.py
+
+"""
+Filters processed samples and creates train-validation splits.
+"""
+
 import json
 from tqdm import tqdm   
 import re
@@ -85,3 +91,8 @@ if __name__ == "__main__":
     rp = ReprocessorReal("datasets/processed_real/mega_joined_3txt_with_textbook_ids.jsonl")
     rp.clean_jsons()
     rp.split_data()
+
+
+# ---------------------------------------------------------------------------
+# End of file!
+# ---------------------------------------------------------------------------

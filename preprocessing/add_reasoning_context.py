@@ -1,7 +1,10 @@
-"""
-Main purpose of this file is to add reasoning to bridge questions and their solutions. The idea is that hopefully the LLM used here will be faithful and produce strong reasoning that would help another model learn how to reason from question to solution.
+# preprocessing/add_reasoning_context.py
 
-In this case we want to use a smart LLM (but I also don't want to spend money on API calls), so I will use a local gpt-oss-120b model
+"""
+Generates reasoning traces to augment question-solution training examples.
+
+Ideally, one would use a powerful LLM, however this project uses a local
+gpt-oss-120b model via LM Studio to avoid API costs.
 """
 
 import json
@@ -9,50 +12,55 @@ import os
 
 import lmstudio as lms
 
-SYSTEM_PROMPT = (
-    "You are an expert chemistry tutor. Given a chemistry question and a ground-truth final "
-    "solution, generate only the reasoning steps that would lead to that solution. "
-    "Be numerically and chemically consistent. Do not restate the final solution verbatim."
-)
+from prompts import REASONING_SYSTEM_PROMPT, REASONING_USER_TEMPLATE
+
+
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
 
 MODEL = "gpt-oss-120b"
-API_KEY = "lm-studio"
 TEMPERATURE = 0.2
-MAX_TOKENS = 1000 # will fix this if we run into issues with cutoff
-
-#model = lms.llm(MODEL)
+MAX_TOKENS = 1000
 
 
+# ---------------------------------------------------------------------------
+# Processor
+# ---------------------------------------------------------------------------
 
 class SplitProcessor:
+    """Loads a JSONL split, augments each row with model-generated reasoning,
+    and writes the result to a new JSONL file."""
+
     def __init__(self):
-        # only making this class based so that we can load the model only when this is called
         self.model = lms.llm(MODEL)
-            
-    def process_split(self, input_path, output_path):
+
+    def process_split(self, input_path: str, output_path: str) -> None:
         rows = self.load_jsonl(input_path)
         out_rows = []
         failures = 0
+
         for idx, row in enumerate(rows, start=1):
             try:
-                reasoning = self.send(prompt=row["prompt"], completion=row["completion"])
-                
-                augmented = self.compose_augmented_completion(reasoning, row["completion"])
+                reasoning = self.send(
+                    prompt=row["prompt"], completion=row["completion"]
+                )
+                augmented = self.compose_augmented_completion(
+                    reasoning, row["completion"]
+                )
                 out_rows.append({"prompt": row["prompt"], "completion": augmented})
-
-
             except Exception as e:
                 failures += 1
-                print(f"{idx} generation failed: {e}")
+                print(f"Row {idx} generation failed: {e}")
 
-            print(idx/len(rows)*100)
             if idx % 10 == 0:
-                print(f"{idx}/{len(rows)} done")
+                print(f"{idx}/{len(rows)} done ({idx / len(rows) * 100:.1f}%)")
 
         self.write_jsonl(output_path, out_rows)
         print(f"Wrote {len(out_rows)} rows to {output_path} (failures={failures})")
 
-    def load_jsonl(self, path):
+    def load_jsonl(self, path: str) -> list[dict]:
+        """Read a JSONL file and return a list of prompt/completion dicts."""
         rows = []
         path_str = os.fspath(path)
         with open(path_str, "r", encoding="utf-8") as f:
@@ -63,65 +71,54 @@ class SplitProcessor:
                 obj = json.loads(line)
                 prompt = obj.get("prompt", "")
                 completion = obj.get("completion", "")
-                if not isinstance(prompt, str) or not isinstance(completion, str): # have to handle cases where it for some reason didnt save the formatting correctly before (likely an issue with my get_jsons script. Will debug in future)
-                    raise ValueError(f"Invalid prompt/completion at {path_str}:{line_idx}")
+                if not isinstance(prompt, str) or not isinstance(completion, str):
+                    raise ValueError(
+                        f"Invalid prompt/completion type at {path_str}:{line_idx}"
+                    )
                 rows.append({"prompt": prompt, "completion": completion})
-
         return rows
 
+    def build_user_prompt(self, prompt: str, solution: str) -> str:
+        """Format the user-facing prompt using the shared template."""
+        return REASONING_USER_TEMPLATE.format(prompt=prompt, completion=solution)
 
-    def build_user_prompt(self, prompt, solution):
-
-        to_writeout = (
-            "Question:\n"
-            f"{prompt}\n\n"
-            "Ground-truth final solution:\n"
-            f"{solution}\n\n"
-            "Task:\n"
-            "Write only the reasoning steps that lead to the provided final solution.\n"
-            "Requirements:\n"
-            "1) Keep equations and unit logic explicit.\n"
-            "2) Keep it concise but complete enough to reproduce the solution.\n"
-            "3) Do NOT include a final-answer section.\n"
-            "4) Do NOT add JSON or markdown fences.\n"
-        )
-
-        return to_writeout
-
-
-    def send(self, prompt, completion):
-        chat = lms.Chat(SYSTEM_PROMPT)
+    def send(self, prompt: str, completion: str) -> str:
+        """Send a prompt+solution pair to the model and return reasoning text."""
+        chat = lms.Chat(REASONING_SYSTEM_PROMPT)
         chat.add_user_message(self.build_user_prompt(prompt, completion))
-
         prediction = self.model.respond(
             chat,
-            config={"temperature": TEMPERATURE,"maxTokens": MAX_TOKENS},
+            config={"temperature": TEMPERATURE, "maxTokens": MAX_TOKENS},
         )
+        return prediction.content or ""
 
-        text = prediction.content
-        return text or "" # if text is none then we just send the empty string (handle later)
-
-
-    def compose_augmented_completion(self, reasoning, solution):
+    def compose_augmented_completion(self, reasoning: str, solution: str) -> str:
         """
-        Augmented message simply means that we replace the old "completion" with reasoning and completion (all in one text block). This is because we want to train the model to learn the reasoning AND solution.
+        Combine reasoning and solution into a single completion string.
+
+        The model is trained to produce reasoning followed by the final
+        solution, so both are concatenated here under labelled headers.
         """
-        if reasoning is None or reasoning == "":
-            raise ValueError("Model failed to make reasoning for some reason, ignore this entire sample")
-        reasoning_text = reasoning
-        solution_text = solution
-        return f"Reasoning:\n{reasoning_text}\n\nSolution:\n{solution_text}"
+        if not reasoning:
+            raise ValueError(
+                "Empty reasoning returned by model — skipping this sample."
+            )
+        return f"Reasoning:\n{reasoning}\n\nSolution:\n{solution}"
 
-
-    def write_jsonl(self, path, rows):
+    def write_jsonl(self, path: str, rows: list[dict]) -> None:
+        """Write a list of dicts to a JSONL file, creating parent dirs if needed."""
         path_str = os.fspath(path)
         parent_dir = os.path.dirname(path_str)
         if parent_dir:
             os.makedirs(parent_dir, exist_ok=True)
         with open(path_str, "w", encoding="utf-8") as f:
             for row in rows:
-                f.write(json.dumps(row, ensure_ascii=False) + "\n") # new the newline because its a jsonl.\
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
     input_train = "datasets/current_to_run/train_noimpute.jsonl"
@@ -132,3 +129,8 @@ if __name__ == "__main__":
     sp = SplitProcessor()
     sp.process_split(input_train, output_train)
     sp.process_split(input_valid, output_valid)
+
+
+# ---------------------------------------------------------------------------
+# End of file!
+# ---------------------------------------------------------------------------

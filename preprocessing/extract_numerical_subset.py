@@ -1,3 +1,9 @@
+# preprocessing/extract_numerical_subset.py
+
+"""
+Extracts single final numerical values and units from processed samples.
+"""
+
 import ast
 import lmstudio as lms
 import json
@@ -28,7 +34,12 @@ Rules:
 
 Do not include any explanation or extra text."""
 
-    def __init__(self, file_dir = None, model_dir = "openai/gpt-oss-120b", output_csv = "datasets/numerical_prompts_real/validation_units_new.csv"):
+    def __init__(
+    self,
+    file_dir: str | None = None,
+    model_dir: str = "openai/gpt-oss-120b",
+    output_csv: str = "datasets/numerical_prompts_real/validation_units_new.csv",
+    ):
         self.model = lms.llm(model_dir)
         self.all_preds = []
         self.all_samples = []
@@ -46,7 +57,7 @@ Do not include any explanation or extra text."""
                 return None
             else:
                 return float(str_text)
-        except:
+        except Exception:
             return None
 
     @staticmethod
@@ -57,7 +68,7 @@ Do not include any explanation or extra text."""
                 return None
             else:
                 return str_text
-        except:
+        except Exception:
             return None
 
 
@@ -121,7 +132,7 @@ Do not include any explanation or extra text."""
                     self.all_samples.append(sample["prompt"])
                     self.all_values.append(value)
                     self.all_units.append(unit)
-            except:
+            except Exception:
                 skip_counter+=1
                 print(skip_counter)
                 
@@ -133,7 +144,13 @@ Do not include any explanation or extra text."""
         df["all_pred_value"] = self.all_values
         df["all_pred_unit"] = [u if u is not None else "NA" for u in self.all_units]
         df.to_csv(self.output_csv)
-
-if __name__ == "__main__":
-    NumberExtractor("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/current_to_run/valid_noimpute.jsonl").run_all()
                 
+if __name__ == "__main__":
+    NumberExtractor(
+        "datasets/current_to_run/valid_noimpute.jsonl"
+    ).run_all()
+
+
+# ---------------------------------------------------------------------------
+# End of file!
+# ---------------------------------------------------------------------------
