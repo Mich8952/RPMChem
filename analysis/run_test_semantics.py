@@ -271,6 +271,9 @@ if __name__ == "__main__":
         "--model_2",
         default="~/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt",
     )
+    
+    
+    
     args = parser.parse_args()
 
     dataset_dir = os.path.expanduser(args.dataset_dir)
