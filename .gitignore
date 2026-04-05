@@ -9,4 +9,4 @@
 *.json
 *.DS_Store
 *.h5
-fuse.md
+fuse.md*/.gitkeep
