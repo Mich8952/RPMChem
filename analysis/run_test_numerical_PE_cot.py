@@ -6,7 +6,10 @@ from mlx_lm.sample_utils import make_sampler
 import sys
 import copy
 from datetime import datetime
-sys.path.append("/Users/michaelmurray/Documents/GitHub/RPMChem/preprocessing")
+
+import sys, os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "preprocessing"))
 
 from extract_numerical_subset import NumberExtractor
 
@@ -237,12 +240,35 @@ class ModelComparatorNumerical: # class to compare models (this is a misnomer no
         df["model2_converted_value"] = self.model2_values_converted
         df["model2_ans"] = self.model2_ans
 
-        df.to_csv(f"analysis/results/numerical_pe_cot_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv", index=False)
+        _results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
+        os.makedirs(_results_dir, exist_ok=True)
+        df.to_csv(os.path.join(_results_dir, f"numerical_pe_cot_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"), index=False)
+
     
+
+
+
 if __name__ == "__main__":
-    MCN = ModelComparatorNumerical("/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/numerical_prompts_real/validation.csv")
-    m1 = "/Users/michaelmurray/.lmstudio/models/personal/8b_noLora"
-    m2 = "/Users/michaelmurray/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt"
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--dataset_dir",
+        default="datasets/numerical_prompts_real/validation.csv",
+    )
+    parser.add_argument(
+        "--model_1",
+        default="~/.lmstudio/models/personal/8b_noLora",
+    )
+    parser.add_argument(
+        "--model_2",
+        default="~/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt",
+    )
+    args = parser.parse_args()
+
+    dataset_dir = os.path.expanduser(args.dataset_dir)
+    m1 = os.path.expanduser(args.model_1)
+    m2 = os.path.expanduser(args.model_2)
+
+    MCN = ModelComparatorNumerical(dataset_dir)
     MCN.compare(m1, m2)
     MCN.save_results()
-

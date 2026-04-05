@@ -278,6 +278,5 @@ if __name__ == "__main__":
     m2 = os.path.expanduser(args.model_2)
 
     mc = ModelComparatorSemantics(dataset_dir=dataset_dir)
-    #m2 = "/Users/michaelmurray/.lmstudio/models/introvoyz041/ChemDFM-v2.0-14B-mlx-4Bit"
     mc.compare(m1,m2)
     mc.save_results()

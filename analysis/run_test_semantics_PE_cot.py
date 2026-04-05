@@ -250,17 +250,35 @@ class ModelComparatorSemantics:
         df['rougeL_f1_model1'] = self.rougeL_f1_model1
         df['rougeL_f1_model2'] = self.rougeL_f1_model2
 
-        df.to_csv(f"analysis/results/semantics_compare_to_pe_cot_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv", index=False)
+        _results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
+        os.makedirs(_results_dir, exist_ok=True)
+        df.to_csv(os.path.join(_results_dir, f"semantics_compare_to_pe_cot_{...}.csv"), index=False)
 
         return True
     
 
 
-
 if __name__ == "__main__":
-    mc = ModelComparatorSemantics(dataset_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/current_to_run/valid_IMPUTED.jsonl")
-    m1 = "/Users/michaelmurray/.lmstudio/models/personal/8b_noLora"
-    m2 = "/Users/michaelmurray/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt"
-    mc.compare(m1,m2)
-    mc.save_results()
+    import argparse, os
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--dataset_dir",
+        default="datasets/current_to_run/valid_IMPUTED.jsonl",
+    )
+    parser.add_argument(
+        "--model_1",
+        default="~/.lmstudio/models/personal/8b_noLora",
+    )
+    parser.add_argument(
+        "--model_2",
+        default="~/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt",
+    )
+    args = parser.parse_args()
 
+    dataset_dir = os.path.expanduser(args.dataset_dir)
+    m1 = os.path.expanduser(args.model_1)
+    m2 = os.path.expanduser(args.model_2)
+
+    mc = ModelComparatorSemantics(dataset_dir=dataset_dir)
+    mc.compare(m1, m2)
+    mc.save_results()
