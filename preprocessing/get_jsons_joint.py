@@ -26,8 +26,6 @@ from prompts import build_joint_prompt
 # Configuration
 # ---------------------------------------------------------------------------
 
-INITIAL_PAGE = 10
-FINAL_PAGE = 755
 MAX_PAGES_PER_QUESTION = 3
 LM_STUDIO_BASE_URL = "http://localhost:1234/v1"
 MODEL_NAME = "qwen/qwen3-vl-30b"

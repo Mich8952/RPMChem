@@ -100,3 +100,56 @@ print(json.load(open(p, encoding='utf-8'))['system_prompt'])
 PY
 )"
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Required Textbooks
+
+The pipeline requires the following PDFs placed in the correct directories.
+These are copyrighted materials and cannot be redistributed.
+
+| File | Directory | Where to obtain |
+|---|---|---|
+| Atkins' Physical Chemistry 11e | `datasets/pdfs/` | Publisher website or library |
+| Solutions Manual — Atkins 11th Ed | `datasets/pdfs/` | Publisher website or library |
+| Engel & Reid Physical Chemistry Solution Manual | `datasets/raw/` | Publisher website or library |
+
+
+# scripts/download_data.py
+"""Downloads required textbook PDFs into datasets/."""
+
+import os
+import urllib.request
+
+PDFS = {
+    "datasets/pdfs/Atkins_ Physical Chemistry 11e.pdf": "https://your-host/atkins.pdf",
+    "datasets/pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf": "https://your-host/atkins_solutions.pdf",
+    "datasets/raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0) - libgen.li.pdf": "https://your-host/engel_reid.pdf",
+}
+
+for dest, url in PDFS.items():
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    if not os.path.exists(dest):
+        print(f"Downloading {dest}...")
+        urllib.request.urlretrieve(url, dest)
+    else:
+        print(f"Already exists: {dest}")
+
+git clone https://github.com/Mich8952/RPMChem
+python scripts/download_data.py
+python preprocessing/preprocessor_pipeline.py

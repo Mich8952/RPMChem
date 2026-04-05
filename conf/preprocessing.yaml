@@ -1,15 +1,24 @@
+# conf/preprocessing.yaml
+
+# Root directory for all textbook PDFs, relative to the repo root.
+# All textbook paths below are resolved as: textbook_dir/pdf_filename
+
+# FOR CLONED REPO: Ensure original textbook PDFs are placed in the correct location as specified by the paths below.
+
 textbook_dir: datasets
 
 textbooks:
   - name: engel_reid_solution_manual
     mode: joint
-    textbook_pdf: pdfs/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0).pdf
+    textbook_pdf: "raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0) - libgen.li.pdf"
+    initial_page: 10
+    final_page: 755
 
   - name: atkins_11e
     mode: disjoint
-    question_pdf: pdfs/Atkins_ Physical Chemistry 11e.pdf
-    solutions_pdf: pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf
+    question_pdf: "pdfs/Atkins_ Physical Chemistry 11e.pdf"
+    solutions_pdf: "pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf"
 
   - name: chemistry2e_flowers
     mode: joint
-    textbook_pdf: raw/Chemistry2e-Flowers.pdf
+    textbook_pdf: "raw/Chemistry2e-Flowers.pdf"
