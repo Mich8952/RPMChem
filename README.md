@@ -1,6 +1,7 @@
-# RPMChem — Fine-Tuning LLMs for Chemistry Problem Solving
+# Fine-Tuning LLMs for Chemistry Problem Solving
+### Created by the RPMChem team.
 
-RPMChem (Revolutions Per Minute Chemistry) is a research pipeline for fine-tuning lightweight LLMs on physical chemistry textbook Q&A data using QLoRA on Apple Silicon (MLX). The pipeline covers PDF extraction, dataset preprocessing, LoRA training, and evaluation.
+This is a research pipeline for fine-tuning lightweight LLMs on physical chemistry textbook Q&A data using QLoRA on Apple Silicon (MLX). The pipeline covers PDF extraction, dataset preprocessing, LoRA training, and evaluation.
 
 > **Platform**: macOS (Apple Silicon, M-series) — the training stack uses [MLX](https://github.com/ml-explore/mlx) and is not compatible with CUDA/Linux out of the box.
 
