@@ -125,8 +125,7 @@ python preprocessor_pipeline.py
 
 The pipeline requires physical chemistry textbook PDFs. These are copyrighted and cannot be redistributed with the repo.
 
-The files can be downloaded via the following link:
-[text](https://drive.google.com/drive/folders/1N8KDausUHZJRQ96z_Mpe4YoxXxWVbjsn?usp=sharing)
+[Textbook files can be found and downloaded here.](https://drive.google.com/drive/folders/1N8KDausUHZJRQ96z_Mpe4YoxXxWVbjsn?usp=sharing)
 
 | File | Destination | Notes |
 |---|---|---|
