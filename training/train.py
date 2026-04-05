@@ -2,27 +2,27 @@ import argparse
 import copy
 import itertools
 import json
-import math
+import math  # noqa: F401  (kept for potential downstream use)
 import os
 import pickle
-import yaml
 import shutil
 from uuid import uuid4
-from early_stopper import EarlyStopper
 
 import matplotlib.pyplot as plt
 import mlx.core as mx
 import mlx.nn as nn
 import mlx.optimizers as optim
-from transformers import AutoTokenizer 
-
-
-"""
-Inspiration/help for some code was taken from the mlx-lm package. This is an open source package that makes it easy to do LoRA fine tuning. However, we wanted to make it more customizable and permit more controllability so we coded it up in mlx. Note that mlx supposively is significantly faster than using pytorch with mps. This is also true because like pytorch MPS doesnt support 4 bit training but mlx permits it.
-"""
+import yaml
+from transformers import AutoTokenizer
 
 from dataclasses_mlx import DataLoader, JSONLDataset
-from models import causal_lm_loss, linear_to_lora_layers, load_pretrained_model, save_lora_adapters
+from early_stopper import EarlyStopper
+from models import (
+    causal_lm_loss,
+    linear_to_lora_layers,
+    load_pretrained_model,
+    save_lora_adapters,
+)
 from tokenizer_template import patch_chat_template_jinja, patch_tokenizer_config
 
 try:
@@ -30,10 +30,15 @@ try:
 except ImportError:
     snapshot_download = None
 
+# Inspiration/help for some code was taken from the mlx-lm package.
+# We wanted more controllability than mlx-lm exposes, and mlx is
+# significantly faster than PyTorch MPS (which also lacks 4-bit training).
+
+
 def resolve_model_dir(model_dir_or_repo):
+    """Return a local model directory, downloading from HF Hub if needed."""
     if os.path.exists(model_dir_or_repo):
         return model_dir_or_repo
-    # otherwise we load from hugging face!
     local_dir = snapshot_download(
         repo_id=model_dir_or_repo,
         allow_patterns=[
@@ -50,29 +55,24 @@ def resolve_model_dir(model_dir_or_repo):
 
 
 def get_context_limit(model_config, tokenizer):
-    # look fro max position embedding first (hard limit) otherwise fall back and look for the model max length given in the tokenizer (would likely be the same, but I would prefer to use the model config instead)
+    """Return the hard context window size from config or tokenizer."""
     max_pos = model_config.get("max_position_embeddings")
     if isinstance(max_pos, int):
         return max_pos
-
-    tok_max = getattr(tokenizer, "model_max_length")
+    tok_max = getattr(tokenizer, "model_max_length", None)
     if isinstance(tok_max, int):
         return tok_max
+    return None
 
-
-"""
-def catch_if_near_seq_len(max_seq_len, model_config, tokenizer):
-    context_limit = get_context_limit(model_config, tokenizer)
-
-    print(f"context_limit={context_limit} max_seq_len={max_seq_len}")
-"""
 
 def convert_batch_to_dct(batch):
     return {
         "input_ids": mx.array(batch["input_ids"]),
-        "labels": mx.array(batch["labels"])}
+        "labels": mx.array(batch["labels"]),
+    }
 
-def build_adapter_config( # most args are self explanatory. For example, eval_batches is how many batches we use during an eval call (so batch size * eval_batches many samples). This function converts the args into a dict form so that we can later seralize it into a json. 
+
+def build_adapter_config(
     model_dir,
     train_jsonl,
     seed,
@@ -89,10 +89,14 @@ def build_adapter_config( # most args are self explanatory. For example, eval_ba
     system_prompt,
     lora_rank,
     lora_dropout,
-    lora_alpha):
+    lora_alpha,
+):
+    """Serialize training hyperparameters to a dict for later JSON storage.
 
+    eval_batches controls how many batches are used during each eval
+    call (effective samples = batch_size * eval_batches).
+    """
     data_dir = os.path.dirname(os.path.abspath(train_jsonl))
-    
     return {
         "model": model_dir,
         "train": True,
@@ -122,7 +126,8 @@ def build_adapter_config( # most args are self explanatory. For example, eval_ba
     }
 
 
-def evaluate(model, loader, max_batches): # load in the model, dataloader, and the max number of batches
+def evaluate(model, loader, max_batches):
+    """Compute mean cross-entropy loss over up to max_batches batches."""
     losses = []
     for i, batch in enumerate(loader):
         if i >= max_batches:
@@ -134,21 +139,22 @@ def evaluate(model, loader, max_batches): # load in the model, dataloader, and t
 
     if not losses:
         return float("nan")
-    else:
-        return sum(losses) / len(losses)
+    return sum(losses) / len(losses)
 
 
 def copy_tokenizer_artifacts_from_orig_model(tokenizer_path, save_dir):
+    """Copy tokenizer files from the base model into the adapter directory."""
     if not os.path.exists(tokenizer_path):
         return
 
-    for name in (
+    artifact_names = (
         "tokenizer.json",
         "tokenizer_config.json",
         "special_tokens_map.json",
         "vocab.json",
         "merges.txt",
-    ):
+    )
+    for name in artifact_names:
         source_file = os.path.join(tokenizer_path, name)
         target_file = os.path.join(save_dir, name)
         if os.path.exists(source_file):
@@ -156,21 +162,25 @@ def copy_tokenizer_artifacts_from_orig_model(tokenizer_path, save_dir):
 
 
 def bake_prompt_into_saved_chat_template(save_dir, system_prompt):
-    """
-    If we train with a prompt (we were experimenting before) then we need to put this new prompt into the tokenizer/chat template so that it loads it up during inference
+    """Embed the system prompt into the saved tokenizer/chat template.
+
+    Required so inference loads the correct prompt without extra config.
     """
     tokenizer_config_path = os.path.join(save_dir, "tokenizer_config.json")
     chat_template_path = os.path.join(save_dir, "chat_template.jinja")
+
     updated_config = patch_tokenizer_config(tokenizer_config_path, system_prompt)
     updated_jinja = patch_chat_template_jinja(chat_template_path, system_prompt)
+
     if updated_config:
         print(f"updated prompt: {tokenizer_config_path}")
     else:
-        print(f"unchanged: {tokenizer_config_path}. If we expected an update then please debug")
+        print(f"unchanged: {tokenizer_config_path}")
+
     if updated_jinja:
         print(f"updated prompt: {chat_template_path}")
     elif os.path.exists(chat_template_path):
-        print(f"unchanged: {chat_template_path}. If we expected an update then please debug")
+        print(f"unchanged: {chat_template_path}")
 
 
 def train(
@@ -193,37 +203,38 @@ def train(
     lora_alpha,
     lora_dropout,
     num_layers,
-    seed):
+    seed,
+):
+    """Train QLoRA adapters on a JSONL dataset.
 
+    Follows a PyTorch-style training loop implemented in MLX.
     """
-    Function to train the QLoRA adapters. Inputs should be self explanatory, but will document further in the future.
-    I tried to make this as pytorch-thonic as possible
-    """
-    mx.random.seed(seed) # mlx has its own seed you gotta set
+    mx.random.seed(seed)
 
     model_dir = resolve_model_dir(model_dir)
-    tokenizer_path = model_dir # load this from the model dir path (should come with the tokennizer per our original allow_pattersn setups)
+    tokenizer_path = model_dir
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
-    
-    if tokenizer.pad_token_id is None:
-        tokenizer.pad_token = tokenizer.eos_token # depends on the model we use
 
-    with open(f"{model_dir}/config.json", "r", encoding="utf-8") as f:
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token = tokenizer.eos_token
+
+    with open(os.path.join(model_dir, "config.json"), "r", encoding="utf-8") as f:
         model_config = json.load(f)
 
-    if valid_jsonl == "split_from_train": # method so that it does a split from the train set instead at run time 
-
+    # Build train/validation datasets
+    if valid_jsonl == "split_from_train":
+        # 17.65% of the 85% train portion gives a final 70/15/15 split
+        split_prop = 0.1765
         train_ds = JSONLDataset(
-        train_jsonl, 
-        tokenizer,
-        max_length=max_seq_len,
-        apply_chat_template=apply_chat_template,
-        mask_prompt=mask_prompt,
-        system_prompt=system_prompt,
-        split_prop=0.1765, # 17.65% of the original 85% (train) constitutes a final 70,15,15 split
-        set_type = "train"
+            train_jsonl,
+            tokenizer,
+            max_length=max_seq_len,
+            apply_chat_template=apply_chat_template,
+            mask_prompt=mask_prompt,
+            system_prompt=system_prompt,
+            split_prop=split_prop,
+            set_type="train",
         )
-
         valid_ds = JSONLDataset(
             train_jsonl,
             tokenizer,
@@ -231,19 +242,18 @@ def train(
             apply_chat_template=apply_chat_template,
             mask_prompt=mask_prompt,
             system_prompt=system_prompt,
-            split_prop = 0.1765, # 17.65% of the original 85% (train) constitutes a final 70,15,15 split
-            set_type = "valid"
+            split_prop=split_prop,
+            set_type="valid",
         )
     else:
         train_ds = JSONLDataset(
-        train_jsonl, 
-        tokenizer,
-        max_length=max_seq_len,
-        apply_chat_template=apply_chat_template,
-        mask_prompt=mask_prompt,
-        system_prompt=system_prompt,
+            train_jsonl,
+            tokenizer,
+            max_length=max_seq_len,
+            apply_chat_template=apply_chat_template,
+            mask_prompt=mask_prompt,
+            system_prompt=system_prompt,
         )
-
         valid_ds = JSONLDataset(
             valid_jsonl,
             tokenizer,
@@ -252,8 +262,6 @@ def train(
             mask_prompt=mask_prompt,
             system_prompt=system_prompt,
         )
-
-    # I tried to make this as similar to pytorch as possible.
 
     train_loader = DataLoader(
         train_ds,
@@ -266,25 +274,19 @@ def train(
         valid_ds,
         batch_size=batch_size,
         pad_token_id=tokenizer.pad_token_id,
-        shuffle=False, # TODO, looking back, we should maybe set this to true because the validation set is sampled each time we run an eval (so that evals do not take forever)
+        shuffle=False,
         seed=seed,
     )
 
-    # now, load up the base model
     model, _ = load_pretrained_model(model_dir)
-    model.freeze() # freeze the base parameters (we train LoRA parallel to these, but we dont want to update the base params)
-
-    # loss tracking
-    train_losses = []
-    valid_losses = []
-    valid_steps = []
-    train_steps = []
+    model.freeze()
 
     if num_layers > len(model.layers):
         raise ValueError(
-            f"You asked for {num_layers} layers for LoRA, but the model only has {len(model.layers)} so you should reduce"
+            f"You asked for {num_layers} LoRA layers, but the model only "
+            f"has {len(model.layers)}. Please reduce num_layers."
         )
-    # convert linear layers to LoRA layers. Basically adding a parallel adapter.
+
     linear_to_lora_layers(
         model,
         num_layers=num_layers,
@@ -293,18 +295,19 @@ def train(
         dropout=lora_dropout,
     )
 
-
     optimizer = optim.AdamW(learning_rate=lr, weight_decay=weight_decay)
 
     def loss_fn(cur_model, cur_batch):
         logits = cur_model(cur_batch["input_ids"])
-        return causal_lm_loss(logits, cur_batch["labels"]) # compare logit prob distros to the true labels (one hot encoded).
+        return causal_lm_loss(logits, cur_batch["labels"])
 
-    loss_and_grad = nn.value_and_grad(model, loss_fn) # this is like pytorch cost function but it also like automatically calls loss.backward() so it computes the gradients.
+    # value_and_grad computes loss + gradients in one pass (like
+    # loss.backward() in PyTorch)
+    loss_and_grad = nn.value_and_grad(model, loss_fn)
 
-    # functionality for saving the prog
+    # Initialise save directory and persist adapter config
     os.makedirs(save_dir, exist_ok=True)
-    adapter_config_path = f"{save_dir}/adapter_config.json"
+    adapter_config_path = os.path.join(save_dir, "adapter_config.json")
     with open(adapter_config_path, "w", encoding="utf-8") as f:
         json.dump(
             build_adapter_config(
@@ -327,119 +330,116 @@ def train(
                 lora_alpha=lora_alpha,
             ),
             f,
-            indent=4, # 4 spaces for each indent
+            indent=4,
         )
     print(f"saved={adapter_config_path}")
 
-    # save the prompt if we use one (this is more for old tests I ran, but it could come in handy later, so i will keep it for now)
-    prompt_config_path = f"{save_dir}/chem_prompt_config.json"
+    prompt_config_path = os.path.join(save_dir, "chem_prompt_config.json")
     with open(prompt_config_path, "w", encoding="utf-8") as f:
-        json.dump(
-            {"system_prompt": system_prompt},
-            f,
-            indent=2,
-        )
+        json.dump({"system_prompt": system_prompt}, f, indent=2)
 
     copy_tokenizer_artifacts_from_orig_model(tokenizer_path, save_dir)
     bake_prompt_into_saved_chat_template(save_dir, system_prompt)
 
-    # also save logs (more useful before, but good to have nontheless)
     os.makedirs("logs", exist_ok=True)
-    log_path = f"logs/run_{str(uuid4())}.log"
-    log_file = open(log_path, "a", encoding="utf-8")
+    log_path = os.path.join("logs", f"run_{uuid4()}.log")
 
-    train_iter = itertools.cycle(train_loader)
+    train_losses, valid_losses = [], []
+    train_steps, valid_steps = [], []
 
     es = EarlyStopper(patience=5)
+    train_iter = itertools.cycle(train_loader)
 
-    for step in range(iters):
-        batch = convert_batch_to_dct(next(train_iter))
-        loss, grads = loss_and_grad(model, batch) # same as loss = cost(*) then loss.backward()
+    with open(log_path, "a", encoding="utf-8") as log_file:
+        for step in range(iters):
+            batch = convert_batch_to_dct(next(train_iter))
+            # loss_and_grad mirrors PyTorch's loss + loss.backward()
+            loss, grads = loss_and_grad(model, batch)
 
-        optimizer.update(model, grads) # this is like pytorch optim.step(), but it just plans to update the params
-        mx.eval(loss, model.parameters(), optimizer.state) # to actually update the params, you have to call mlx.eval as so.
+            # optimizer.update plans the update; mx.eval materialises it
+            optimizer.update(model, grads)
+            mx.eval(loss, model.parameters(), optimizer.state)
 
-        # some logging
-        if step % 10 == 0 or step == 0:
-            msg = f"step={step} train_loss={float(loss.item()):.6f}" # make it its own var because we want to print and log it
-            
-            print(msg)
-            log_file.write(msg + "\n")
-            log_file.flush()
- 
-        if step % 30 == 0:
-            train_steps.append(step)
-            train_losses.append(loss.item())
-
-        if (step % eval_every == 0 and step != 0) or step == 2: # just want some kind of initial val loss too  
-            try:
-                val_loss = evaluate(model, valid_loader, eval_batches)
-                msg = f"step={step} val_loss={val_loss:.6f}"
+            if step % 10 == 0 or step == 0:
+                msg = f"step={step} train_loss={float(loss.item()):.6f}"
                 print(msg)
                 log_file.write(msg + "\n")
                 log_file.flush()
 
-                valid_losses.append(val_loss)
-                valid_steps.append(step)
-                plt.clf()
-                plt.plot(valid_steps, valid_losses, label="val")
-                plt.legend()
-                plt.savefig("train_curr_temp") # real time plotting
+            if step % 30 == 0:
+                train_steps.append(step)
+                train_losses.append(loss.item())
 
-                status = es(val_loss, curr_model=copy.deepcopy(model))
-                if status[0]: 
-                    print("Early stopping triggered")
-                    best_model = status[1]
-                    final_ckpt = f"{save_dir}/lora_final.safetensors"
-                    save_lora_adapters(best_model, final_ckpt)
-                    save_lora_adapters(best_model, f"{save_dir}/adapters.safetensors")
+            run_eval = (step % eval_every == 0 and step != 0) or step == 2
+            if run_eval:
+                try:
+                    val_loss = evaluate(model, valid_loader, eval_batches)
+                    msg = f"step={step} val_loss={val_loss:.6f}"
+                    print(msg)
+                    log_file.write(msg + "\n")
+                    log_file.flush()
 
-                    with open(f"{save_dir}/results.pkl", "wb") as f: # saving results that occured during training
-                        pickle.dump(
-                            {
-                                "train_loss": [float(v) for v in train_losses],
-                                "valid_loss": valid_losses,
-                                "epoch_train": train_steps,
-                                "epoch_valid": valid_steps,
-                            },
-                            f,
+                    valid_losses.append(val_loss)
+                    valid_steps.append(step)
+
+                    plt.clf()
+                    plt.plot(valid_steps, valid_losses, label="val")
+                    plt.legend()
+                    plt.savefig("train_curr_temp")
+
+                    stopped, best_model = es(val_loss, curr_model=copy.deepcopy(model))
+                    if stopped:
+                        print("Early stopping triggered")
+                        final_ckpt = os.path.join(save_dir, "lora_final.safetensors")
+                        save_lora_adapters(best_model, final_ckpt)
+                        save_lora_adapters(
+                            best_model,
+                            os.path.join(save_dir, "adapters.safetensors"),
                         )
-                    log_file.close()
-                    exit()
+                        results = {
+                            "train_loss": [float(v) for v in train_losses],
+                            "valid_loss": valid_losses,
+                            "epoch_train": train_steps,
+                            "epoch_valid": valid_steps,
+                        }
+                        with open(
+                            os.path.join(save_dir, "results.pkl"), "wb"
+                        ) as rf:
+                            pickle.dump(results, rf)
+                        return
 
-            except:
-                print(f"stmh failed here")
+                except Exception as exc:
+                    print(f"Eval failed at step {step}: {exc}")
 
+            if step % save_every == 0:
+                ckpt = os.path.join(
+                    save_dir, f"lora_step_{step:07d}.safetensors"
+                )
+                save_lora_adapters(model, ckpt)
+                save_lora_adapters(
+                    model,
+                    os.path.join(save_dir, "adapters.safetensors"),
+                )
 
-
-
-        if step % save_every == 0:
-            ckpt = f"{save_dir}/lora_step_{step:07d}.safetensors" # adding zeros so its a consistent form
-            save_lora_adapters(model, ckpt)
-            save_lora_adapters(model, f"{save_dir}/adapters.safetensors") # current adapter (if we want to run tests during training)
- 
-    # save final adapter when done (if we reach iters)
-    final_ckpt = f"{save_dir}/lora_final.safetensors"
+    # Save final adapter after reaching full iters
+    final_ckpt = os.path.join(save_dir, "lora_final.safetensors")
     save_lora_adapters(model, final_ckpt)
-    save_lora_adapters(model, f"{save_dir}/adapters.safetensors")
+    save_lora_adapters(model, os.path.join(save_dir, "adapters.safetensors"))
 
-    with open(f"{save_dir}/results.pkl", "wb") as f: # saving results that occured during training
-        pickle.dump(
-            {
-                "train_loss": [float(v) for v in train_losses],
-                "valid_loss": valid_losses,
-                "epoch_train": train_steps,
-                "epoch_valid": valid_steps,
-            },
-            f,
-        )
-
-
-    log_file.close()
+    results = {
+        "train_loss": [float(v) for v in train_losses],
+        "valid_loss": valid_losses,
+        "epoch_train": train_steps,
+        "epoch_valid": valid_steps,
+    }
+    with open(os.path.join(save_dir, "results.pkl"), "wb") as f:
+        pickle.dump(results, f)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run LoRA training from YAML config")
+    parser = argparse.ArgumentParser(
+        description="Run LoRA training from a YAML config file"
+    )
     parser.add_argument(
         "--config",
         type=str,
@@ -449,4 +449,5 @@ if __name__ == "__main__":
 
     with open(args.config, "r", encoding="utf-8") as f:
         train_config = yaml.safe_load(f)
+
     train(**train_config)
