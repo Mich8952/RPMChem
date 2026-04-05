@@ -1,36 +1,87 @@
-from StatClasses import TTestRunner
+"""Run a paired t-test on semantic (BERTScore F1) evaluation results.
+
+Compares two model result CSVs produced by run_test_semantics.py using
+a paired Student's t-test on the bert_f1 columns.
+
+Usage
+-----
+    python run_stat_test_on_semantics.py \
+        --main-dir  analysis/results/semantics_qlora_no_ir.csv \
+        --consistent-dir analysis/results/semantics_qlora_ir.csv \
+        --model-to-use 1
+"""
+
+import argparse
+
 import pandas as pd
+
+from stat_classes import TTestRunner
+
+
+def build_parser():
+    parser = argparse.ArgumentParser(
+        description="Paired t-test on semantic (BERTScore F1) model results"
+    )
+    parser.add_argument(
+        "--main-dir",
+        required=True,
+        help="Path to the primary results CSV (model 2 column is used).",
+    )
+    parser.add_argument(
+        "--consistent-dir",
+        default=None,
+        help=(
+            "Optional path to a second results CSV whose model column "
+            "is used as the baseline (model 1 / group A). When omitted "
+            "the model 1 column from --main-dir is used directly."
+        ),
+    )
+    parser.add_argument(
+        "--model-to-use",
+        choices=["1", "2"],
+        default="1",
+        help=(
+            "Which model column to pull from --consistent-dir as group A. "
+            "1 = bert_f1_model1, 2 = bert_f1_model2."
+        ),
+    )
+    return parser
 
 
 if __name__ == "__main__":
-    main_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/semantics_qlora_no_ir.csv"
-    
-    # define comparison model
-    consistent_m_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/semantics_qlora_ir.csv"
-    m_to_use = "1" # 1 means use model 1 from the consistent_m_dir and 2 means use model 2
+    args = build_parser().parse_args()
 
-    df = pd.read_csv(main_dir)
-    if consistent_m_dir is None:
-        if m_to_use == "1":
-            groupA = df['bert_f1_model1'].values
-        elif m_to_use == "2":
-            groupA = df['bert_f1_model2'].values
+    df = pd.read_csv(args.main_dir)
+
+    if args.consistent_dir is None:
+        if args.model_to_use == "1":
+            group_a = df["bert_f1_model1"].values
         else:
-            raise Exception("Please specify m_to_use as either '1' or '2'")
-        groupB = df['bert_f1_model2'].values
+            group_a = df["bert_f1_model2"].values
+        group_b = df["bert_f1_model2"].values
     else:
-        if m_to_use == "1":
-            df_m1 = pd.read_csv(consistent_m_dir)[['prompt', 'ground_truth_completion', 'bert_f1_model1']].rename(columns={'bert_f1_model1': 'groupA'})
-        elif m_to_use == "2":
-            df_m1 = pd.read_csv(consistent_m_dir)[['prompt', 'ground_truth_completion', 'bert_f1_model2']].rename(columns={'bert_f1_model2': 'groupA'})
-        df_m2 = df[['prompt', 'ground_truth_completion', 'bert_f1_model2']].rename(columns={'bert_f1_model2': 'groupB'})
-        merged = df_m1.merge(df_m2, on=['prompt', 'ground_truth_completion'], how='inner')
-        groupA = merged['groupA'].values
-        groupB = merged['groupB'].values
+        if args.model_to_use == "1":
+            df_m1 = pd.read_csv(args.consistent_dir)[
+                ["prompt", "ground_truth_completion", "bert_f1_model1"]
+            ].rename(columns={"bert_f1_model1": "group_a"})
+        else:
+            df_m1 = pd.read_csv(args.consistent_dir)[
+                ["prompt", "ground_truth_completion", "bert_f1_model2"]
+            ].rename(columns={"bert_f1_model2": "group_a"})
 
-    print(groupA.mean(), groupB.mean())
+        df_m2 = df[
+            ["prompt", "ground_truth_completion", "bert_f1_model2"]
+        ].rename(columns={"bert_f1_model2": "group_b"})
 
+        merged = df_m1.merge(
+            df_m2, on=["prompt", "ground_truth_completion"], how="inner"
+        )
+        group_a = merged["group_a"].values
+        group_b = merged["group_b"].values
 
-    ttR = TTestRunner(groupA, groupB)
-    ttR.check_assumptions()
-    ttR.run_test()
+    print(f"Group A mean BERTScore F1 : {group_a.mean():.4f}")
+    print(f"Group B mean BERTScore F1 : {group_b.mean():.4f}")
+
+    runner = TTestRunner(group_a, group_b)
+    runner.check_assumptions()
+    runner.run_test()

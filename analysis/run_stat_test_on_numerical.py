@@ -1,122 +1,226 @@
-import sys
-sys.path.append("/Users/michaelmurray/Documents/GitHub/RPMChem/analysis")
+"""Run paired statistical tests on numerical evaluation results.
 
-from StatClasses import TTestRunner, WilcoxenRunner
-import pandas as pd
+Compares two model result CSVs produced by run_test_numerical.py using
+the Wilcoxon signed-rank test at multiple relative-error penalty caps.
+
+Usage
+-----
+    python run_stat_test_on_numerical.py \
+        --main-dir  analysis/results/numerical_qlora_ir.csv \
+        --consistent-dir analysis/results/numerical_qlora_no_ir.csv \
+        --model-to-use 1
+"""
+
+import argparse
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
-plt.style.use('ggplot')
+from stat_classes import WilcoxonRunner
 
-CAP_glob = 10  # maximum error value; also assigned when model fails to predict
+plt.style.use("ggplot")
+
+# Maximum relative error cap; also assigned when a model fails to predict.
+CAP_GLOB = 10
+
 
 def relative_error(y_true, y_hat):
     return np.abs(y_hat - y_true) / np.abs(y_true)
 
 
-def compute_err(y_true, y_hat, CAP = CAP_glob):
+def compute_err(y_true, y_hat, cap=CAP_GLOB):
     if pd.isna(y_hat):
-        return CAP #\+ 0.1
-    return min(relative_error(y_true, y_hat), CAP)
+        return cap
+    return min(relative_error(y_true, y_hat), cap)
 
-def penality_analysis(df):
-    A = df[["model1_converted_value","ground_truth"]]
-    per_pen_A = []
-    pens = [2,4,7,8,10,12,14,16,18]
-    for pen in pens:
-        errsA = []
-        for i in range(len(A)):
-            errsA.append(compute_err(A.iloc[i]['ground_truth'],A.iloc[i]['model1_converted_value'],CAP=pen))
-        per_pen_A.append(np.mean(errsA))
 
-    B = df[["model2_converted_value","ground_truth"]]
-    per_pen_B = []
-    for pen in pens:
-        errsB = []
-        for i in range(len(B)):
-            errsB.append(compute_err(B.iloc[i]['ground_truth'],B.iloc[i]['model2_converted_value'],CAP=pen))
-        per_pen_B.append(np.mean(errsB))
+def penalty_analysis(df):
+    """Plot mean relative error vs penalty cap for two models.
 
-    # inefficient but okay for now (need to check sdtats on each one)
-    stat_sig = []
-    for pen in pens:
-        
-        errs_a = []
-        errs_b = []
-        for i in range(len(A)):
-            errA = compute_err(A.iloc[i]['ground_truth'],A.iloc[i]['model1_converted_value'],CAP=pen)
-            errB = compute_err(B.iloc[i]['ground_truth'],B.iloc[i]['model2_converted_value'],CAP=pen)
-            errs_a.append(errA)
-            errs_b.append(errB)
-        wcR = WilcoxenRunner(np.array(errs_a), np.array(errs_b))
-        stat_sig.append(wcR.run_test())
-    
-    sig_bool = [x['significant'] for x in stat_sig]
+    Overlays a colour band showing where the Wilcoxon test is
+    statistically significant (green) or not (red).
+    """
+    group_a = df[["model1_converted_value", "ground_truth"]]
+    group_b = df[["model2_converted_value", "ground_truth"]]
+
+    penalties = [2, 4, 7, 8, 10, 12, 14, 16, 18]
+
+    per_pen_a = [
+        np.mean(
+            [
+                compute_err(
+                    group_a.iloc[i]["ground_truth"],
+                    group_a.iloc[i]["model1_converted_value"],
+                    cap=pen,
+                )
+                for i in range(len(group_a))
+            ]
+        )
+        for pen in penalties
+    ]
+
+    per_pen_b = [
+        np.mean(
+            [
+                compute_err(
+                    group_b.iloc[i]["ground_truth"],
+                    group_b.iloc[i]["model2_converted_value"],
+                    cap=pen,
+                )
+                for i in range(len(group_b))
+            ]
+        )
+        for pen in penalties
+    ]
+
+    stat_results = []
+    for pen in penalties:
+        errs_a = [
+            compute_err(
+                group_a.iloc[i]["ground_truth"],
+                group_a.iloc[i]["model1_converted_value"],
+                cap=pen,
+            )
+            for i in range(len(group_a))
+        ]
+        errs_b = [
+            compute_err(
+                group_b.iloc[i]["ground_truth"],
+                group_b.iloc[i]["model2_converted_value"],
+                cap=pen,
+            )
+            for i in range(len(group_b))
+        ]
+        runner = WilcoxonRunner(np.array(errs_a), np.array(errs_b))
+        stat_results.append(runner.run_test())
+
+    sig_bool = [r["significant"] for r in stat_results]
 
     plt.clf()
-    plt.plot(pens,per_pen_A, label = "Model 1")
-    plt.plot(pens,per_pen_B, label = "Model 2")
-    x_dense = np.linspace(min(pens)-0.5, max(pens)+0.5, 600)
-    sig_dense = np.interp(x_dense, pens, np.array(sig_bool, dtype=float))
-    rgb = np.stack([1.0 - sig_dense, sig_dense, np.zeros_like(sig_dense)], axis=1)[None, :, :]
+    plt.plot(penalties, per_pen_a, label="Model 1")
+    plt.plot(penalties, per_pen_b, label="Model 2")
+
+    x_dense = np.linspace(min(penalties) - 0.5, max(penalties) + 0.5, 600)
+    sig_dense = np.interp(x_dense, penalties, np.array(sig_bool, dtype=float))
+    rgb = np.stack(
+        [1.0 - sig_dense, sig_dense, np.zeros_like(sig_dense)], axis=1
+    )[None, :, :]
     y0, y1 = plt.gca().get_ylim()
-    plt.gca().imshow(rgb, extent=[x_dense.min(), x_dense.max(), y0, y1], origin='lower', aspect='auto', alpha=0.18, zorder=0)
+    plt.gca().imshow(
+        rgb,
+        extent=[x_dense.min(), x_dense.max(), y0, y1],
+        origin="lower",
+        aspect="auto",
+        alpha=0.18,
+        zorder=0,
+    )
     plt.grid()
-    
-    plt.title("Mean Relative Error vs Penality Cap \n Statistical Significance shown in Green")
+    plt.title(
+        "Mean Relative Error vs Penalty Cap\n"
+        "Statistical Significance shown in Green"
+    )
     plt.ylabel("Mean Relative Error")
-    plt.xlabel("Penality Cap (Value assigned to failed predictions)")
+    plt.xlabel("Penalty Cap (value assigned to failed predictions)")
     plt.legend()
     plt.show()
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(
+        description="Paired Wilcoxon test on numerical model results"
+    )
+    parser.add_argument(
+        "--main-dir",
+        required=True,
+        help="Path to the primary results CSV (model 2 column is used).",
+    )
+    parser.add_argument(
+        "--consistent-dir",
+        default=None,
+        help=(
+            "Optional path to a second results CSV whose model column "
+            "is used as the baseline (model 1). When omitted the model 1 "
+            "column from --main-dir is used directly."
+        ),
+    )
+    parser.add_argument(
+        "--model-to-use",
+        choices=["1", "2"],
+        default="1",
+        help=(
+            "Which model column to pull from --consistent-dir as the "
+            "baseline. 1 = model1_*, 2 = model2_* (renamed to model1_*)."
+        ),
+    )
+    return parser
+
+
 if __name__ == "__main__":
-    main_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_qlora_ir.csv"
+    args = build_parser().parse_args()
 
-    consistent_m_dir = "/Users/michaelmurray/Documents/GitHub/RPMChem/analysis/results/numerical_qlora_no_ir.csv"
-    m_to_use = "1" # 1 means use model 1 from the consistent_m_dir and 2 means use model 2
+    df = pd.read_csv(args.main_dir)
 
-    df = pd.read_csv(main_dir)
-    if consistent_m_dir is None:
-        if m_to_use == "1":
-            pass
-        elif m_to_use == "2":
+    if args.consistent_dir is None:
+        if args.model_to_use == "2":
             df["model1_converted_value"] = df["model2_converted_value"]
             df["model1_ans"] = df["model2_ans"]
-        else:
-            raise Exception("Please specify m_to_use as either '1' or '2'")
     else:
-        if m_to_use == "1":
-            df_m1 = pd.read_csv(consistent_m_dir)[["prompt", "ground_truth", "model1_converted_value", "model1_ans"]]
-        elif m_to_use == "2":
-            df_m1 = pd.read_csv(consistent_m_dir)[["prompt", "ground_truth", "model2_converted_value", "model2_ans"]].rename(columns={"model2_converted_value":"model1_converted_value","model2_ans":"model1_ans"})
+        if args.model_to_use == "1":
+            df_m1 = pd.read_csv(args.consistent_dir)[
+                ["prompt", "ground_truth", "model1_converted_value", "model1_ans"]
+            ]
         else:
-            raise Exception("Please specify m_to_use as either '1' or '2'")
+            df_m1 = (
+                pd.read_csv(args.consistent_dir)[
+                    [
+                        "prompt",
+                        "ground_truth",
+                        "model2_converted_value",
+                        "model2_ans",
+                    ]
+                ]
+                .rename(
+                    columns={
+                        "model2_converted_value": "model1_converted_value",
+                        "model2_ans": "model1_ans",
+                    }
+                )
+            )
+
         df_m2 = df[["prompt", "ground_truth", "model2_converted_value", "model2_ans"]]
-        df_m1["ground_truth"] = pd.to_numeric(df_m1["ground_truth"], errors="coerce")
-        df_m2["ground_truth"] = pd.to_numeric(df_m2["ground_truth"], errors="coerce")
+        df_m1["ground_truth"] = pd.to_numeric(
+            df_m1["ground_truth"], errors="coerce"
+        )
+        df_m2["ground_truth"] = pd.to_numeric(
+            df_m2["ground_truth"], errors="coerce"
+        )
         df = df_m1.merge(df_m2, on=["prompt", "ground_truth"], how="inner")
 
-    valid = df['ground_truth'].notna()
-    df = df[valid].reset_index(drop=True)
+    df = df[df["ground_truth"].notna()].reset_index(drop=True)
 
-    print(f"N samples: {len(df)}")
-    print(f"Model1 NaN rate: {df['model1_ans'].isna().sum() / len(df) * 100:.1f}%")
-    print(f"Model2 NaN rate: {df['model2_ans'].isna().sum() / len(df) * 100:.1f}%")
+    print(f"N samples          : {len(df)}")
+    print(
+        f"Model 1 NaN rate   : "
+        f"{df['model1_ans'].isna().sum() / len(df) * 100:.1f}%"
+    )
+    print(
+        f"Model 2 NaN rate   : "
+        f"{df['model2_ans'].isna().sum() / len(df) * 100:.1f}%"
+    )
 
-    err1 = df.apply(lambda r: compute_err(r['ground_truth'], r['model1_ans']), axis=1)
-    err2 = df.apply(lambda r: compute_err(r['ground_truth'], r['model2_ans']), axis=1)
+    err1 = df.apply(
+        lambda r: compute_err(r["ground_truth"], r["model1_ans"]), axis=1
+    )
+    err2 = df.apply(
+        lambda r: compute_err(r["ground_truth"], r["model2_ans"]), axis=1
+    )
 
+    print(f"Mean error Model 1 : {err1.mean():.4f}")
+    print(f"Mean error Model 2 : {err2.mean():.4f}")
 
-    print(f"\Mean relative error model1: {np.mean(err1):.4f}")
-    print(f"Mean relative error model2: {np.mean(err2):.4f}")
+    runner = WilcoxonRunner(err1.values, err2.values)
+    runner.check_assumptions()
+    runner.run_test()
 
-    print(f"\std relative error model1: {np.std(err1):.4f}")
-    print(f"std relative error model2: {np.std(err2):.4f}")
-    
-    print("")
-    wcR = WilcoxenRunner(err1.values, err2.values)
-    wcR.check_assumptions(bins=20)
-    wcR.run_test()
-
-
-    #penality_analysis(df)
+    penalty_analysis(df)
