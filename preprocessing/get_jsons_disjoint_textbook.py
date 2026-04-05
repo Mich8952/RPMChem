@@ -1,3 +1,11 @@
+# preprocessing/get_jsons_disjoint_textbook.py
+
+"""
+Extracts question/answer items from disjoint textbook and solutions PDFs
+using a vision-language model via an LM Studio OpenAI-compatible endpoint.
+"""
+
+
 import base64
 import gc
 import io
@@ -8,35 +16,27 @@ import re
 import time
 import traceback
 from datetime import datetime
-from pypdf import PdfReader
 
 from openai import OpenAI
 from pdf2image import convert_from_path
+from pypdf import PdfReader
+
+from prompts import build_disjoint_question_prompt, build_disjoint_answer_prompt
 
 
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+
+MAX_PAGES_PER_ITEM = 3  # max num of consecutive pages to look at 
+LM_STUDIO_BASE_URL = "http://localhost:1234/v1"
+MODEL_NAME = "qwen/qwen3-vl-30b"
+API_SLEEP_SECONDS = 3
 
 
-max_pages_per_item = 3  # max num of consecutive pages to look at 
+# Want to define keywords that are specific to this textbook. Page will only be processed if keywords are found on the page (this is a quick heuristic to save cost by not running the vision model on pages that clearly dont have questions on them). This is especially important for this textbook because the questions are at the end of each chapter and there are a lot of pages that are just content. We want to make sure we can skip those content pages as much as possible.
 
-datestamp = str(datetime.now()).replace(" ", "__").replace(".","__").replace(":","_") # timestamp for this run so that we can keep track
-
-checkpoint_file = f'datasets/processed_real/checkpoint_{datestamp}.txt' # in case it crashes
-
-logging.basicConfig( # logging config so I can see what the error is (I originally had a bug with LM Studio unloading my model halfway through the processoing)
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(f'datasets/processed_real/extraction_log_{datestamp}.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
-client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
-
-
-# in this case, want to define keywords that are specific to this textbook. In this textbook, we want to look at pages that have any of these. If they have them, then we process. Otherwise, we would run the LLM on every single page and get it to form the same conclusion - takes forever.
-
-pdf1_section_keywords = [
+PDF1_SECTION_KEYWORDS = [
     "discussion questions",
     "exercises",
     "problems",
@@ -44,121 +44,136 @@ pdf1_section_keywords = [
 ]
 
 
-def string_parser(raw_text):
+# ---------------------------------------------------------------------------
+# Logging + client (module-level singletons)
+# ---------------------------------------------------------------------------
+
+datestamp = (
+    str(datetime.now())
+    .replace(" ", "__")
+    .replace(".", "__")
+    .replace(":", "_")
+)
+
+# checkpoint_file = f'datasets/processed_real/checkpoint_{datestamp}.txt' # in case of crashes
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler(
+            f"datasets/processed_real/extraction_log_{datestamp}.log"
+        ),
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger(__name__)
+
+client = OpenAI(base_url=LM_STUDIO_BASE_URL, api_key="lm-studio")
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def parse_json_response(raw_text: str) -> dict:
+    """Strip optional markdown fences and parse JSON."""
     cleaned = re.sub(r"^```json\s*|\s*```$", "", raw_text.strip())
     return json.loads(cleaned)
 
 
-def encode_pil_image(image): # this is an improvement over the last get_jsons (now called joint) because it doesnt operate on images. We can just run it directly from memory 
-    buffer = io.BytesIO() # 
+def encode_pil_image(image) -> str:
+    """Base64-encode a PIL image as PNG."""
+    buffer = io.BytesIO()
     image.save(buffer, format="PNG")
     return base64.b64encode(buffer.getvalue()).decode("utf-8")
 
 
-def process_pages(pdf_path, start_page, num_pages, last_page):
+def normalize_text(text: str) -> str:
+    """Lowercase and collapse whitespace for keyword matching."""
+    return re.sub(r"\s+", " ", text.lower()).strip()
+
+
+# ---------------------------------------------------------------------------
+# PDF utilities
+# ---------------------------------------------------------------------------
+
+class PdfExtractor:
+    """Extracts and normalises plain text from a PDF page."""
+
+    def __init__(self, pdf_path: str):
+        self.reader = PdfReader(pdf_path)
+        self.num_pages = len(self.reader.pages)
+
+    def __call__(self, page_num: int) -> str:
+        page_idx = page_num - 1
+        if page_idx < 0 or page_idx >= self.num_pages:
+            return ""
+        raw = self.reader.pages[page_idx].extract_text() or ""
+        return normalize_text(raw)
+
+def process_pages(
+    pdf_path: str,
+    start_page: int,
+    num_pages: int,
+    last_page: int,
+) -> list[str]:
+    """Render PDF pages to base64-encoded PNG strings."""
     images = []
-    for page_offset in range(num_pages):
-        page_num = start_page + page_offset
+    for offset in range(num_pages):
+        page_num = start_page + offset
         if page_num > last_page:
             break
-        pages = convert_from_path(pdf_path, dpi=500, first_page=page_num, last_page=page_num)
-        images.append(encode_pil_image(pages[0])) # base64 encode them so that we can pass them to language model
-        del pages # then do memory cleanup as I was running OOM somehow before (accumulated ram each run somehow)
+        pages = convert_from_path(
+            pdf_path, dpi=500, first_page=page_num, last_page=page_num
+        )
+        images.append(encode_pil_image(pages[0]))   # encode the first (and only) page returned as PNG
+        del pages                                   # clean up memory immediately after processing each page to avoid OOM
         gc.collect()
     return images
 
-def normalize_text(text):
-    return re.sub(r"\s+", " ", text.lower()).strip() # make it lower case and also remove whitespace. THe idea is that we want the quick tester (that looks for section keywords) to be able to actually find the keywords even if there are textual artifacts.
-
-
-class PdfExtractor:
-    def __init__(self,pdf_path):
-        self.reader = PdfReader(pdf_path)
-    def __call__(self,page_num):
-        page_idx = page_num-1
-        if page_idx < 0 or page_idx >= len(self.reader.pages):
-            return ""
-        
-        raw = self.reader.pages[page_idx].extract_text() or ""
-
-        return normalize_text(raw)
-
-
-def should_scan_pdf1_page(page_num, text_extractor): # boolean function basically to say "should we actually scan this for questions" - which occurs if and only if it surpasses the first check
+def should_scan_pdf1_page(
+    page_num: int,
+    text_extractor: PdfExtractor | None,
+) -> bool:
+    """Return True if the page likely contains exercise/problem content."""
     if text_extractor is None:
         return True
-
     page_text = text_extractor(page_num)
     if not page_text:
         return True
-
-    return any(keyword in page_text for keyword in pdf1_section_keywords)
-
-
-def prompt_pdf1_questions(num_pages_to_try):
-    return f"""
-You are an advanced OCR machine.
-
-You are shown {num_pages_to_try} consecutive page(s) from a question PDF.
-
-Extract all COMPLETE questions visible on these pages and return JSON only.
-
-Output schema:
-{{
-  "items": [
-    {{
-      "question_num": "string",
-      "question_text": "string"
-    }}
-  ],
-  "pages_used": {num_pages_to_try},
-  "summary": "string"
-}}
-
-Rules:
-- Include only questions where both number and full question text are fully visible.
-- Exclude anything with missing/cut-off text.
-- Use ASCII text only.
-- Preserve equations and chemistry notation in text form.
-- If none are complete, return an empty items list.
-"""
+    return any(keyword in page_text for keyword in PDF1_SECTION_KEYWORDS)
 
 
-def prompt_pdf2_answers(num_pages_to_try):
-    return f"""
-You are an advanced OCR machine.
+# ---------------------------------------------------------------------------
+# Core extraction
+# ---------------------------------------------------------------------------
 
-You are shown {num_pages_to_try} consecutive page(s) from an answers/solutions PDF.
+def extract_items_from_pdf(
+    pdf_path: str,
+    output_path: str,
+    prompt_builder,
+    final_page: int | None = None,
+    should_scan_page=None,
+) -> None:
+    """
+    Iterate over pages of *pdf_path*, call the vision model, and write
+    extracted items to *output_path* as a JSON file.
 
-Extract all COMPLETE answer entries visible on these pages and return JSON only.
+    Args:
+        pdf_path: Path to the source PDF.
+        output_path: Destination JSON file path.
+        prompt_builder: Callable(num_pages) -> str.
+        final_page: Last page to process. Defaults to the total page count.
+        should_scan_page: Optional callable(page_num) -> bool gating the
+            vision call with a cheap text-based pre-filter.
+    """
+    extractor = PdfExtractor(pdf_path)
+    if final_page is None:
+        final_page = extractor.num_pages
 
-Output schema:
-{{
-  "items": [
-    {{
-      "question_num": "string",
-      "answer_text": "string"
-    }}
-  ],
-  "pages_used": {num_pages_to_try},
-  "summary": "string"
-}}
-
-Rules:
-- Include only entries where question number and full answer text are fully visible.
-- Exclude anything with missing/cut-off text.
-- Use ASCII text only.
-- Preserve equations and chemistry notation in text form.
-- If none are complete, return an empty items list.
-"""
-
-
-def extract_items_from_pdf(pdf_path, output_path, prompt_builder, should_scan_page=None):
     records = []
-    initial_page = 1
-    page_index = initial_page
-
-    final_page = len(PdfExtractor(pdf_path).reader.pages) # kind of bad practice for now but will revisit later
+    page_index = 1
 
     while page_index <= final_page:
         try:
@@ -166,45 +181,57 @@ def extract_items_from_pdf(pdf_path, output_path, prompt_builder, should_scan_pa
             pages_used = 1
 
             if should_scan_page is not None and not should_scan_page(page_index):
-                logger.info(
-                    f"Page {page_index}: skipped before vision model (missing section keywords)"
-                )
+                logger.info("Page %d: skipped (no section keywords)", page_index)
                 page_index += 1
                 continue
 
-            for num_pages_to_try in range(1, max_pages_per_item + 1):
+            for num_pages_to_try in range(1, MAX_PAGES_PER_ITEM + 1):
                 if page_index + num_pages_to_try - 1 > final_page:
                     break
 
-                time.sleep(3)
-                base64_images = process_pages(pdf_path=pdf_path, start_page=page_index, num_pages=num_pages_to_try, last_page=final_page)
+                time.sleep(API_SLEEP_SECONDS)
+                base64_images = process_pages(
+                    pdf_path=pdf_path,
+                    start_page=page_index,
+                    num_pages=num_pages_to_try,
+                    last_page=final_page,
+                )
 
                 content = [{"type": "text", "text": prompt_builder(num_pages_to_try)}]
-                for base64_img in base64_images:
+                for img in base64_images:
                     content.append(
                         {
                             "type": "image_url",
-                            "image_url": {"url": f"data:image/png;base64,{base64_img}"},
+                            "image_url": {"url": f"data:image/png;base64,{img}"},
                         }
                     )
 
                 completion = client.chat.completions.create(
-                    model="qwen/qwen3-vl-30b",
+                    model=MODEL_NAME,
                     messages=[{"role": "user", "content": content}],
-                    max_tokens=3000, # increase if we hit the limit but it likely wont happen given we set max pages to 3 
+                    max_tokens=3000,
                 )
 
-                parsed = string_parser(completion.choices[0].message.content)
-                items = parsed.get("items")
+                parsed = parse_json_response(completion.choices[0].message.content)
+                items = parsed.get("items", [])
 
-                if items != []:
+                if items:
                     best_result = parsed
                     pages_used = num_pages_to_try
-                    logger.info(f"Page at {page_index}: extracted {len(items)} qs using {num_pages_to_try} pages")
+                    logger.info(
+                        "Page %d: extracted %d items using %d pages",
+                        page_index,
+                        len(items),
+                        num_pages_to_try,
+                    )
                     break
 
-                logger.info(f"Page {page_index}: no valid items at {num_pages_to_try} pages, {parsed.get('summary', 'no summary was found')}")
-
+                logger.info(
+                    "Page %d: no items at %d pages — %s",
+                    page_index,
+                    num_pages_to_try,
+                    parsed.get("summary", "no summary"),
+                )
                 del base64_images, content, completion, parsed
                 gc.collect()
 
@@ -216,52 +243,62 @@ def extract_items_from_pdf(pdf_path, output_path, prompt_builder, should_scan_pa
                 page_index += pages_used
             else:
                 logger.warning(
-                    f"Page {page_index}: no valid extraction up to {max_pages_per_item} pages"
+                    "Page %d: no valid extraction after %d attempts",
+                    page_index,
+                    MAX_PAGES_PER_ITEM,
                 )
                 page_index += 1
 
             if page_index % 10 == 0:
                 gc.collect()
-                logger.info(f"Memory cleanup at page {page_index}")
 
-        except Exception as error:
-            logger.error(
-                f"Page {page_index}: failed with {type(error).__name__}: {str(error)}"
-            )
-            logger.debug(f"Page {page_index}: traceback:\n{traceback.format_exc()}")
+        except Exception:
+            logger.error("Page %d: unhandled exception", page_index)
+            logger.debug(traceback.format_exc())
             page_index += 1
 
     payload = {
         "source_pdf": pdf_path,
         "generated_at": datestamp,
-        "initial_page": initial_page,
+        "initial_page": 1,
         "final_page": final_page,
         "records": records,
     }
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=True, indent=2)
 
-    
-    with open(output_path, "w", encoding="utf-8") as output_file:
-        json.dump(payload, output_file, ensure_ascii=True, indent=2)
+    logger.info("Saved %d records to %s", len(records), output_path)
 
-    logger.info(f"Saved {len(records)} records to {output_path}")
 
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    # Edit conf/preprocessing.yaml to change PDF paths — do not hardcode here.
+    # These defaults match the paths defined in that config file.
+    PDF1 = "datasets/pdfs/Atkins_ Physical Chemistry 11e.pdf"
+    PDF2 = "datasets/pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf"
 
+    PDF1_JSON = "datasets/processed_real/pdf1_json.json"
+    PDF2_JSON = "datasets/processed_real/pdf2_json.json"
 
-    pdf1 = "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/pdfs/Atkins_ Physical Chemistry 11e.pdf"
-    pdf2 = "/Users/michaelmurray/Documents/GitHub/RPMChem/datasets/pdfs/Solutions Manual - Atkins Physical Chemistry 11th Ed.pdf"
-
-    pdf1_json = "datasets/processed_real/pdf1_json.json"
-    pdf2_json = "datasets/processed_real/pdf2_json.json"
-
-    pdf1_text_extractor = PdfExtractor(pdf1)
+    pdf1_extractor = PdfExtractor(PDF1)
 
     extract_items_from_pdf(
-        pdf1,
-        pdf1_json,
-        prompt_pdf1_questions,
-        should_scan_page=lambda page_num: should_scan_pdf1_page(page_num, pdf1_text_extractor),
+        PDF1,
+        PDF1_JSON,
+        build_disjoint_question_prompt,
+        final_page=pdf1_extractor.num_pages,
+        should_scan_page=lambda p: should_scan_pdf1_page(p, pdf1_extractor),
     )
-    extract_items_from_pdf(pdf2, pdf2_json, prompt_pdf2_answers)
+    extract_items_from_pdf(
+        PDF2,
+        PDF2_JSON,
+        build_disjoint_answer_prompt,
+    )
 
+
+# ---------------------------------------------------------------------------
+# End of file!
+# ---------------------------------------------------------------------------
