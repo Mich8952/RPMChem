@@ -20,8 +20,8 @@ from prompts import REASONING_SYSTEM_PROMPT, REASONING_USER_TEMPLATE
 # ---------------------------------------------------------------------------
 
 MODEL = "gpt-oss-120b"
-TEMPERATURE = 0.2
-MAX_TOKENS = 1000
+TEMPERATURE = 0.0
+MAX_TOKENS = 3000
 
 
 # ---------------------------------------------------------------------------

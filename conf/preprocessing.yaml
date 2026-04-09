@@ -10,7 +10,7 @@ textbook_dir: datasets
 textbooks:
   - name: engel_reid_solution_manual
     mode: joint
-    textbook_pdf: "raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0) - libgen.li.pdf"
+    textbook_pdf: "raw/Thomas Engel and Philip Reid - Solution Manual for Physical Chemistry (0).pdf"
     initial_page: 10
     final_page: 755
 
