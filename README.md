@@ -88,12 +88,6 @@ RPMChem/
 Install all dependencies from the project root:
 
 ```bash
-pip install -r requirements.txt
-```
-
-> **Note**: A `requirements.txt` is not yet committed. Install the following manually until it is added:
-
-```bash
 pip install mlx mlx-lm transformers huggingface_hub \
             pymupdf pypdf pyyaml \
             bert-score rouge-score scikit-learn \
