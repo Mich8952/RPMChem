@@ -40,39 +40,46 @@ The pipeline fine-tunes a quantized Llama 3.1 8B model (or any HuggingFace-compa
 
 ```
 RPMChem/
+├── README.md
+├── requirements.txt
+├── analysis/
+│   ├── results/
+│   ├── run_stat_test_on_numerical.py
+│   ├── run_stat_test_on_semantics.py
+│   ├── run_test_numerical.py
+│   ├── run_test_numerical_PE_cot.py
+│   ├── run_test_semantics.py
+│   ├── run_test_semantics_fewshot_PE.py
+│   ├── run_test_semantics_PE_cot.py
+│   └── stat_classes.py
 ├── conf/
-│   ├── preprocessing.yaml       # Preprocessing config (PDF paths, modes)
-│   └── training.yaml            # Training hyperparameters
+│   ├── preprocessing.yaml
+│   └── training.yaml
+├── datasets/
+│   ├── current_to_run/
+│   ├── current_to_run_text_ids/
+│   ├── e2e_artifacts/
+│   ├── numerical_prompts_real/
+│   ├── pdfs/
+│   ├── processed_real/
+│   └── raw/
 ├── preprocessing/
-│   ├── preprocessor_pipeline.py # Main preprocessing entry point
-│   ├── get_jsons_joint.py       # Extractor for joint Q/A PDFs
-│   ├── get_jsons_disjoint_textbook.py  # Extractor for disjoint PDFs
+│   ├── OSCR/
+│   ├── add_reasoning_context.py
 │   ├── combine_jsons_disjoint.py
 │   ├── combine_textbooks.py
-│   ├── re_process_real.py       # Filters bad samples, splits train/valid
-│   ├── add_reasoning_context.py # Optionally adds LLM reasoning traces
 │   ├── extract_numerical_subset.py
-│   ├── prompts.py               # All LLM prompt templates
-│   └── mcmurray_extractor.py    # Organic chemistry extractor (OpenStax)
-├── training/
-│   ├── train.py                 # Main training entry point
-│   ├── models.py                # Model loading, LoRA layer injection
-│   ├── dataclasses_mlx.py       # Dataset/DataLoader for MLX
-│   ├── early_stopper.py
-│   └── tokenizer_template.py
-├── analysis/
-│   ├── run_test_semantics.py          # Semantic evaluation (BERTScore + ROUGE-L)
-│   ├── run_test_numerical.py          # Numerical evaluation (relative error)
-│   ├── run_test_semantics_PE_cot.py   # Semantic eval with chain-of-thought
-│   ├── run_test_numerical_PE_cot.py   # Numerical eval with chain-of-thought
-│   ├── run_stat_test_on_semantics.py  # Statistical significance tests
-│   ├── run_stat_test_on_numerical.py
-│   ├── stat_classes.py
-│   └── results/                       # CSV outputs saved here
-├── datasets/                    # Place your PDFs and generated datasets here
-│   ├── raw/                     # Engel & Reid PDF
-│   └── pdfs/                    # Atkins PDF(s)
-└── fuse.md                      # Notes on fusing LoRA adapters
+│   ├── get_jsons_disjoint_textbook.py
+│   ├── get_jsons_joint.py
+│   ├── preprocessor_pipeline.py
+│   ├── prompts.py
+│   └── re_process_real.py
+└── training/
+  ├── dataclasses_mlx.py
+  ├── early_stopper.py
+  ├── models.py
+  ├── tokenizer_template.py
+  └── train.py
 ```
 
 ***
