@@ -351,4 +351,3 @@ python analysis/run_stat_test_on_numerical.py
 
 - **Always run scripts from the repo root.** All relative paths (`datasets/`, `conf/`, `logs/`, `analysis/results/`) are anchored to the root.
 - **Model paths in eval scripts** default to `~/.lmstudio/models/...`. Override with `--model_1` / `--model_2` CLI args when running on a different machine.
-- The `datasets/` directory is gitignored (large/copyrighted files). Any new contributor must supply their own PDFs.
