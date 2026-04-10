@@ -1,11 +1,20 @@
+# Python artifacts
 *.pyc
+
+# Archives and large files
 *.zip
 *.pdf
+*.safetensors
+*.h5
+*.pkl
+
+# Data files
 *.json
 *.log
-*.safetensors
-*.png
-*.pkl
-*.json
-*.DS_Store
-*.h5
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Temporary training artifacts
+train_curr_temp.png
