@@ -275,8 +275,8 @@ Compares two models on a validation set using SciBERT-based BERTScore and ROUGE-
 ```bash
 python analysis/run_test_semantics.py \
   --dataset_dir datasets/current_to_run/valid_IMPUTED.jsonl \
-  --model_1 ~/.lmstudio/models/personal/8b_nolora \
-  --model_2 ~/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt
+  --model_1 path/to/base_model \
+  --model_2 path/to/fused_model
 ```
 
 Results are saved to `analysis/results/semantics_<timestamp>.csv`.
@@ -286,10 +286,10 @@ Results are saved to `analysis/results/semantics_<timestamp>.csv`.
 Compares models on a CSV of numerical Q/A pairs, extracting final answers and computing relative error:
 
 ```bash
-python analysis/run_test_numerical.py \
-  --dataset_dir datasets/numerical_prompts_real/validation.csv \
-  --model_1 ~/.lmstudio/models/personal/8b_noLora \
-  --model_2 ~/.lmstudio/models/submission/fuse_model_8b_qlora_manual_NEW_prompt
+python analysis/run_test_semantics.py \
+  --dataset_dir datasets/current_to_run/valid_IMPUTED.jsonl \
+  --model_1 path/to/base_model \
+  --model_2 path/to/fused_model
 ```
 
 Results are saved to `analysis/results/numerical_<timestamp>.csv`.
@@ -351,6 +351,4 @@ python analysis/run_stat_test_on_numerical.py
 
 - **Always run scripts from the repo root.** All relative paths (`datasets/`, `conf/`, `logs/`, `analysis/results/`) are anchored to the root.
 - **Model paths in eval scripts** default to `~/.lmstudio/models/...`. Override with `--model_1` / `--model_2` CLI args when running on a different machine.
-- **`mcmurray_extractor.py`** is an older Colab-style notebook converted to a script. It uses `!pip install` shell commands and `fitz.open('textbook1.pdf')` with a hardcoded filename — it requires manual editing before use. A future refactor should convert it to accept a CLI argument for the PDF path.
-- **`analysis/.DS_Store`** — this macOS metadata file should be added to `.gitignore` if not already excluded.
 - The `datasets/` directory is gitignored (large/copyrighted files). Any new contributor must supply their own PDFs.
