@@ -103,6 +103,9 @@ def process_pages(
 # Core extraction
 # ---------------------------------------------------------------------------
 
+INITIAL_PAGE = 1
+FINAL_PAGE = 1000  # Restrict this to 1k for now. It automatically will stop at the end of the document regardless.
+
 def extract_joint_pdf(
     pdf_path: str,
     output_path: str,
